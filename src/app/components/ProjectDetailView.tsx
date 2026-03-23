@@ -6,22 +6,22 @@ export interface ProjectDetail {
   title: string;
   subtitle: string;
   heroImage: string;
-  background: string;
-  goal: string;
-  process: {
+  background?: string;
+  goal?: string;
+  process?: {
     description: string;
-    features: { title: string; desc: string }[];
+    features?: { title: string; desc: string }[];
   };
-  userFlow: { step: string; desc: string }[];
-  infoHierarchy: { level: string; items: string[] }[];
-  accomplishments: string[];
+  userFlow?: { step: string; desc: string }[];
+  infoHierarchy?: { level: string; items: string[] }[];
+  accomplishments?: string[];
   processImage?: string;
   processImageCaption?: string;
   resultImage?: string;
   resultImageCaption?: string;
-  takeaway: string;
+  takeaway?: string;
   prototypeLink?: string;
-  tools: string[];
+  tools?: string[];
   category?: string;
 }
 
@@ -99,53 +99,60 @@ export function ProjectDetailView({ project, darkMode, onBack }: ProjectDetailVi
         initial="hidden"
         animate="visible"
         transition={{ delay: 0.1 }}
-        className="w-full rounded-2xl overflow-hidden mb-10 mt-4"
-        style={{ boxShadow: "0 12px 40px rgba(0,0,0,0.3)" }}
+        className="w-full rounded-2xl overflow-hidden mb-10 mt-4 shadow-2xl"
       >
         <ImageWithFallback
           src={project.heroImage}
           alt={project.title}
-          className="w-full h-64 md:h-96 object-cover"
+          className="w-full h-auto block object-cover"
         />
       </motion.div>
 
       {/* Background */}
-      <SectionBlock title="Background" headingColor={headingColor} dividerColor={dividerColor} delay={0.15}>
-        <p className="text-base md:text-lg leading-relaxed" style={{ color: textColor }}>
-          {project.background}
-        </p>
-      </SectionBlock>
+      {project.background && (
+        <SectionBlock title="Background" headingColor={headingColor} dividerColor={dividerColor} delay={0.15}>
+          <p className="text-base md:text-lg leading-relaxed" style={{ color: textColor }}>
+            {project.background}
+          </p>
+        </SectionBlock>
+      )}
 
       {/* Goal */}
-      <SectionBlock title="Goal" headingColor={headingColor} dividerColor={dividerColor} delay={0.2}>
-        <p className="text-base md:text-lg leading-relaxed" style={{ color: textColor }}>
-          {project.goal}
-        </p>
-      </SectionBlock>
+      {project.goal && (
+        <SectionBlock title="Goal" headingColor={headingColor} dividerColor={dividerColor} delay={0.2}>
+          <p className="text-base md:text-lg leading-relaxed" style={{ color: textColor }}>
+            {project.goal}
+          </p>
+        </SectionBlock>
+      )}
 
       {/* Process & Design Strategy */}
-      <SectionBlock title="Process & Design Strategy" headingColor={headingColor} dividerColor={dividerColor} delay={0.25}>
-        <p className="text-base md:text-lg leading-relaxed mb-6" style={{ color: textColor }}>
-          {project.process.description}
-        </p>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {project.process.features.map((f, i) => (
-            <motion.div
-              key={i}
-              whileHover={{ scale: 1.03, y: -3 }}
-              className="rounded-2xl p-5"
-              style={glassStyle}
-            >
-              <h4 className="font-['Jaro',sans-serif] text-xl mb-2" style={{ color: accentColor }}>
-                {f.title}
-              </h4>
-              <p className="text-sm leading-relaxed" style={{ color: textColor }}>
-                {f.desc}
-              </p>
-            </motion.div>
-          ))}
-        </div>
-      </SectionBlock>
+      {project.process && (
+        <SectionBlock title="Process & Design Strategy" headingColor={headingColor} dividerColor={dividerColor} delay={0.25}>
+          <p className="text-base md:text-lg leading-relaxed mb-6" style={{ color: textColor }}>
+            {project.process.description}
+          </p>
+          {project.process.features && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {project.process.features.map((f, i) => (
+                <motion.div
+                  key={i}
+                  whileHover={{ scale: 1.03, y: -3 }}
+                  className="rounded-2xl p-5"
+                  style={glassStyle}
+                >
+                  <h4 className="font-['Jaro',sans-serif] text-xl mb-2" style={{ color: accentColor }}>
+                    {f.title}
+                  </h4>
+                  <p className="text-sm leading-relaxed" style={{ color: textColor }}>
+                    {f.desc}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          )}
+        </SectionBlock>
+      )}
 
       {/* Process Image */}
       {project.processImage && (
@@ -156,11 +163,11 @@ export function ProjectDetailView({ project, darkMode, onBack }: ProjectDetailVi
           viewport={{ once: true }}
           className="mb-8"
         >
-          <div className="w-full rounded-2xl overflow-hidden" style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.2)" }}>
+          <div className="w-full rounded-2xl overflow-hidden shadow-2xl mb-3">
             <ImageWithFallback
               src={project.processImage}
               alt="Process illustration"
-              className="w-full h-48 md:h-72 object-cover"
+              className="w-full h-auto block object-cover"
             />
           </div>
           {project.processImageCaption && (
@@ -171,108 +178,116 @@ export function ProjectDetailView({ project, darkMode, onBack }: ProjectDetailVi
         </motion.div>
       )}
 
-      {/* In-Depth Architecture */}
-      <SectionBlock title="In-Depth Architecture" headingColor={headingColor} dividerColor={dividerColor} delay={0.3}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* User Flow */}
-          <div>
-            <h4 className="font-['Jaro',sans-serif] text-2xl mb-6" style={{ color: accentColor }}>
-              User Flow
-            </h4>
-            <div className="relative pl-10">
-              {/* Vertical line */}
-              <div
-                className="absolute left-[14px] top-2 bottom-2 w-[2px]"
-                style={{ backgroundColor: dividerColor }}
-              />
-              <div className="flex flex-col gap-6">
-                {project.userFlow.map((step, i) => {
-                  const Icon = flowIcons[i % flowIcons.length];
-                  return (
+      {/* 🌟 修改点：如果有 userFlow 或者 infoHierarchy，才渲染这个 Architecture 模块 */}
+      {(project.userFlow || project.infoHierarchy) && (
+        <SectionBlock title="In-Depth Architecture" headingColor={headingColor} dividerColor={dividerColor} delay={0.3}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            
+            {/* User Flow 只有在有数据时才渲染 */}
+            {project.userFlow && (
+              <div>
+                <h4 className="font-['Jaro',sans-serif] text-2xl mb-6" style={{ color: accentColor }}>
+                  User Flow
+                </h4>
+                <div className="relative pl-10">
+                  <div
+                    className="absolute left-[14px] top-2 bottom-2 w-[2px]"
+                    style={{ backgroundColor: dividerColor }}
+                  />
+                  <div className="flex flex-col gap-6">
+                    {project.userFlow.map((step, i) => {
+                      const Icon = flowIcons[i % flowIcons.length];
+                      return (
+                        <motion.div
+                          key={i}
+                          initial={{ opacity: 0, x: -20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: i * 0.1 }}
+                          className="relative"
+                        >
+                          <div
+                            className="absolute -left-10 top-0 w-7 h-7 rounded-full flex items-center justify-center z-10"
+                            style={{ backgroundColor: accentColor }}
+                          >
+                            <Icon size={14} color={darkMode ? "#1a1a2e" : "#fff"} />
+                          </div>
+                          <div className="rounded-xl p-4" style={glassStyle}>
+                            <h5 className="font-['Jaro',sans-serif] text-lg mb-1" style={{ color: headingColor }}>
+                              {step.step}
+                            </h5>
+                            <p className="text-sm" style={{ color: textColor }}>
+                              {step.desc}
+                            </p>
+                          </div>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {/* Information Hierarchy 只有在有数据时才渲染 */}
+            {project.infoHierarchy && (
+              <div>
+                <h4 className="font-['Jaro',sans-serif] text-2xl mb-6" style={{ color: accentColor }}>
+                  Information Hierarchy
+                </h4>
+                <div className="flex flex-col gap-4">
+                  {project.infoHierarchy.map((level, i) => (
                     <motion.div
                       key={i}
-                      initial={{ opacity: 0, x: -20 }}
+                      initial={{ opacity: 0, x: 20 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: i * 0.1 }}
-                      className="relative"
+                      className="rounded-xl p-4"
+                      style={glassStyle}
                     >
-                      <div
-                        className="absolute -left-10 top-0 w-7 h-7 rounded-full flex items-center justify-center z-10"
-                        style={{ backgroundColor: accentColor }}
-                      >
-                        <Icon size={14} color={darkMode ? "#1a1a2e" : "#fff"} />
-                      </div>
-                      <div className="rounded-xl p-4" style={glassStyle}>
-                        <h5 className="font-['Jaro',sans-serif] text-lg mb-1" style={{ color: headingColor }}>
-                          {step.step}
-                        </h5>
-                        <p className="text-sm" style={{ color: textColor }}>
-                          {step.desc}
-                        </p>
+                      <h5 className="font-['Jaro',sans-serif] text-lg mb-3" style={{ color: accentColor }}>
+                        {level.level}
+                      </h5>
+                      <div className="flex flex-col gap-1 pl-4" style={{ borderLeft: `2px solid ${dividerColor}` }}>
+                        {level.items.map((item, j) => (
+                          <span key={j} className="text-sm py-0.5" style={{ color: textColor }}>
+                            {item}
+                          </span>
+                        ))}
                       </div>
                     </motion.div>
-                  );
-                })}
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
           </div>
-
-          {/* Information Hierarchy */}
-          <div>
-            <h4 className="font-['Jaro',sans-serif] text-2xl mb-6" style={{ color: accentColor }}>
-              Information Hierarchy
-            </h4>
-            <div className="flex flex-col gap-4">
-              {project.infoHierarchy.map((level, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="rounded-xl p-4"
-                  style={glassStyle}
-                >
-                  <h5 className="font-['Jaro',sans-serif] text-lg mb-3" style={{ color: accentColor }}>
-                    {level.level}
-                  </h5>
-                  <div className="flex flex-col gap-1 pl-4" style={{ borderLeft: `2px solid ${dividerColor}` }}>
-                    {level.items.map((item, j) => (
-                      <span key={j} className="text-sm py-0.5" style={{ color: textColor }}>
-                        {item}
-                      </span>
-                    ))}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </SectionBlock>
+        </SectionBlock>
+      )}
 
       {/* Accomplishments */}
-      <SectionBlock title="Accomplishments" headingColor={headingColor} dividerColor={dividerColor} delay={0.35}>
-        <ul className="flex flex-col gap-3 list-none p-0 m-0">
-          {project.accomplishments.map((item, i) => (
-            <motion.li
-              key={i}
-              initial={{ opacity: 0, x: -15 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="flex items-start gap-3 text-base leading-relaxed"
-              style={{ color: textColor }}
-            >
-              <span
-                className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
-                style={{ backgroundColor: accentColor }}
-              />
-              {item}
-            </motion.li>
-          ))}
-        </ul>
-      </SectionBlock>
+      {project.accomplishments && (
+        <SectionBlock title="Accomplishments" headingColor={headingColor} dividerColor={dividerColor} delay={0.35}>
+          <ul className="flex flex-col gap-3 list-none p-0 m-0">
+            {project.accomplishments.map((item, i) => (
+              <motion.li
+                key={i}
+                initial={{ opacity: 0, x: -15 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08 }}
+                className="flex items-start gap-3 text-base leading-relaxed"
+                style={{ color: textColor }}
+              >
+                <span
+                  className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0"
+                  style={{ backgroundColor: accentColor }}
+                />
+                {item}
+              </motion.li>
+            ))}
+          </ul>
+        </SectionBlock>
+      )}
 
       {/* Result Image */}
       {project.resultImage && (
@@ -283,11 +298,11 @@ export function ProjectDetailView({ project, darkMode, onBack }: ProjectDetailVi
           viewport={{ once: true }}
           className="mb-8"
         >
-          <div className="w-full rounded-2xl overflow-hidden" style={{ boxShadow: "0 8px 30px rgba(0,0,0,0.2)" }}>
+          <div className="w-full rounded-2xl overflow-hidden shadow-2xl mb-3">
             <ImageWithFallback
               src={project.resultImage}
               alt="Result"
-              className="w-full h-48 md:h-72 object-cover"
+              className="w-full h-auto block object-cover"
             />
           </div>
           {project.resultImageCaption && (
@@ -299,28 +314,32 @@ export function ProjectDetailView({ project, darkMode, onBack }: ProjectDetailVi
       )}
 
       {/* Takeaway */}
-      <SectionBlock title="Takeaway" headingColor={headingColor} dividerColor={dividerColor} delay={0.4}>
-        <div className="rounded-2xl p-6" style={glassStyle}>
-          <p className="text-base md:text-lg leading-relaxed italic" style={{ color: textColor }}>
-            {project.takeaway}
-          </p>
-        </div>
-      </SectionBlock>
+      {project.takeaway && (
+        <SectionBlock title="Takeaway" headingColor={headingColor} dividerColor={dividerColor} delay={0.4}>
+          <div className="rounded-2xl p-6" style={glassStyle}>
+            <p className="text-base md:text-lg leading-relaxed italic" style={{ color: textColor }}>
+              {project.takeaway}
+            </p>
+          </div>
+        </SectionBlock>
+      )}
 
       {/* Tools & Technologies */}
-      <SectionBlock title="Technologies & Tools" headingColor={headingColor} dividerColor={dividerColor} delay={0.45}>
-        <div className="flex flex-wrap gap-3">
-          {project.tools.map((tool, idx) => (
-            <span
-              key={idx}
-              className="px-4 py-2 rounded-xl text-sm font-semibold"
-              style={glassStyle}
-            >
-              <span style={{ color: accentColor }}>{tool}</span>
-            </span>
-          ))}
-        </div>
-      </SectionBlock>
+      {project.tools && (
+        <SectionBlock title="Technologies & Tools" headingColor={headingColor} dividerColor={dividerColor} delay={0.45}>
+          <div className="flex flex-wrap gap-3">
+            {project.tools.map((tool, idx) => (
+              <span
+                key={idx}
+                className="px-4 py-2 rounded-xl text-sm font-semibold"
+                style={glassStyle}
+              >
+                <span style={{ color: accentColor }}>{tool}</span>
+              </span>
+            ))}
+          </div>
+        </SectionBlock>
+      )}
 
       {/* Prototype Link */}
       {project.prototypeLink && (
@@ -342,7 +361,7 @@ export function ProjectDetailView({ project, darkMode, onBack }: ProjectDetailVi
             }}
           >
             <ExternalLink size={20} />
-            View Prototype
+            View Detail / Prototype
           </a>
         </motion.div>
       )}
