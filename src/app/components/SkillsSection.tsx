@@ -1,30 +1,11 @@
 import { Palette, Code, Users } from "lucide-react";
 import { motion } from "motion/react";
+import { useLanguage } from "../../LanguageContext"; // 🌟 引入双语控制器
+import { translations } from "../../translations";   // 🌟 引入字典
 
 interface SkillsSectionProps {
   darkMode: boolean;
 }
-
-const skills = [
-  {
-    icon: Palette,
-    title: "Design Expertise",
-    description:
-      "UI/UX Design, Visual Design, Interaction Design, Prototyping with Figma & Adobe Suite",
-  },
-  {
-    icon: Code,
-    title: "Technical Proficiency",
-    description:
-      "React, TypeScript, Python, GIS Tools, Data Visualization, Web Development",
-  },
-  {
-    icon: Users,
-    title: "User Research & Analytics",
-    description:
-      "User Interviews, Usability Testing, A/B Testing, Data Analysis, Survey Design",
-  },
-];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -42,6 +23,17 @@ const itemVariants = {
 };
 
 export function SkillsSection({ darkMode }: SkillsSectionProps) {
+  // 🌟 读取当前语言对应的动态翻译
+  const { lang } = useLanguage();
+  const t = translations[lang].skills;
+
+  // 🌟 将图标与从字典里取出的文字数据动态合并
+  const icons = [Palette, Code, Users];
+  const skillsData = t.list.map((item, idx) => ({
+    ...item,
+    icon: icons[idx],
+  }));
+
   return (
     <section
       className="relative py-24 px-6 md:px-16 transition-colors duration-500 overflow-hidden"
@@ -61,12 +53,12 @@ export function SkillsSection({ darkMode }: SkillsSectionProps) {
           className="font-['Jaro',sans-serif] text-7xl md:text-8xl mb-16 text-center transition-colors duration-500"
           style={{ color: darkMode ? "#4b2e7d" : "#503282" }}
         >
-          Skills
+          {t.title} {/* 🌟 动态显示 Skills / 专业技能 */}
         </motion.h2>
 
         {/* Skill cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-          {skills.map((skill) => (
+          {skillsData.map((skill) => (
             <motion.div
               variants={itemVariants}
               whileHover={{ scale: 1.05, y: -5 }}
@@ -96,13 +88,13 @@ export function SkillsSection({ darkMode }: SkillsSectionProps) {
                 className="font-['Jaro',sans-serif] text-3xl mb-4"
                 style={{ color: darkMode ? "#4b2e7d" : "#503282" }}
               >
-                {skill.title}
+                {skill.title} {/* 🌟 动态读取标题 */}
               </h3>
               <p
                 className="text-base opacity-80 leading-relaxed font-medium"
                 style={{ color: darkMode ? "#4b2e7d" : "#333" }}
               >
-                {skill.description}
+                {skill.description} {/* 🌟 动态读取描述 */}
               </p>
             </motion.div>
           ))}
