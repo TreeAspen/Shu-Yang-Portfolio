@@ -1,6 +1,6 @@
 import { Palette, Code, Users } from "lucide-react";
 import { motion } from "motion/react";
-import { useLanguage } from "../../LanguageContext"; // 🌟 引入双语控制器
+import { useLanguage } from "../../LanguageContext"; // 🌟 引入双语状态
 import { translations } from "../../translations";   // 🌟 引入字典
 
 interface SkillsSectionProps {
@@ -23,11 +23,11 @@ const itemVariants = {
 };
 
 export function SkillsSection({ darkMode }: SkillsSectionProps) {
-  // 🌟 读取当前语言对应的动态翻译
+  // 🌟 读取当前语言的动态翻译
   const { lang } = useLanguage();
   const t = translations[lang].skills;
 
-  // 🌟 将图标与从字典里取出的文字数据动态合并
+  // 🌟 将固定的图标与字典里的文字数据动态合并
   const icons = [Palette, Code, Users];
   const skillsData = t.list.map((item, idx) => ({
     ...item,
@@ -53,16 +53,16 @@ export function SkillsSection({ darkMode }: SkillsSectionProps) {
           className="font-['Jaro',sans-serif] text-7xl md:text-8xl mb-16 text-center transition-colors duration-500"
           style={{ color: darkMode ? "#4b2e7d" : "#503282" }}
         >
-          {t.title} {/* 🌟 动态显示 Skills / 专业技能 */}
+          {t.title} 
         </motion.h2>
 
         {/* Skill cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
-          {skillsData.map((skill) => (
+          {skillsData.map((skill, idx) => (
             <motion.div
               variants={itemVariants}
               whileHover={{ scale: 1.05, y: -5 }}
-              key={skill.title}
+              key={idx} // 🌟 核心修复点：使用固定索引作为 key，防止语言切换时卡片被销毁重置
               className="rounded-3xl p-8 text-center transition-shadow duration-300 hover:shadow-2xl cursor-pointer"
               style={{
                 backgroundColor: "rgba(72, 44, 121, 0.1)",
@@ -88,13 +88,13 @@ export function SkillsSection({ darkMode }: SkillsSectionProps) {
                 className="font-['Jaro',sans-serif] text-3xl mb-4"
                 style={{ color: darkMode ? "#4b2e7d" : "#503282" }}
               >
-                {skill.title} {/* 🌟 动态读取标题 */}
+                {skill.title} 
               </h3>
               <p
                 className="text-base opacity-80 leading-relaxed font-medium"
                 style={{ color: darkMode ? "#4b2e7d" : "#333" }}
               >
-                {skill.description} {/* 🌟 动态读取描述 */}
+                {skill.description} 
               </p>
             </motion.div>
           ))}
