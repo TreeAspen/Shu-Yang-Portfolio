@@ -71,7 +71,7 @@ export function ContactSection({ darkMode }: ContactSectionProps) {
                 <Mail size={36} color="#fffa74" />
               </div>
               <h3 className="font-['Jaro',sans-serif] text-3xl" style={{ color: "#fffa74" }}>{t.email}</h3>
-              <a href="mailto:sy4234@nyu.edu" className="text-lg font-medium hover:text-white transition-colors" style={{ color: "#94c4f5" }}>sy4234@nyu.edu</a>
+              <a href="mailto:sy4254@nyu.edu" className="text-lg font-medium hover:text-white transition-colors" style={{ color: "#94c4f5" }}>sy4254@nyu.edu</a>
             </motion.div>
 
             <motion.div whileHover={{ scale: 1.05 }} className="flex flex-col items-center gap-5 p-6 rounded-3xl hover:bg-white/5 transition-colors">
