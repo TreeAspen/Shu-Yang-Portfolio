@@ -1,25 +1,25 @@
-import { Palette, Code, Users } from "lucide-react";
+import { Sparkles, Code2, Microscope } from "lucide-react";
 import { motion } from "motion/react";
-import { useLanguage } from "../../LanguageContext"; // 🌟 引入双语状态
-import { translations } from "../../translations";   // 🌟 引入字典
+import { useLanguage } from "../../LanguageContext";
+import { translations } from "../../translations";
 
 interface SkillsSectionProps {
   darkMode: boolean;
 }
 
+const cardEase = [0.22, 1, 0.36, 1] as any;
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
+    transition: { staggerChildren: 0.18 },
   },
 };
 
 const itemVariants = {
-  hidden: { y: 20, opacity: 0 },
-  visible: { y: 0, opacity: 1, transition: { type: "spring", stiffness: 100 } },
+  hidden: { y: 24, opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: cardEase } },
 };
 
 export function SkillsSection({ darkMode }: SkillsSectionProps) {
@@ -28,7 +28,7 @@ export function SkillsSection({ darkMode }: SkillsSectionProps) {
   const t = translations[lang].skills;
 
   // 🌟 将固定的图标与字典里的文字数据动态合并
-  const icons = [Palette, Code, Users];
+  const icons = [Sparkles, Code2, Microscope];
   const skillsData = t.list.map((item, idx) => ({
     ...item,
     icon: icons[idx],
@@ -50,51 +50,61 @@ export function SkillsSection({ darkMode }: SkillsSectionProps) {
       >
         <motion.h2
           variants={itemVariants}
-          className="font-['Jaro',sans-serif] text-7xl md:text-8xl mb-16 text-center transition-colors duration-500"
+          className="font-['Jaro',sans-serif] text-7xl md:text-8xl mb-16 text-center transition-colors duration-500 tracking-tight"
           style={{ color: darkMode ? "#4b2e7d" : "#503282" }}
         >
-          {t.title} 
+          {t.title}
         </motion.h2>
 
         {/* Skill cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-10">
           {skillsData.map((skill, idx) => (
             <motion.div
               variants={itemVariants}
-              whileHover={{ scale: 1.05, y: -5 }}
-              key={idx} // 🌟 核心修复点：使用固定索引作为 key，防止语言切换时卡片被销毁重置
-              className="rounded-3xl p-8 text-center transition-shadow duration-300 hover:shadow-2xl cursor-pointer"
+              whileHover={{ y: -8, transition: { duration: 0.3, ease: "easeOut" } }}
+              key={idx}
+              className="group relative rounded-3xl p-8 text-center cursor-default overflow-hidden"
               style={{
                 backgroundColor: "rgba(72, 44, 121, 0.1)",
-                backdropFilter: "blur(12px) saturate(150%)",
-                WebkitBackdropFilter: "blur(12px) saturate(150%)",
+                backdropFilter: "blur(14px) saturate(160%)",
+                WebkitBackdropFilter: "blur(14px) saturate(160%)",
                 boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 8px 32px 0 rgba(0, 0, 0, 0.3)",
                 border: "1px solid rgba(255, 255, 255, 0.1)",
+                transition: "box-shadow 0.4s ease",
               }}
             >
-              <div className="flex justify-center mb-6">
+              {/* Soft radial halo on hover */}
+              <div
+                className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{
+                  background: `radial-gradient(circle at 50% 0%, ${darkMode ? "rgba(80,50,130,0.18)" : "rgba(80,50,130,0.12)"}, transparent 70%)`,
+                }}
+              />
+
+              <div className="relative flex justify-center mb-6">
                 <motion.div
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.6 }}
+                  whileHover={{ scale: 1.08, rotate: 6 }}
+                  transition={{ type: "spring", stiffness: 240, damping: 16 }}
                   className="w-20 h-20 rounded-2xl flex items-center justify-center shadow-lg"
                   style={{
-                    backgroundColor: darkMode ? "#503282" : "#503282",
+                    backgroundColor: "#503282",
+                    boxShadow: `0 12px 32px -8px ${darkMode ? "rgba(80,50,130,0.55)" : "rgba(80,50,130,0.4)"}`,
                   }}
                 >
-                  <skill.icon size={40} color="#fffa74" />
+                  <skill.icon size={36} color="#fffa74" strokeWidth={1.8} />
                 </motion.div>
               </div>
               <h3
-                className="font-['Jaro',sans-serif] text-3xl mb-4"
+                className="relative font-['Jaro',sans-serif] text-3xl mb-4 tracking-tight"
                 style={{ color: darkMode ? "#4b2e7d" : "#503282" }}
               >
-                {skill.title} 
+                {skill.title}
               </h3>
               <p
-                className="text-base opacity-80 leading-relaxed font-medium"
+                className="relative text-[15px] opacity-85 leading-relaxed font-medium"
                 style={{ color: darkMode ? "#4b2e7d" : "#333" }}
               >
-                {skill.description} 
+                {skill.description}
               </p>
             </motion.div>
           ))}

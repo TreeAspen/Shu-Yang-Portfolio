@@ -12,6 +12,11 @@ import imgProject3_3 from './assets/project3-3.png';
 import imgImage5 from './assets/image5.png';
 import imgImage1 from './assets/image1.png';
 import imgImage3 from './assets/image3.png';
+import imgProject311_1 from './assets/project-311-1.png';
+import imgProject311_2 from './assets/project-311-2.png';
+import imgProject311_3 from './assets/project-311-3.png';
+import imgVRGreenery1 from './assets/vr-greenery-1.png';
+import imgVRGreenery2 from './assets/vr-greenery-2.png';
 
 export const translations = {
   en: {
@@ -24,7 +29,7 @@ export const translations = {
     },
     hero: {
       name: "Shu Yang",
-      subtitle: "Data Science x Visual Design | NYU CUSP",
+      subtitle: "Designing with data, engineering with intent — NYU CUSP '26",
       academicBio: "Academic Bio",
       github: "GitHub",
       linkedin: "LinkedIn",
@@ -59,24 +64,24 @@ export const translations = {
       }
     ],
     skills: {
-      title: "Skills",
+      title: "Craft",
       list: [
         {
-          title: "Design Expertise",
-          description: "UI/UX Design, Visual Design, Interaction Design, Prototyping with Figma & Adobe Suite",
+          title: "Design Craft",
+          description: "From research-led UX to expressive visual systems — fluent in Figma and the Adobe suite, shaping interfaces with motion-led prototyping.",
         },
         {
-          title: "Technical Proficiency",
-          description: "React, TypeScript, Python, GIS Tools, Data Visualization, Web Development",
+          title: "Engineering Fluency",
+          description: "Production-grade React + TypeScript on the front, Python and modern data stacks on the back. I design and ship the whole stack.",
         },
         {
-          title: "User Research & Analytics",
-          description: "User Interviews, Usability Testing, A/B Testing, Data Analysis, Survey Design",
+          title: "Research & Strategy",
+          description: "Mixed-methods user research, statistical modeling, and causal inference — turning behavior into evidence, evidence into product decisions.",
         },
       ]
     },
     timeline: {
-      title: "Time Line",
+      title: "Journey",
       events: [
         {
           year: "2026.02 - Present",
@@ -199,6 +204,95 @@ export const translations = {
           takeaway: "This project validated my capability to operate as a full-stack Creative Technologist. Moving beyond Figma mockups, I learned how to translate unconventional design concepts directly into production-ready React code.",
           tools: ["Figma", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
           prototypeLink: "https://utoplab.net/",
+        }
+      },
+      {
+        id: 9,
+        title: "VR Greenery & Urban Stress",
+        description: "🏆 2026 CUSP Best Capstone Award. A controlled VR experiment with 25 participants, EEG/EDA biosensing, and AI-standardized greenery to study how urban context shapes restorative response.",
+        categories: ["Data Science", "AI / ML", "UI/UX"],
+        image: imgVRGreenery1,
+        detail: {
+          title: "VR Greenery Study: Physiological & Psychological Response to Urban Context",
+          subtitle: "An Immersive Experiment Using Virtual Reality and Multi-Measurement Biosensing — 2026 NYU CUSP Best Capstone Award.",
+          heroImage: imgVRGreenery1,
+          category: "Capstone Research",
+          background: (
+            <span>
+              <a href="https://utoplab.net/#/news/vr-urban-stress-study" target="_blank" rel="noopener noreferrer" className="text-[#E2F16B] underline underline-offset-4 hover:text-[#FF7A00] transition-colors font-mono font-bold">
+                Project Page: utoplab.net/#/news/vr-urban-stress-study
+              </a>
+              <br /><br />
+              🏆 <strong>Awarded the 2026 Best Capstone Award at NYU CUSP.</strong> Results were also presented at the 2026 American Association of Geographers Annual Meeting (AAG), San Francisco, March 17–21, 2026.
+              <br /><br />
+              Co-authored with Ruolin Wu and Isaiah Garnett · Mentors: Anton Rozhkov, Zhaoxi Zhang, H. Shellae Versey · Sponsor: Prince Michael Amegbor.
+              <br /><br />
+              Rapid urbanization is increasing stress and mental-health burdens in cities. Prior research shows greenery can offer psychological restoration, but most studies measure only the quantity of greenery, or compare urban vs. suburban in broad strokes. Less is known about how specific urban contexts shape the stress-reducing effect of greenery.
+            </span>
+          ) as any,
+          goal: "Investigate how urban greenery and surrounding spatial context jointly influence stress reduction — using VR-based simulation, physiological biosensing, and psychological scaling — to inform evidence-based urban design.",
+          process: {
+            description: "I co-led the full pipeline from literature review through data validation, owning the AI greenery standardization, the Meta Quest 3 stimulus pipeline, and the EEG / EDA / survey analysis. The study isolates context from raw greenery quantity by AI-equalizing GVI across all four scenes.",
+            features: [
+              { title: "AI-Standardized Greenery (GVI)", desc: "Used SegFormer-b2 with ADE20K parsing to measure GVI on raw 360° captures, then applied Google Veo 2.0 video generation to unify GVI to 24–34% across park, waterfront, residential, and roadway scenes — isolating context from greenery quantity." },
+              { title: "VR + Biosensing Pipeline", desc: "Meta Quest 3 delivered randomized 360° clips while Emotiv Insight EEG (FAA, Beta/Alpha, PM.Stress) and Empatica E4 EDA (tonic SCL, phasic SCR) captured real-time physiological response, paired with PANAS-X, perceived realism, and PREQI psychological scales." },
+              { title: "Mixed-Methods Analysis", desc: "RM-ANOVA across the four contexts on EEG, EDA, and survey data; Cochran's Q paired test confirmed participants could not reliably detect AI-modified greenery (p > 0.05) — validating the ecological soundness of the standardization." },
+            ],
+          },
+          accomplishments: [
+            "🏆 Won the 2026 NYU CUSP Best Capstone Award.",
+            "Presented at the 2026 American Association of Geographers Annual Meeting in San Francisco.",
+            "Significant context effect on Frontal Alpha Asymmetry (F(3,57)=3.35, p=0.0255*), with park and waterfront eliciting more positive valence than road and residential.",
+            "Survey HighPositive & CalmPositive emotion ratings differed significantly by context (p < 0.05).",
+            "Recruited 25 participants, retained 21 valid datasets after sensor-quality screening.",
+          ],
+          processImage: imgVRGreenery2,
+          processImageCaption: "Research design — full pipeline from literature review through stimulus standardization, biosensing capture, and analysis.",
+          takeaway: "Greenery benefits are not uniform — they depend on the surrounding urban setting. Park and waterfront environments showed the strongest restorative potential, while residential and roadway contexts blunted greenery's effect. This work pushed me to design experiments where AI is a measurement tool, not just an output — using SegFormer + Veo to control a confound that traditional field studies cannot.",
+          tools: ["VR (Meta Quest 3)", "EEG (Emotiv Insight)", "EDA (Empatica E4)", "SegFormer-b2", "Google Veo 2.0", "PANAS-X", "Python", "RM-ANOVA"],
+          prototypeLink: "https://utoplab.net/#/news/vr-urban-stress-study",
+        }
+      },
+      {
+        id: 8,
+        title: "NYC 311 Semantic Dashboard",
+        description: "An AI-driven dashboard that turns natural-language prompts into spatial-temporal classifications across 5 sanitation buckets — with drag-and-drop, density mapping, and live analytics.",
+        categories: ["UI/UX", "Data Science", "AI / ML", "GIS"],
+        image: imgProject311_1,
+        detail: {
+          title: "NYC 311 Sanitation Dashboard: AI-Powered Semantic Analytics",
+          subtitle: "Code4City Hackathon · Prototype design + full-stack engineering for natural-language NYC 311 exploration.",
+          heroImage: imgProject311_1,
+          category: "Civic Data UX",
+          background: (
+            <span>
+              <a href="https://treeaspen.github.io/code4city-hackthon/" target="_blank" rel="noopener noreferrer" className="text-[#E2F16B] underline underline-offset-4 hover:text-[#FF7A00] transition-colors font-mono font-bold">
+                Live Prototype: treeaspen.github.io/code4city-hackthon
+              </a>
+              <br /><br />
+              NYC's 311 system collects millions of citizen complaints per year, but the raw complaint-type taxonomy is noisy, overlapping, and inaccessible to non-technical city staff. Existing dashboards force analysts to memorize cryptic category strings and pre-baked filters — there is no way to ask "show me all trash and drainage issues causing flooding" in plain English.
+            </span>
+          ) as any,
+          goal: "Design and build a working prototype that lets civic stakeholders explore 311 sanitation data through natural-language queries, semantic A–E bucket classifications, and interactive spatial-temporal filters — without writing a single SQL query.",
+          process: {
+            description: "I led both UI/UX design and full-stack engineering during a 48-hour hackathon, then iterated the prototype into a stable demo build. The system pairs an AI Extractor with a drag-and-drop semantic board so users can refine the model's classification on the fly.",
+            features: [
+              { title: "AI Query Extractor", desc: "Natural-language prompt bar parses user intent and routes complaint types into 5 semantic buckets (Trash, Sewer, Flooding, Hygiene, Blockage) with color-consistent visualization across all charts." },
+              { title: "Drag-and-Drop Semantic Board", desc: "Users can override AI classifications by dragging sub-categories between A–E buckets, renaming columns, or excluding noise — turning the dashboard into a live human-in-the-loop labeling tool." },
+              { title: "Spatial + Temporal Filters", desc: "Leaflet density map, community-board selector, and date-range slider all bound to a shared filtered dataset; right sidebar streams live monthly trends and bucket-share analytics." },
+            ],
+          },
+          accomplishments: [
+            "Shipped a complete working prototype in under 48 hours during the Code4City Hackathon.",
+            "Designed a 5-bucket semantic taxonomy that collapsed 40+ raw NYC 311 complaint types into intuitive groupings.",
+            "Engineered a reusable color/category system shared by the map, charts, and category board for visual consistency.",
+            "Reduced bundle size by 90%+ by migrating from raw CSV to preprocessed JSON, enabling instant GitHub Pages deployment.",
+          ],
+          processImage: imgProject311_2,
+          processImageCaption: "Reference research on NYC's 311 platform UX — informed the prompt-first interaction model.",
+          takeaway: "This project pushed me to design for civic stakeholders who think in language, not schemas. The drag-and-drop board became the heart of the UX — letting humans correct the AI is more trustworthy than asking them to trust it blindly. It also validated my workflow as a Design Engineer: figma-to-React in days, not weeks.",
+          tools: ["Figma", "React", "TypeScript", "Tailwind CSS", "Leaflet", "Recharts", "react-dnd", "Vite"],
+          prototypeLink: "https://treeaspen.github.io/code4city-hackthon/",
         }
       },
       {
@@ -326,7 +420,7 @@ export const translations = {
           tools: ["Creative Coding", "Generative Art", "Computer Vision", "ml5.js"],
           prototypeLink: "https://shuyang-dm-gy-6063-2024fall-b.github.io/HW09/HW09B/",
         }
-      }
+      },
     ]
   },
   zh: {
@@ -339,7 +433,7 @@ export const translations = {
     },
     hero: {
       name: "杨树",
-      subtitle: "数据科学 x 视觉设计 | 纽约大学 CUSP",
+      subtitle: "以数据为笔，以工程为意 — 纽约大学 CUSP '26",
       academicBio: "学术主页",
       github: "GitHub",
       linkedin: "领英",
@@ -374,24 +468,24 @@ export const translations = {
       }
     ],
     skills: {
-      title: "专业技能",
+      title: "专业能力",
       list: [
         {
-          title: "设计专长",
-          description: "UI/UX 设计、视觉设计、交互设计、使用 Figma 与 Adobe 套件进行高保真原型制作",
+          title: "设计造诣",
+          description: "从用户研究驱动的 UX 到富有表现力的视觉系统——熟练驾驭 Figma 与 Adobe 全家桶，以动效原型将设计意图精准落地。",
         },
         {
-          title: "技术栈能力",
-          description: "React, TypeScript, Python, GIS 空间分析工具, 数据可视化, Web 前端全栈开发",
+          title: "工程实力",
+          description: "前端 React + TypeScript 直至生产级交付，后端 Python 与现代数据栈一并掌握。从架构到部署，独立完成全栈实现。",
         },
         {
-          title: "研究与数据分析",
-          description: "用户访谈、可用性测试、A/B 测试、统计数据分析、定量/定性问卷设计",
+          title: "研究与策略",
+          description: "混合方法用户研究、统计建模与因果推断——把行为转化为证据，把证据转化为产品决策。",
         },
       ]
     },
     timeline: {
-      title: "过往经历",
+      title: "履历",
       events: [
         {
           year: "2026.02 - 至今",
@@ -514,6 +608,95 @@ export const translations = {
           takeaway: "该项目验证了我作为全栈创意技术专家的能力。超越了单纯的 Figma 模型，我学会了如何将颠覆常规的设计理念直接转化为生产级的 React 代码。",
           tools: ["Figma", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
           prototypeLink: "https://utoplab.net/",
+        }
+      },
+      {
+        id: 9,
+        title: "VR 城市绿地与压力研究",
+        description: "🏆 2026 纽约大学 CUSP 最佳毕业设计奖。一项基于 VR 的对照实验，结合 EEG/EDA 生物传感与 AI 标准化绿视率，研究城市情境如何调节绿地的减压效应。",
+        categories: ["Data Science", "AI / ML", "UI/UX"],
+        image: imgVRGreenery1,
+        detail: {
+          title: "VR 城市绿地研究：城市情境对生理与心理压力响应的影响",
+          subtitle: "一项基于 VR 与多模态生物传感的沉浸式实验 · 荣获 2026 NYU CUSP 最佳毕业设计奖。",
+          heroImage: imgVRGreenery1,
+          category: "毕业设计研究 (Capstone)",
+          background: (
+            <span>
+              <a href="https://utoplab.net/#/news/vr-urban-stress-study" target="_blank" rel="noopener noreferrer" className="text-[#E2F16B] underline underline-offset-4 hover:text-[#FF7A00] transition-colors font-mono font-bold">
+                项目主页：utoplab.net/#/news/vr-urban-stress-study
+              </a>
+              <br /><br />
+              🏆 <strong>荣获 2026 NYU CUSP 最佳毕业设计奖（Best Capstone Award）。</strong>研究成果同时入选 2026 美国地理学家协会年会（AAG），于 2026 年 3 月 17–21 日在旧金山进行了学术报告。
+              <br /><br />
+              合作者：Ruolin Wu、Isaiah Garnett · 导师：Anton Rozhkov、Zhaoxi Zhang、H. Shellae Versey · 资助：Prince Michael Amegbor。
+              <br /><br />
+              城市化进程加剧了居民的精神压力。已有研究证明绿地能带来心理恢复，但大多数研究仅关注绿地"数量"，或在城市/郊区之间做粗粒度比较。我们对"特定城市情境如何调节绿地的减压效应"知之甚少。
+            </span>
+          ) as any,
+          goal: "通过 VR 模拟、生理传感与心理量表的多模态测量，系统研究城市绿地与周边空间情境如何共同影响压力恢复，为循证导向的城市设计提供量化证据。",
+          process: {
+            description: "我与团队共同主导了从文献综述到数据分析的完整流程，独立负责 AI 绿视率标准化、Meta Quest 3 刺激素材构建，以及 EEG / EDA / 问卷数据的统计分析。研究通过 AI 标准化绿视率，将「情境效应」从「绿地数量」中分离出来。",
+            features: [
+              { title: "AI 标准化绿视率 (GVI)", desc: "采用 SegFormer-b2 (ADE20K) 对 360° 原始素材进行场景解析与 GVI 量化，再使用 Google Veo 2.0 视频生成模型将四种场景（公园、滨水、居民区、道路）的绿视率统一到 24–34%，剥离绿地数量这一混淆变量。" },
+              { title: "VR + 生物传感采集流程", desc: "Meta Quest 3 以随机顺序播放四段 360° 城市视频，Emotiv Insight EEG（FAA、Beta/Alpha、PM.Stress）与 Empatica E4 EDA（tonic SCL、phasic SCR）实时采集生理响应，配合 PANAS-X、感知真实度与 PREQI 心理量表。" },
+              { title: "混合方法统计分析", desc: "对 EEG、EDA、问卷分别运行 RM-ANOVA；Cochran's Q 配对检验证实参与者无法可靠识别 AI 修改后的绿地（p > 0.05），从而验证了 AI 标准化方法的生态有效性。" },
+            ],
+          },
+          accomplishments: [
+            "🏆 荣获 2026 年纽约大学 CUSP 最佳毕业设计奖（Best Capstone Award）。",
+            "成果入选 2026 美国地理学家协会年会（AAG, San Francisco）并完成现场学术报告。",
+            "EEG 前额 α 不对称（FAA）出现显著情境效应（F(3,57)=3.35, p=0.0255*），公园与滨水场景诱发更积极的情绪响应。",
+            "问卷 HighPositive / CalmPositive 情绪维度在不同情境间差异显著（p < 0.05）。",
+            "招募 25 名被试，经传感器质量筛选后保留 21 份有效数据。",
+          ],
+          processImage: imgVRGreenery2,
+          processImageCaption: "研究设计——从文献综述、刺激素材标准化，到生物传感采集与统计分析的完整流程。",
+          takeaway: "绿地的恢复效应并非「一刀切」——它高度依赖于所在的城市情境。公园与滨水场景展现出最强的恢复潜力，而居民区与道路情境则削弱了绿地的减压效应。这个项目让我学会把 AI 当作「测量工具」而非「输出工具」——用 SegFormer + Veo 控制了传统田野研究无法控制的混淆变量。",
+          tools: ["VR (Meta Quest 3)", "EEG (Emotiv Insight)", "EDA (Empatica E4)", "SegFormer-b2", "Google Veo 2.0", "PANAS-X", "Python", "RM-ANOVA"],
+          prototypeLink: "https://utoplab.net/#/news/vr-urban-stress-study",
+        }
+      },
+      {
+        id: 8,
+        title: "NYC 311 语义数据看板",
+        description: "AI 驱动的纽约 311 投诉数据看板：自然语言提问即可生成 A–E 五大类语义分类，支持拖拽重组、热力地图与实时分析。",
+        categories: ["UI/UX", "Data Science", "AI / ML", "GIS"],
+        image: imgProject311_1,
+        detail: {
+          title: "NYC 311 卫生投诉语义看板：AI 驱动的智能分析平台",
+          subtitle: "Code4City 黑客松 · 独立完成原型设计与全栈开发的自然语言驱动型 311 数据探索工具。",
+          heroImage: imgProject311_1,
+          category: "公共数据 UX",
+          background: (
+            <span>
+              <a href="https://treeaspen.github.io/code4city-hackthon/" target="_blank" rel="noopener noreferrer" className="text-[#E2F16B] underline underline-offset-4 hover:text-[#FF7A00] transition-colors font-mono font-bold">
+                在线原型：treeaspen.github.io/code4city-hackthon
+              </a>
+              <br /><br />
+              纽约 311 平台每年接收数百万条市民投诉，但原始投诉分类标签繁杂、重叠、对非技术人员极不友好。现有看板强迫分析师记忆晦涩的类别字符串和预设过滤器——没有任何工具能让人用自然语言提问"展示所有导致积水的垃圾与排水问题"。
+            </span>
+          ) as any,
+          goal: "在 48 小时黑客松内设计并构建一个可用的原型：让市政相关方通过自然语言提问、语义化 A–E 分类、空间-时间过滤器自由探索 311 数据——无需编写任何 SQL。",
+          process: {
+            description: "我同时主导了 UI/UX 设计与全栈工程，并在赛后将原型迭代为稳定的演示版本。系统将 AI 提取器 与 拖拽式语义看板 结合，让用户实时纠偏模型的分类结果。",
+            features: [
+              { title: "AI 自然语言提取器", desc: "顶部 Prompt 栏解析用户意图，将投诉类型路由到 5 个语义桶（垃圾、下水道、积水、卫生、阻塞），全图表共享一致配色。" },
+              { title: "拖拽式语义看板", desc: "用户可将子类别在 A–E 桶之间拖动、重命名列、或剔除噪声项，把看板变成「人在回路」式的实时标注工具。" },
+              { title: "时空双维过滤器", desc: "Leaflet 热力地图、社区委员会选择器、日期范围滑块统一绑定共享数据集；右侧栏实时呈现月度趋势与桶占比分析。" },
+            ],
+          },
+          accomplishments: [
+            "在 Code4City 黑客松 48 小时内完整交付了可用原型。",
+            "设计了 5 桶语义分类法，将 40+ 种原始 311 投诉类型归并为直观可读的语义组。",
+            "构建了可复用的颜色/类别系统，使地图、图表与看板视觉完全一致。",
+            "通过原始 CSV 迁移至预处理 JSON，体积压缩 90%+，可即开即用部署到 GitHub Pages。",
+          ],
+          processImage: imgProject311_2,
+          processImageCaption: "纽约 311 平台 UX 现状研究——指引了「提问优先」的交互模型设计。",
+          takeaway: "这个项目让我学会了为「语言思维」而非「模式思维」的市政用户设计。拖拽式语义看板成了整个 UX 的核心——让人去纠正 AI 远比让人盲目相信 AI 更可信。同时它也验证了我作为设计工程师的工作流：从 Figma 到 React 只需几天。",
+          tools: ["Figma", "React", "TypeScript", "Tailwind CSS", "Leaflet", "Recharts", "react-dnd", "Vite"],
+          prototypeLink: "https://treeaspen.github.io/code4city-hackthon/",
         }
       },
       {
@@ -640,7 +823,7 @@ export const translations = {
           tools: ["创意编程", "生成艺术", "计算机视觉", "ml5.js"],
           prototypeLink: "https://shuyang-dm-gy-6063-2024fall-b.github.io/HW09/HW09B/",
         }
-      }
+      },
     ]
   }
 };

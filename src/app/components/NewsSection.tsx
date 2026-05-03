@@ -154,10 +154,10 @@ export function NewsSection({ darkMode }: NewsSectionProps) {
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.5, ease: "easeInOut" }}
+            initial={{ opacity: 0, x: 40, scale: 0.985 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: -40, scale: 0.985 }}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
             className="rounded-[40px] overflow-hidden shadow-2xl transition-colors duration-500 w-full border border-white/10"
             style={{ backgroundColor: darkMode ? "#4b2e7d" : "#503282" }}
           >
@@ -205,22 +205,26 @@ export function NewsSection({ darkMode }: NewsSectionProps) {
                 </div>
                 
                 <div className="flex justify-between items-end mt-4">
-                  <div className="flex gap-4">
-                    {newsItems.map((_, i) => (
-                      <button
-                        key={i}
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setCurrentIndex(i);
-                        }}
-                        className="w-4 h-4 rounded-full border-2 transition-all cursor-pointer hover:scale-125"
-                        style={{
-                          borderColor: "#fcf896",
-                          backgroundColor: i === currentIndex ? "#fcf896" : "transparent",
-                          opacity: i === currentIndex ? 1 : 0.5
-                        }}
-                      />
-                    ))}
+                  <div className="flex gap-2.5 items-center p-1.5 rounded-full bg-black/15 backdrop-blur-sm border border-white/10">
+                    {newsItems.map((_, i) => {
+                      const isActive = i === currentIndex;
+                      return (
+                        <button
+                          key={i}
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setCurrentIndex(i);
+                          }}
+                          className="relative h-2.5 rounded-full cursor-pointer overflow-hidden"
+                          style={{
+                            width: isActive ? 28 : 10,
+                            backgroundColor: isActive ? "#fcf896" : "rgba(252, 248, 150, 0.35)",
+                            transition: "width 0.45s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.3s ease",
+                          }}
+                          aria-label={`Slide ${i + 1}`}
+                        />
+                      );
+                    })}
                   </div>
 
                   <button

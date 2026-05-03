@@ -1,20 +1,43 @@
 import { motion } from "motion/react";
+import { GraduationCap, Briefcase, FlaskConical } from "lucide-react";
 import imgImage13 from "../../assets/timeline-img.png";
-import { useLanguage } from "../../LanguageContext"; // 🌟
-import { translations } from "../../translations";   // 🌟
+import { useLanguage } from "../../LanguageContext";
+import { translations } from "../../translations";
 
 interface TimelineSectionProps {
   darkMode: boolean;
 }
 
+const typeIconMap: Record<string, any> = {
+  Academic: FlaskConical,
+  Education: GraduationCap,
+  Internship: Briefcase,
+  Research: FlaskConical,
+  学术科研: FlaskConical,
+  学术经历: FlaskConical,
+  教育背景: GraduationCap,
+  实习经历: Briefcase,
+};
+
+const cardEase = [0.22, 1, 0.36, 1] as any;
+
 export function TimelineSection({ darkMode }: TimelineSectionProps) {
-  // 🌟 读取动态翻译
   const { lang } = useLanguage();
   const t = translations[lang].timeline;
   const timelineEvents = t.events;
 
   const trunkColor = darkMode ? "#fcf896" : "#503282";
   const activeYellow = darkMode ? "#fffa74" : "#b58c00";
+
+  // milestone dot positions matching each card's vertical center
+  const desktopMilestones = [
+    { top: 110 },
+    { top: 410 },
+    { top: 730 },
+    { top: 570 },
+    { top: 1050 },
+    { top: 1050 },
+  ];
 
   return (
     <section
@@ -35,10 +58,11 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
 
       <div className="relative z-10">
         <motion.h2
-          initial={{ y: 20, opacity: 0 }}
+          initial={{ y: 24, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
-          className="font-['Jaro',sans-serif] text-7xl md:text-8xl mb-16 md:mb-24 transition-colors duration-500"
+          transition={{ duration: 0.7, ease: cardEase }}
+          className="font-['Jaro',sans-serif] text-7xl md:text-8xl mb-16 md:mb-24 transition-colors duration-500 tracking-tight"
           style={{ color: darkMode ? "#fffa74" : "#503282", paddingLeft: "5%" }}
         >
           {t.title}
@@ -56,8 +80,8 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
             <defs>
               <clipPath id="fast-grow-mask">
                 <motion.rect
-                  initial={{ y: 1400, height: 0 }} 
-                  whileInView={{ y: -50, height: 1450 }} 
+                  initial={{ y: 1400, height: 0 }}
+                  whileInView={{ y: -50, height: 1450 }}
                   viewport={{ once: true, margin: "100px" }}
                   transition={{ duration: 1.5, ease: "linear" }}
                   x="-50"
@@ -76,6 +100,27 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
               <path d="M 185 1060 Q 140 1120 100 1140 L 100 1180 Q 140 1130 185 1060 Z" fill={trunkColor} />
             </g>
           </svg>
+
+          {/* Milestone dots — appear after trunk grows */}
+          {desktopMilestones.map((m, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, delay: 0.5 + idx * 0.08, type: "spring", stiffness: 260, damping: 18 }}
+              className="absolute z-20 rounded-full"
+              style={{
+                left: "50%",
+                top: m.top,
+                transform: "translate(-50%, -50%)",
+                width: 14,
+                height: 14,
+                backgroundColor: activeYellow,
+                boxShadow: `0 0 0 4px ${darkMode ? "rgba(255, 250, 116, 0.18)" : "rgba(181, 140, 0, 0.18)"}, 0 0 18px ${darkMode ? "rgba(255, 250, 116, 0.5)" : "rgba(181, 140, 0, 0.35)"}`,
+              }}
+            />
+          ))}
 
           <TimelineCard event={timelineEvents[0]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 40, right: 0, width: "38%" }} delay={1.42} fromX={60} />
           <TimelineCard event={timelineEvents[1]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 340, right: 0, width: "38%" }} delay={1.11} fromX={60} />
@@ -98,16 +143,32 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
 
           <div className="flex flex-col gap-12">
             {timelineEvents.map((event, index) => {
-              const mobileDelay = 0.2 + (5 - index) * 0.15; 
+              const mobileDelay = 0.2 + (5 - index) * 0.15;
               return (
                 <div key={index} className="relative z-10">
                   <motion.div
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.2, delay: mobileDelay, ease: "linear" }} 
+                    transition={{ duration: 0.2, delay: mobileDelay, ease: "linear" }}
                     className="absolute top-8 -left-[2.5rem] h-6 w-10 origin-left pointer-events-none"
                     style={{ backgroundColor: trunkColor, clipPath: "polygon(0 0, 100% 50%, 0 100%)" }}
+                  />
+                  {/* Mobile milestone dot */}
+                  <motion.div
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.35, delay: mobileDelay + 0.05, type: "spring", stiffness: 260, damping: 18 }}
+                    className="absolute z-20 rounded-full"
+                    style={{
+                      left: "-3.05rem",
+                      top: "1.6rem",
+                      width: 14,
+                      height: 14,
+                      backgroundColor: activeYellow,
+                      boxShadow: `0 0 0 4px ${darkMode ? "rgba(255, 250, 116, 0.18)" : "rgba(181, 140, 0, 0.18)"}, 0 0 14px ${darkMode ? "rgba(255, 250, 116, 0.5)" : "rgba(181, 140, 0, 0.35)"}`,
+                    }}
                   />
                   <TimelineCardMobile event={event} darkMode={darkMode} activeYellow={activeYellow} delay={mobileDelay + 0.1} />
                 </div>
@@ -124,40 +185,80 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
 function TimelineCard({ event, darkMode, activeYellow, style, delay, fromX }: any) {
   const leftCardBg = darkMode ? "rgba(175, 165, 195, 0.15)" : "rgba(160, 150, 180, 0.08)";
   const cardBg = event.side === "left" ? leftCardBg : "rgba(72, 44, 121, 0.1)";
+  const TypeIcon = typeIconMap[event.type] || FlaskConical;
 
   return (
     <div style={style} className="z-10">
       <motion.div
-        initial={{ opacity: 0, x: fromX }}
-        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0, x: fromX, y: 16 }}
+        whileInView={{ opacity: 1, x: 0, y: 0 }}
         viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.5, delay, type: "spring", stiffness: 100 }}
-        whileHover={{ scale: 1.02, y: -4 }}
-        className="rounded-2xl p-6 lg:p-7 relative cursor-default transition-all duration-300 flex flex-col h-full"
+        transition={{ duration: 0.7, delay, ease: cardEase }}
+        whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
+        className="group rounded-2xl p-6 lg:p-7 relative cursor-default flex flex-col h-full"
         style={{
           backgroundColor: cardBg,
-          backdropFilter: "blur(12px) saturate(150%)",
-          WebkitBackdropFilter: "blur(12px) saturate(150%)",
+          backdropFilter: "blur(14px) saturate(160%)",
+          WebkitBackdropFilter: "blur(14px) saturate(160%)",
           boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 8px 32px 0 rgba(0, 0, 0, 0.3)",
           border: "1px solid rgba(255, 255, 255, 0.1)",
+          transition: "border-color 0.3s ease, box-shadow 0.3s ease",
         }}
       >
-        <div className="flex flex-wrap gap-2 mb-3">
-          <span className="font-['Jaro',sans-serif] text-xs md:text-sm px-3 py-1 rounded-full tracking-wide" style={{ backgroundColor: darkMode ? "rgba(252, 248, 150, 0.2)" : "rgba(80, 50, 130, 0.1)", color: darkMode ? "#fffa74" : "#503282" }}>
+        {/* Hover glow halo */}
+        <div
+          className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+          style={{
+            background: `radial-gradient(circle at 30% 0%, ${darkMode ? "rgba(255,250,116,0.12)" : "rgba(80,50,130,0.10)"}, transparent 70%)`,
+          }}
+        />
+
+        <div className="relative flex flex-wrap gap-2 mb-3 items-center">
+          <span
+            className="inline-flex items-center gap-1.5 font-['Jaro',sans-serif] text-xs md:text-sm px-3 py-1 rounded-full tracking-wide"
+            style={{
+              backgroundColor: darkMode ? "rgba(252, 248, 150, 0.2)" : "rgba(80, 50, 130, 0.1)",
+              color: darkMode ? "#fffa74" : "#503282",
+            }}
+          >
+            <TypeIcon size={13} strokeWidth={2.4} />
             {event.type}
           </span>
-          <span className="font-['Jaro',sans-serif] text-xs md:text-sm px-3 py-1 rounded-full tracking-wide" style={{ border: `1px solid ${darkMode ? "rgba(252, 248, 150, 0.4)" : "rgba(80, 50, 130, 0.3)"}`, color: darkMode ? "#fffa74" : "#503282" }}>
+          <span
+            className="font-['Jaro',sans-serif] text-xs md:text-sm px-3 py-1 rounded-full tracking-wide"
+            style={{
+              border: `1px solid ${darkMode ? "rgba(252, 248, 150, 0.4)" : "rgba(80, 50, 130, 0.3)"}`,
+              color: darkMode ? "#fffa74" : "#503282",
+            }}
+          >
             {event.year}
           </span>
         </div>
 
-        <p className="font-['Jaro',sans-serif] text-3xl mb-1" style={{ color: darkMode ? "#fffa74" : "#503282" }}>{event.title}</p>
-        <p className="text-[13px] md:text-sm font-semibold mb-3 tracking-wide opacity-90" style={{ color: activeYellow }}>{event.subtitle}</p>
-        <p className="text-[15px] opacity-85 leading-relaxed font-medium mb-4 flex-grow" style={{ color: darkMode ? "rgba(255, 255, 255, 0.9)" : "#333" }}>{event.description}</p>
+        <p className="relative font-['Jaro',sans-serif] text-3xl mb-1 leading-tight" style={{ color: darkMode ? "#fffa74" : "#503282" }}>
+          {event.title}
+        </p>
+        <p className="relative text-[13px] md:text-sm font-semibold mb-3 tracking-wide opacity-90" style={{ color: activeYellow }}>
+          {event.subtitle}
+        </p>
+        <p
+          className="relative text-[15px] opacity-85 leading-relaxed font-medium mb-4 flex-grow"
+          style={{ color: darkMode ? "rgba(255, 255, 255, 0.9)" : "#333" }}
+        >
+          {event.description}
+        </p>
 
-        <div className="flex flex-wrap gap-2 mt-auto pt-2">
+        <div className="relative flex flex-wrap gap-2 mt-auto pt-2">
           {event.skills.map((skill: string, idx: number) => (
-            <span key={idx} className="text-xs px-2.5 py-1 rounded-md font-semibold tracking-wide" style={{ backgroundColor: darkMode ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.04)", border: `1px solid ${darkMode ? "rgba(255, 255, 255, 0.15)" : "rgba(0, 0, 0, 0.1)"}`, color: darkMode ? "rgba(255, 255, 255, 0.8)" : "rgba(0, 0, 0, 0.7)" }}>
+            <span
+              key={idx}
+              className="text-xs px-2.5 py-1 rounded-md font-semibold tracking-wide transition-colors duration-200 group-hover:border-current"
+              style={{
+                backgroundColor: darkMode ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.04)",
+                border: `1px solid ${darkMode ? "rgba(255, 255, 255, 0.15)" : "rgba(0, 0, 0, 0.1)"}`,
+                color: darkMode ? "rgba(255, 255, 255, 0.8)" : "rgba(0, 0, 0, 0.7)",
+              }}
+            >
               {skill}
             </span>
           ))}
@@ -169,32 +270,61 @@ function TimelineCard({ event, darkMode, activeYellow, style, delay, fromX }: an
 
 // ================= MOBILE CARD =================
 function TimelineCardMobile({ event, darkMode, activeYellow, delay }: any) {
+  const TypeIcon = typeIconMap[event.type] || FlaskConical;
+
   return (
     <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      whileInView={{ opacity: 1, x: 0 }}
+      initial={{ opacity: 0, x: -20, y: 8 }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.4, delay }}
-      whileHover={{ scale: 1.02 }}
+      transition={{ duration: 0.55, delay, ease: cardEase }}
+      whileHover={{ y: -4 }}
       className="rounded-2xl p-5 relative ml-2 flex flex-col"
       style={{
         backgroundColor: "rgba(72, 44, 121, 0.1)",
-        backdropFilter: "blur(12px) saturate(150%)",
-        WebkitBackdropFilter: "blur(12px) saturate(150%)",
+        backdropFilter: "blur(14px) saturate(160%)",
+        WebkitBackdropFilter: "blur(14px) saturate(160%)",
         boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 8px 32px 0 rgba(0, 0, 0, 0.3)",
         border: "1px solid rgba(255, 255, 255, 0.1)",
       }}
     >
-      <div className="flex flex-wrap gap-2 mb-3">
-        <span className="font-['Jaro',sans-serif] text-[12px] px-3 py-1 rounded-full tracking-wide" style={{ backgroundColor: darkMode ? "rgba(252, 248, 150, 0.2)" : "rgba(80, 50, 130, 0.1)", color: darkMode ? "#fffa74" : "#503282" }}>{event.type}</span>
-        <span className="font-['Jaro',sans-serif] text-[12px] px-3 py-1 rounded-full tracking-wide" style={{ border: `1px solid ${darkMode ? "rgba(252, 248, 150, 0.4)" : "rgba(80, 50, 130, 0.3)"}`, color: darkMode ? "#fffa74" : "#503282" }}>{event.year}</span>
+      <div className="flex flex-wrap gap-2 mb-3 items-center">
+        <span
+          className="inline-flex items-center gap-1.5 font-['Jaro',sans-serif] text-[12px] px-3 py-1 rounded-full tracking-wide"
+          style={{
+            backgroundColor: darkMode ? "rgba(252, 248, 150, 0.2)" : "rgba(80, 50, 130, 0.1)",
+            color: darkMode ? "#fffa74" : "#503282",
+          }}
+        >
+          <TypeIcon size={12} strokeWidth={2.4} />
+          {event.type}
+        </span>
+        <span
+          className="font-['Jaro',sans-serif] text-[12px] px-3 py-1 rounded-full tracking-wide"
+          style={{
+            border: `1px solid ${darkMode ? "rgba(252, 248, 150, 0.4)" : "rgba(80, 50, 130, 0.3)"}`,
+            color: darkMode ? "#fffa74" : "#503282",
+          }}
+        >
+          {event.year}
+        </span>
       </div>
-      <p className="font-['Jaro',sans-serif] text-2xl mb-1" style={{ color: darkMode ? "#fffa74" : "#503282" }}>{event.title}</p>
+      <p className="font-['Jaro',sans-serif] text-2xl mb-1 leading-tight" style={{ color: darkMode ? "#fffa74" : "#503282" }}>{event.title}</p>
       <p className="text-[13px] font-semibold mb-3 tracking-wide" style={{ color: activeYellow }}>{event.subtitle}</p>
       <p className="text-[14px] opacity-85 leading-relaxed font-medium mb-4" style={{ color: darkMode ? "rgba(255, 255, 255, 0.9)" : "#333" }}>{event.description}</p>
       <div className="flex flex-wrap gap-2 mt-auto">
         {event.skills.map((skill: string, idx: number) => (
-          <span key={idx} className="text-[11px] px-2 py-1 rounded-md font-semibold tracking-wide" style={{ backgroundColor: darkMode ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.04)", border: `1px solid ${darkMode ? "rgba(255, 255, 255, 0.15)" : "rgba(0, 0, 0, 0.1)"}`, color: darkMode ? "rgba(255, 255, 255, 0.8)" : "rgba(0, 0, 0, 0.7)" }}>{skill}</span>
+          <span
+            key={idx}
+            className="text-[11px] px-2 py-1 rounded-md font-semibold tracking-wide"
+            style={{
+              backgroundColor: darkMode ? "rgba(255, 255, 255, 0.05)" : "rgba(0, 0, 0, 0.04)",
+              border: `1px solid ${darkMode ? "rgba(255, 255, 255, 0.15)" : "rgba(0, 0, 0, 0.1)"}`,
+              color: darkMode ? "rgba(255, 255, 255, 0.8)" : "rgba(0, 0, 0, 0.7)",
+            }}
+          >
+            {skill}
+          </span>
         ))}
       </div>
     </motion.div>

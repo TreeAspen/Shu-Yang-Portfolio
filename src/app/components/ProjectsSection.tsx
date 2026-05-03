@@ -22,76 +22,130 @@ function ProjectDetailView({ project, darkMode, onBack, uiTexts }: any) {
   const dividerColor = darkMode ? "rgba(255, 255, 255, 0.1)" : "rgba(80, 50, 130, 0.15)";
   const glassStyle = { backgroundColor: "rgba(72, 44, 121, 0.1)", backdropFilter: "blur(12px)", border: "1px solid rgba(255, 255, 255, 0.1)" };
 
+  const sectionVariants = {
+    hidden: { opacity: 0, y: 24 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: 0.05 * i, duration: 0.45, ease: [0.22, 1, 0.36, 1] as any },
+    }),
+  };
+
   return (
-    <div className="flex flex-col gap-0 font-['Outfit',sans-serif]">
+    <motion.div
+      className="flex flex-col gap-0 font-['Outfit',sans-serif]"
+      initial="hidden"
+      animate="visible"
+    >
       {/* 动态返回按钮 */}
-      <motion.button onClick={onBack} className="inline-flex items-center gap-2 font-medium tracking-wide text-xl mb-6 hover:opacity-70 self-start" style={{ color: accentColor }}>
+      <motion.button
+        onClick={onBack}
+        whileHover={{ x: -4 }}
+        whileTap={{ scale: 0.97 }}
+        custom={0}
+        variants={sectionVariants}
+        className="inline-flex items-center gap-2 font-medium tracking-wide text-xl mb-6 hover:opacity-80 self-start"
+        style={{ color: accentColor }}
+      >
         <ArrowLeft size={20} /> {uiTexts.back}
       </motion.button>
-      
-      <motion.div>
+
+      <motion.div custom={1} variants={sectionVariants}>
         <h1 className="font-medium tracking-wide text-4xl md:text-5xl lg:text-6xl mb-3" style={{ color: headingColor }}>{project.title}</h1>
         <p className="text-lg mb-2" style={{ color: subtextColor }}>{project.subtitle}</p>
         {project.category && <span className="inline-block font-medium text-sm px-5 py-1.5 rounded-full border mb-6" style={{ backgroundColor: "rgba(80, 50, 130, 0.9)", borderColor: "#94c4f5", color: "#94c4f5" }}>{project.category}</span>}
       </motion.div>
-      
-      <motion.div className="w-full rounded-2xl overflow-hidden mb-10 mt-4 shadow-2xl">
+
+      <motion.div
+        custom={2}
+        variants={sectionVariants}
+        whileHover={{ scale: 1.01 }}
+        transition={{ type: "spring", stiffness: 200, damping: 25 }}
+        className="w-full rounded-2xl overflow-hidden mb-10 mt-4 shadow-2xl"
+      >
         <ImageWithFallback src={project.heroImage} alt={project.title} className="w-full h-auto block object-cover" />
       </motion.div>
 
       {project.background && (
-        <div className="mb-10">
+        <motion.div custom={3} variants={sectionVariants} className="mb-10">
           <h3 className="font-medium tracking-wide text-2xl md:text-3xl mb-4 pb-2" style={{ color: headingColor, borderBottom: `1px solid ${dividerColor}` }}>{uiTexts.background}</h3>
           <p className="text-base md:text-lg leading-relaxed" style={{ color: textColor }}>{project.background}</p>
-        </div>
+        </motion.div>
       )}
       {project.goal && (
-        <div className="mb-10">
+        <motion.div custom={4} variants={sectionVariants} className="mb-10">
           <h3 className="font-medium tracking-wide text-2xl md:text-3xl mb-4 pb-2" style={{ color: headingColor, borderBottom: `1px solid ${dividerColor}` }}>{uiTexts.goal}</h3>
           <p className="text-base md:text-lg leading-relaxed" style={{ color: textColor }}>{project.goal}</p>
-        </div>
+        </motion.div>
       )}
       {project.process && (
-        <div className="mb-10">
+        <motion.div custom={5} variants={sectionVariants} className="mb-10">
           <h3 className="font-medium tracking-wide text-2xl md:text-3xl mb-4 pb-2" style={{ color: headingColor, borderBottom: `1px solid ${dividerColor}` }}>{uiTexts.process}</h3>
           <p className="text-base md:text-lg leading-relaxed mb-6" style={{ color: textColor }}>{project.process.description}</p>
           {project.process.features && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {project.process.features.map((f: any, i: number) => (
-                <div key={i} className="rounded-2xl p-5" style={glassStyle}>
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.3 + i * 0.08, duration: 0.4 }}
+                  whileHover={{ y: -4, transition: { duration: 0.2 } }}
+                  className="rounded-2xl p-5"
+                  style={glassStyle}
+                >
                   <h4 className="font-medium text-xl mb-2" style={{ color: accentColor }}>{f.title}</h4>
                   <p className="text-sm" style={{ color: textColor }}>{f.desc}</p>
-                </div>
+                </motion.div>
               ))}
             </div>
           )}
-        </div>
+        </motion.div>
       )}
       {project.accomplishments && (
-        <div className="mb-10">
+        <motion.div custom={6} variants={sectionVariants} className="mb-10">
           <h3 className="font-medium tracking-wide text-2xl md:text-3xl mb-4 pb-2" style={{ color: headingColor, borderBottom: `1px solid ${dividerColor}` }}>{uiTexts.accomplishments}</h3>
           <ul className="flex flex-col gap-3">
             {project.accomplishments.map((item: any, i: number) => (
-              <li key={i} className="flex items-start gap-3 text-base" style={{ color: textColor }}><span className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: accentColor }}/>{item}</li>
+              <motion.li
+                key={i}
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.35 + i * 0.06, duration: 0.35 }}
+                className="flex items-start gap-3 text-base"
+                style={{ color: textColor }}
+              >
+                <span className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: accentColor }}/>{item}
+              </motion.li>
             ))}
           </ul>
-        </div>
+        </motion.div>
       )}
       {project.takeaway && (
-        <div className="mb-10">
+        <motion.div custom={7} variants={sectionVariants} className="mb-10">
           <h3 className="font-medium tracking-wide text-2xl md:text-3xl mb-4 pb-2" style={{ color: headingColor, borderBottom: `1px solid ${dividerColor}` }}>{uiTexts.takeaway}</h3>
           <div className="rounded-2xl p-6" style={glassStyle}><p className="text-base md:text-lg italic" style={{ color: textColor }}>{project.takeaway}</p></div>
-        </div>
+        </motion.div>
       )}
       {project.tools && (
-        <div className="mb-10">
+        <motion.div custom={8} variants={sectionVariants} className="mb-10">
           <h3 className="font-medium tracking-wide text-2xl md:text-3xl mb-4 pb-2" style={{ color: headingColor, borderBottom: `1px solid ${dividerColor}` }}>{uiTexts.tools}</h3>
           <div className="flex flex-wrap gap-3">
             {project.tools.map((tool: any, idx: number) => (
-              <span key={idx} className="px-4 py-2 rounded-xl text-sm font-semibold" style={glassStyle}><span style={{ color: accentColor }}>{tool}</span></span>
+              <motion.span
+                key={idx}
+                initial={{ opacity: 0, scale: 0.85 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.45 + idx * 0.04, duration: 0.3 }}
+                whileHover={{ y: -2, scale: 1.05 }}
+                className="px-4 py-2 rounded-xl text-sm font-semibold cursor-default"
+                style={glassStyle}
+              >
+                <span style={{ color: accentColor }}>{tool}</span>
+              </motion.span>
             ))}
           </div>
-        </div>
+        </motion.div>
       )}
       {project.prototypeLink && (
         <div className="mt-4 mb-8">
@@ -100,7 +154,7 @@ function ProjectDetailView({ project, darkMode, onBack, uiTexts }: any) {
           </a>
         </div>
       )}
-    </div>
+    </motion.div>
   );
 }
 
@@ -147,53 +201,57 @@ export function ProjectsSection({ darkMode }: ProjectsSectionProps) {
             {tUI.title} {/* 🌟 动态标题 */}
           </h2>
 
-          {/* Filter tabs */}
-          <div className="flex gap-3 flex-wrap bg-white/5 p-2 rounded-full backdrop-blur-sm border border-white/10">
-            {internalCategories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className="font-['Jaro',sans-serif] px-6 py-2 rounded-full border-2 text-base md:text-lg transition-all cursor-pointer relative overflow-hidden group"
-                style={{
-                  borderColor:
-                    activeCategory === cat
-                      ? "#fffa74"
-                      : "transparent",
-                  backgroundColor:
-                    activeCategory === cat
-                      ? "rgba(255, 250, 116, 0.2)"
-                      : "transparent",
-                  color:
-                    activeCategory === cat
-                      ? darkMode
-                        ? "#fcf896"
-                        : "#503282"
-                      : darkMode
-                      ? "#d1e6fa"
-                      : "#7a5cb0",
-                }}
-              >
-                {cat === "All" ? tUI.all : cat} {/* 🌟 动态 All / 全部 */}
-                {activeCategory !== cat && (
-                  <span className="absolute inset-0 bg-white/10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                )}
-              </button>
-            ))}
+          {/* Filter tabs — sliding active pill via layoutId */}
+          <div className="flex gap-1.5 flex-wrap bg-white/5 p-2 rounded-full backdrop-blur-sm border border-white/10">
+            {internalCategories.map((cat) => {
+              const isActive = activeCategory === cat;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className="font-['Jaro',sans-serif] px-5 md:px-6 py-2 rounded-full text-base md:text-lg cursor-pointer relative transition-colors duration-200"
+                  style={{
+                    color: isActive
+                      ? darkMode ? "#503282" : "#503282"
+                      : darkMode ? "#d1e6fa" : "#7a5cb0",
+                  }}
+                >
+                  {isActive && (
+                    <motion.span
+                      layoutId="activeFilterPill"
+                      className="absolute inset-0 rounded-full"
+                      style={{
+                        backgroundColor: darkMode ? "#fffa74" : "rgba(255, 250, 116, 0.85)",
+                        boxShadow: "0 4px 14px rgba(255, 250, 116, 0.35)",
+                      }}
+                      transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                    />
+                  )}
+                  <span className="relative z-10">{cat === "All" ? tUI.all : cat}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
         {/* Project grid */}
         <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence>
-            {filteredProjects.map((project: any) => (
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project: any, idx: number) => (
               <motion.div
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, y: 24, scale: 0.96 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.92, transition: { duration: 0.2 } }}
+                transition={{
+                  duration: 0.45,
+                  delay: idx * 0.06,
+                  ease: [0.22, 1, 0.36, 1] as any,
+                  layout: { duration: 0.4 },
+                }}
+                whileHover={{ y: -8, transition: { duration: 0.25, ease: "easeOut" } }}
                 key={project.id}
-                className="rounded-[32px] overflow-hidden transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl flex flex-col cursor-pointer border border-white/10 backdrop-blur-sm"
+                className="group rounded-[32px] overflow-hidden hover:shadow-2xl flex flex-col cursor-pointer border border-white/10 backdrop-blur-sm"
                 style={{
                   backgroundColor: darkMode ? "rgba(252, 248, 150, 0.95)" : "rgba(255, 255, 255, 0.9)",
                 }}
