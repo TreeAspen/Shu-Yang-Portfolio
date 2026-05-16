@@ -60,7 +60,7 @@ export function Modal({ isOpen, onClose, title, darkMode, children }: ModalProps
                   WebkitBackdropFilter: "blur(12px) saturate(150%)",
                 }}
               >
-                <h2 className="font-['Jaro',sans-serif] text-2xl md:text-3xl m-0 truncate pr-4">{title}</h2>
+                <h2 className="font-display text-2xl md:text-3xl m-0 truncate pr-4">{title}</h2>
                 <button
                   onClick={onClose}
                   className="p-2 rounded-full hover:bg-white/10 transition-colors cursor-pointer flex-shrink-0"

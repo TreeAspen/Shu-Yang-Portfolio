@@ -245,15 +245,17 @@ export function NewsSection({ darkMode }: NewsSectionProps) {
       className="relative py-24 px-6 md:px-16 transition-colors duration-500 overflow-hidden"
       style={{ backgroundColor: darkMode ? "#fcf896" : "#f5f0ff" }}
     >
-      <motion.h2
-        initial={{ y: 20, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ once: true }}
-        className="font-['Jaro',sans-serif] text-7xl md:text-8xl mb-12 text-center transition-colors duration-500"
-        style={{ color: darkMode ? "#4b2e7d" : "#503282" }}
-      >
-        {tUI.title}
-      </motion.h2>
+      <div className="max-w-5xl mx-auto">
+        <motion.h2
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
+          viewport={{ once: true }}
+          className="font-display text-6xl md:text-7xl mb-12 transition-colors duration-500 tracking-tight"
+          style={{ color: darkMode ? "#4b2e7d" : "#503282" }}
+        >
+          {tUI.title}
+        </motion.h2>
+      </div>
 
       <div className="relative max-w-5xl mx-auto">
         <AnimatePresence mode="wait">
@@ -283,7 +285,7 @@ export function NewsSection({ darkMode }: NewsSectionProps) {
               <div className="p-8 md:p-10 flex flex-col justify-between">
                 <div>
                   <h3
-                    className="font-['Jaro',sans-serif] text-4xl md:text-5xl mb-4"
+                    className="font-display text-4xl md:text-5xl mb-4"
                     style={{ color: "#fcf896" }}
                   >
                     {newsItems[currentIndex].title}
@@ -334,7 +336,7 @@ export function NewsSection({ darkMode }: NewsSectionProps) {
 
                   <button
                     onClick={() => setSelectedNews(newsItems[currentIndex])}
-                    className="font-['Jaro',sans-serif] text-xl md:text-2xl hover:scale-105 transition-transform flex items-center gap-2 cursor-pointer"
+                    className="font-display text-xl md:text-2xl hover:scale-105 transition-transform flex items-center gap-2 cursor-pointer"
                     style={{ color: "#fcf896" }}
                   >
                     {tUI.viewMore} 
@@ -350,15 +352,16 @@ export function NewsSection({ darkMode }: NewsSectionProps) {
         </AnimatePresence>
       </div>
 
-      <motion.div 
-        animate={{ rotate: 360 }}
-        transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        className="absolute top-16 right-16 hidden md:block"
-      >
-        <svg width="74" height="74" viewBox="0 0 97.4829 97.4829" fill="none">
-          <path d="M48.7415 0L58.7146 26.9521L85.6668 36.9253L58.7146 46.8985L48.7415 73.8507L38.7683 46.8985L11.8161 36.9253L38.7683 26.9521L48.7415 0Z" fill={darkMode ? "#765CA0" : "#c4a8e8"} />
+      {/* HUD bracket frame ornament — top-right */}
+      <div className="absolute top-12 right-12 hidden md:block pointer-events-none" style={{ color: darkMode ? "#503282" : "#503282" }}>
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" className="opacity-40">
+          <path d="M2 2 L14 2 M2 2 L2 14" stroke="currentColor" strokeWidth="1" />
+          <path d="M46 2 L34 2 M46 2 L46 14" stroke="currentColor" strokeWidth="1" />
+          <path d="M2 46 L14 46 M2 46 L2 34" stroke="currentColor" strokeWidth="1" />
+          <path d="M46 46 L34 46 M46 46 L46 34" stroke="currentColor" strokeWidth="1" />
+          <circle cx="24" cy="24" r="1.5" fill="currentColor" />
         </svg>
-      </motion.div>
+      </div>
 
       <Modal
         isOpen={!!selectedNews}

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Modal } from "./Modal";
 import { ArrowLeft, ExternalLink, Home, ClipboardList, Sparkles, GitBranch, DoorOpen, ChevronRight } from "lucide-react";
+import { SparkleStars } from "./SparkleStars";
 
 import { useLanguage } from "../../LanguageContext"; // 🌟 引入双语控制器
 import { translations } from "../../translations";   // 🌟 引入字典
@@ -342,19 +343,21 @@ export function ProjectsSection({ darkMode }: ProjectsSectionProps) {
         backgroundColor: darkMode ? "#503282" : "#ede4f7",
       }}
     >
+      <SparkleStars darkMode={darkMode} count={20} intensity={darkMode ? 0.7 : 0.5} />
+
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="max-w-7xl mx-auto"
+        className="max-w-6xl mx-auto"
       >
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-8">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 gap-8">
           <h2
-            className="font-['Jaro',sans-serif] text-7xl md:text-8xl m-0 transition-colors duration-500"
+            className="font-display text-6xl md:text-7xl m-0 transition-colors duration-500 tracking-tight"
             style={{ color: darkMode ? "#fffa74" : "#503282" }}
           >
-            {tUI.title} {/* 🌟 动态标题 */}
+            {tUI.title}
           </h2>
 
           {/* Filter tabs — sliding active pill via layoutId */}
@@ -365,7 +368,7 @@ export function ProjectsSection({ darkMode }: ProjectsSectionProps) {
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className="font-['Jaro',sans-serif] px-5 md:px-6 py-2 rounded-full text-base md:text-lg cursor-pointer relative transition-colors duration-200"
+                  className="font-display px-5 md:px-6 py-2 rounded-full text-base md:text-lg cursor-pointer relative transition-colors duration-200"
                   style={{
                     color: isActive
                       ? darkMode ? "#503282" : "#503282"
@@ -407,69 +410,107 @@ export function ProjectsSection({ darkMode }: ProjectsSectionProps) {
                 }}
                 whileHover={{ y: -8, transition: { duration: 0.25, ease: "easeOut" } }}
                 key={project.id}
-                className="group rounded-[32px] overflow-hidden hover:shadow-2xl flex flex-col cursor-pointer border border-white/10 backdrop-blur-sm"
+                className="group corner-brackets relative rounded-2xl overflow-hidden flex flex-col cursor-pointer transition-shadow duration-500 hover:shadow-[0_24px_60px_-12px_rgba(0,0,0,0.45)]"
                 style={{
-                  backgroundColor: darkMode ? "rgba(252, 248, 150, 0.95)" : "rgba(255, 255, 255, 0.9)",
+                  backgroundColor: darkMode ? "rgba(252, 248, 150, 0.96)" : "rgba(255, 255, 255, 0.95)",
+                  border: `1px solid ${darkMode ? "rgba(252, 248, 150, 0.4)" : "rgba(80, 50, 130, 0.18)"}`,
+                  color: "#503282",
                 }}
                 onClick={() => setSelectedProject(project)}
               >
-                <div className="relative overflow-hidden group bg-[#050505]">
+                <span className="br-tl" />
+                <span className="br-br" />
+
+                <div className="relative overflow-hidden bg-[#050505]">
                   <ImageWithFallback
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
-                    style={{ width: "100%", borderRadius: "32px 32px 0 0" }}
+                    className="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                    style={{ width: "100%" }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-500" />
+
+                  <div className="absolute top-3 left-3">
+                    <span
+                      className="font-mono-tech text-[10px] tracking-[0.25em] px-2 py-1 rounded backdrop-blur-md"
+                      style={{
+                        backgroundColor: "rgba(0,0,0,0.55)",
+                        color: "#94c4f5",
+                        border: "1px solid rgba(148, 196, 245, 0.4)",
+                      }}
+                    >
+                      ID · {String(project.id).padStart(2, "0")}
+                    </span>
+                  </div>
                   
-                  {/* 右上角类别标签 */}
-                  <div className="absolute top-4 right-4 flex flex-wrap justify-end gap-2 max-w-[85%]">
-                    {project.categories.map((cat: string, idx: number) => (
+                  <div className="absolute top-3 right-3 flex items-center gap-1.5">
+                    {project.categories.slice(0, 2).map((cat: string, i: number) => (
                       <span
-                        key={idx}
-                        className="font-['Jaro',sans-serif] text-xs px-3 py-1 rounded-full border shadow-lg backdrop-blur-md"
+                        key={i}
+                        className="font-mono-tech text-[10px] tracking-[0.18em] uppercase px-2 py-1 rounded backdrop-blur-md whitespace-nowrap"
                         style={{
-                          backgroundColor: "rgba(80, 50, 130, 0.9)",
-                          borderColor: "#94c4f5",
+                          backgroundColor: "rgba(80, 50, 130, 0.85)",
+                          borderTop: "1px solid rgba(148, 196, 245, 0.6)",
                           color: "#94c4f5",
                         }}
                       >
                         {cat}
                       </span>
                     ))}
+                    {project.categories.length > 2 && (
+                      <span
+                        className="font-mono-tech text-[10px] tracking-[0.18em] px-2 py-1 rounded backdrop-blur-md"
+                        style={{
+                          backgroundColor: "rgba(80, 50, 130, 0.85)",
+                          borderTop: "1px solid rgba(148, 196, 245, 0.6)",
+                          color: "#94c4f5",
+                        }}
+                      >
+                        +{project.categories.length - 2}
+                      </span>
+                    )}
                   </div>
-
                 </div>
-                <div className="p-8 flex-grow flex flex-col justify-between">
+                <div className="p-6 md:p-7 flex-grow flex flex-col justify-between">
                   <div>
+                    <div className="flex items-center gap-3 mb-3">
+                      <span className="font-mono-tech text-[10px] tracking-[0.3em] uppercase opacity-60" style={{ color: "#503282" }}>
+                        Project · {String(idx + 1).padStart(2, "0")}
+                      </span>
+                      <span className="flex-1 h-px" style={{ background: "linear-gradient(to right, rgba(80,50,130,0.35), transparent)" }} />
+                    </div>
                     <h3
-                      className="font-['Jaro',sans-serif] text-3xl mb-3"
-                      style={{ color: darkMode ? "#1a1a2e" : "#503282" }}
+                      className="font-display text-2xl md:text-[26px] leading-tight mb-3 tracking-tight"
+                      style={{ color: "#1a1a2e" }}
                     >
                       {project.title}
                     </h3>
                     <p
-                      className="text-base mb-4 opacity-75 font-medium leading-relaxed line-clamp-3"
-                      style={{ color: darkMode ? "#1a1a2e" : "#333" }}
+                      className="text-[14px] mb-5 opacity-75 leading-relaxed line-clamp-3"
+                      style={{ color: "#333" }}
                     >
                       {project.description}
                     </p>
 
                     {/* 🌟 工具 / 技术栈 Tags 区域 */}
-                    <div className="flex flex-wrap gap-2 mb-6">
-                      {project.detail.tools.map((tool: string, idx: number) => (
+                    <div className="flex flex-wrap gap-1.5 mb-6">
+                      {project.detail.tools.slice(0, 5).map((tool: string, i: number) => (
                         <span
-                          key={idx}
-                          className="font-['Outfit',sans-serif] text-[11px] px-2.5 py-1 rounded-md border font-medium transition-colors"
+                          key={i}
+                          className="font-mono-tech text-[10px] tracking-wide px-2 py-0.5"
                           style={{
-                            backgroundColor: darkMode ? "rgba(80, 50, 130, 0.08)" : "rgba(80, 50, 130, 0.05)",
-                            borderColor: darkMode ? "rgba(80, 50, 130, 0.2)" : "rgba(80, 50, 130, 0.15)",
-                            color: "#503282",
+                            border: "1px solid rgba(80, 50, 130, 0.22)",
+                            color: "rgba(80, 50, 130, 0.78)",
                           }}
                         >
                           {tool}
                         </span>
                       ))}
+                      {project.detail.tools.length > 5 && (
+                        <span className="font-mono-tech text-[10px] tracking-wide px-2 py-0.5 opacity-50" style={{ color: "#503282" }}>
+                          +{project.detail.tools.length - 5}
+                        </span>
+                      )}
                     </div>
 
                   </div>
@@ -478,13 +519,21 @@ export function ProjectsSection({ darkMode }: ProjectsSectionProps) {
                       e.stopPropagation();
                       setSelectedProject(project);
                     }}
-                    className="font-['Jaro',sans-serif] text-xl hover:opacity-80 transition-opacity flex items-center gap-2 mt-auto"
-                    style={{ color: darkMode ? "#503282" : "#503282" }}
+                    className="group/cta inline-flex items-center gap-2 self-start font-mono-tech text-[11px] tracking-[0.3em] uppercase pb-1 mt-auto"
+                    style={{ color: "#503282" }}
                   >
-                    {tUI.viewDetails} {/* 🌟 动态 View Details / 查看详情 */}
-                    <motion.span
-                      whileHover={{ x: 5 }}
-                    >{"\u2192"}</motion.span>
+                    <span className="relative">
+                      {tUI.viewDetails}
+                      <span
+                        className="absolute left-0 -bottom-0.5 h-px w-full origin-left scale-x-100 transition-transform duration-300 group-hover/cta:scale-x-0"
+                        style={{ backgroundColor: "rgba(80, 50, 130, 0.45)" }}
+                      />
+                      <span
+                        className="absolute left-0 -bottom-0.5 h-px w-full origin-left scale-x-0 transition-transform duration-300 group-hover/cta:scale-x-100"
+                        style={{ backgroundColor: "#503282", transitionDelay: "0.05s" }}
+                      />
+                    </span>
+                    <motion.span whileHover={{ x: 4 }} className="inline-flex">{"\u2192"}</motion.span>
                   </button>
                 </div>
               </motion.div>

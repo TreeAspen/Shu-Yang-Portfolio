@@ -61,7 +61,7 @@ export function ProjectDetailView({ project, darkMode, onBack }: ProjectDetailVi
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.4 }}
         onClick={onBack}
-        className="inline-flex items-center gap-2 font-['Jaro',sans-serif] text-xl mb-6 cursor-pointer hover:opacity-70 transition-opacity self-start"
+        className="inline-flex items-center gap-2 font-display text-xl mb-6 cursor-pointer hover:opacity-70 transition-opacity self-start"
         style={{ color: accentColor }}
       >
         <ArrowLeft size={20} />
@@ -71,7 +71,7 @@ export function ProjectDetailView({ project, darkMode, onBack }: ProjectDetailVi
       {/* Title + Subtitle */}
       <motion.div variants={sectionVariants} initial="hidden" animate="visible">
         <h1
-          className="font-['Jaro',sans-serif] text-4xl md:text-5xl lg:text-6xl mb-3"
+          className="font-display text-4xl md:text-5xl lg:text-6xl mb-3"
           style={{ color: headingColor }}
         >
           {project.title}
@@ -81,7 +81,7 @@ export function ProjectDetailView({ project, darkMode, onBack }: ProjectDetailVi
         </p>
         {project.category && (
           <span
-            className="inline-block font-['Jaro',sans-serif] text-sm px-5 py-1.5 rounded-full border backdrop-blur-md mb-6"
+            className="inline-block font-display text-sm px-5 py-1.5 rounded-full border backdrop-blur-md mb-6"
             style={{
               backgroundColor: "rgba(80, 50, 130, 0.9)",
               borderColor: "#94c4f5",
@@ -141,7 +141,7 @@ export function ProjectDetailView({ project, darkMode, onBack }: ProjectDetailVi
                   className="rounded-2xl p-5"
                   style={glassStyle}
                 >
-                  <h4 className="font-['Jaro',sans-serif] text-xl mb-2" style={{ color: accentColor }}>
+                  <h4 className="font-display text-xl mb-2" style={{ color: accentColor }}>
                     {f.title}
                   </h4>
                   <p className="text-sm leading-relaxed" style={{ color: textColor }}>
@@ -186,7 +186,7 @@ export function ProjectDetailView({ project, darkMode, onBack }: ProjectDetailVi
             {/* User Flow 只有在有数据时才渲染 */}
             {project.userFlow && (
               <div>
-                <h4 className="font-['Jaro',sans-serif] text-2xl mb-6" style={{ color: accentColor }}>
+                <h4 className="font-display text-2xl mb-6" style={{ color: accentColor }}>
                   User Flow
                 </h4>
                 <div className="relative pl-10">
@@ -213,7 +213,7 @@ export function ProjectDetailView({ project, darkMode, onBack }: ProjectDetailVi
                             <Icon size={14} color={darkMode ? "#1a1a2e" : "#fff"} />
                           </div>
                           <div className="rounded-xl p-4" style={glassStyle}>
-                            <h5 className="font-['Jaro',sans-serif] text-lg mb-1" style={{ color: headingColor }}>
+                            <h5 className="font-display text-lg mb-1" style={{ color: headingColor }}>
                               {step.step}
                             </h5>
                             <p className="text-sm" style={{ color: textColor }}>
@@ -231,7 +231,7 @@ export function ProjectDetailView({ project, darkMode, onBack }: ProjectDetailVi
             {/* Information Hierarchy 只有在有数据时才渲染 */}
             {project.infoHierarchy && (
               <div>
-                <h4 className="font-['Jaro',sans-serif] text-2xl mb-6" style={{ color: accentColor }}>
+                <h4 className="font-display text-2xl mb-6" style={{ color: accentColor }}>
                   Information Hierarchy
                 </h4>
                 <div className="flex flex-col gap-4">
@@ -245,7 +245,7 @@ export function ProjectDetailView({ project, darkMode, onBack }: ProjectDetailVi
                       className="rounded-xl p-4"
                       style={glassStyle}
                     >
-                      <h5 className="font-['Jaro',sans-serif] text-lg mb-3" style={{ color: accentColor }}>
+                      <h5 className="font-display text-lg mb-3" style={{ color: accentColor }}>
                         {level.level}
                       </h5>
                       <div className="flex flex-col gap-1 pl-4" style={{ borderLeft: `2px solid ${dividerColor}` }}>
@@ -354,7 +354,7 @@ export function ProjectDetailView({ project, darkMode, onBack }: ProjectDetailVi
             href={project.prototypeLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-['Jaro',sans-serif] text-xl transition-all hover:scale-105 cursor-pointer no-underline"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-display text-xl transition-all hover:scale-105 cursor-pointer no-underline"
             style={{
               ...glassStyle,
               color: accentColor,
@@ -392,7 +392,7 @@ function SectionBlock({
       className="mb-10"
     >
       <h3
-        className="font-['Jaro',sans-serif] text-2xl md:text-3xl mb-4 pb-2"
+        className="font-display text-2xl md:text-3xl mb-4 pb-2"
         style={{ color: headingColor, borderBottom: `1px solid ${dividerColor}` }}
       >
         {title}

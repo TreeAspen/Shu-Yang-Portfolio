@@ -50,7 +50,7 @@ export function SkillsSection({ darkMode }: SkillsSectionProps) {
       >
         <motion.h2
           variants={itemVariants}
-          className="font-['Jaro',sans-serif] text-7xl md:text-8xl mb-16 text-center transition-colors duration-500 tracking-tight"
+          className="font-display text-6xl md:text-7xl mb-14 transition-colors duration-500 tracking-tight"
           style={{ color: darkMode ? "#4b2e7d" : "#503282" }}
         >
           {t.title}
@@ -63,16 +63,22 @@ export function SkillsSection({ darkMode }: SkillsSectionProps) {
               variants={itemVariants}
               whileHover={{ y: -8, transition: { duration: 0.3, ease: "easeOut" } }}
               key={idx}
-              className="group relative rounded-3xl p-8 text-center cursor-default overflow-hidden"
+              className="group corner-brackets relative rounded-2xl p-8 text-center cursor-default overflow-hidden"
               style={{
-                backgroundColor: "rgba(72, 44, 121, 0.1)",
+                color: darkMode ? "#4b2e7d" : "#503282",
+                backgroundColor: "rgba(72, 44, 121, 0.08)",
                 backdropFilter: "blur(14px) saturate(160%)",
                 WebkitBackdropFilter: "blur(14px) saturate(160%)",
-                boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 8px 32px 0 rgba(0, 0, 0, 0.3)",
-                border: "1px solid rgba(255, 255, 255, 0.1)",
-                transition: "box-shadow 0.4s ease",
+                boxShadow: "inset 0 1px 1px rgba(255, 255, 255, 0.3), 0 8px 32px 0 rgba(0, 0, 0, 0.25)",
+                border: "1px solid rgba(80, 50, 130, 0.18)",
+                transition: "box-shadow 0.4s ease, border-color 0.4s ease",
               }}
             >
+              <span className="br-tl" />
+              <span className="br-br" />
+              <div className="font-mono-tech text-[10px] tracking-[0.3em] uppercase opacity-60 mb-3" style={{ color: darkMode ? "#503282" : "#503282" }}>
+                · {String(idx + 1).padStart(2, "0")} /
+              </div>
               {/* Soft radial halo on hover */}
               <div
                 className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
@@ -95,7 +101,7 @@ export function SkillsSection({ darkMode }: SkillsSectionProps) {
                 </motion.div>
               </div>
               <h3
-                className="relative font-['Jaro',sans-serif] text-3xl mb-4 tracking-tight"
+                className="relative font-display text-3xl mb-4 tracking-tight"
                 style={{ color: darkMode ? "#4b2e7d" : "#503282" }}
               >
                 {skill.title}

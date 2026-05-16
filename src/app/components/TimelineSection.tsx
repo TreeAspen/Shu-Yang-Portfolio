@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { GraduationCap, Briefcase, FlaskConical } from "lucide-react";
 import imgImage13 from "../../assets/timeline-img.png";
+import { SparkleStars } from "./SparkleStars";
 import { useLanguage } from "../../LanguageContext";
 import { translations } from "../../translations";
 
@@ -56,13 +57,15 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
         />
       </div>
 
+      <SparkleStars darkMode={darkMode} count={22} intensity={darkMode ? 0.65 : 0.4} />
+
       <div className="relative z-10">
         <motion.h2
           initial={{ y: 24, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: cardEase }}
-          className="font-['Jaro',sans-serif] text-7xl md:text-8xl mb-16 md:mb-24 transition-colors duration-500 tracking-tight"
+          className="font-display text-6xl md:text-7xl mb-16 md:mb-24 transition-colors duration-500 tracking-tight"
           style={{ color: darkMode ? "#fffa74" : "#503282", paddingLeft: "5%" }}
         >
           {t.title}
@@ -78,37 +81,102 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
             fill="none"
           >
             <defs>
-              <clipPath id="fast-grow-mask">
+              {/* Trunk: rises from base, organic ease (slow start → fast → slow finish, like sap) */}
+              <clipPath id="trunk-grow">
                 <motion.rect
                   initial={{ y: 1400, height: 0 }}
                   whileInView={{ y: -50, height: 1450 }}
                   viewport={{ once: true, margin: "100px" }}
-                  transition={{ duration: 1.5, ease: "linear" }}
+                  transition={{ duration: 2.2, ease: [0.45, 0, 0.55, 1] }}
                   x="-50"
                   width="300"
                 />
               </clipPath>
+
+              {/* Right-side branches: each sprouts outward from x=100 as trunk passes its height.
+                  The delay corresponds to when the trunk mask reaches that branch's y, using a
+                  slight overlap so the sprout feels alive rather than queued. */}
+              <clipPath id="branch-r-1060">
+                <motion.rect
+                  initial={{ width: 0 }}
+                  whileInView={{ width: 90 }}
+                  viewport={{ once: true, margin: "100px" }}
+                  transition={{ duration: 0.7, delay: 0.55, ease: [0.34, 1.45, 0.64, 1] }}
+                  x="100" y="1040" height="160"
+                />
+              </clipPath>
+              <clipPath id="branch-r-740">
+                <motion.rect
+                  initial={{ width: 0 }}
+                  whileInView={{ width: 90 }}
+                  viewport={{ once: true, margin: "100px" }}
+                  transition={{ duration: 0.7, delay: 1.05, ease: [0.34, 1.45, 0.64, 1] }}
+                  x="100" y="720" height="160"
+                />
+              </clipPath>
+              <clipPath id="branch-r-420">
+                <motion.rect
+                  initial={{ width: 0 }}
+                  whileInView={{ width: 90 }}
+                  viewport={{ once: true, margin: "100px" }}
+                  transition={{ duration: 0.7, delay: 1.55, ease: [0.34, 1.45, 0.64, 1] }}
+                  x="100" y="400" height="160"
+                />
+              </clipPath>
+              <clipPath id="branch-r-120">
+                <motion.rect
+                  initial={{ width: 0 }}
+                  whileInView={{ width: 90 }}
+                  viewport={{ once: true, margin: "100px" }}
+                  transition={{ duration: 0.7, delay: 1.95, ease: [0.34, 1.45, 0.64, 1] }}
+                  x="100" y="100" height="160"
+                />
+              </clipPath>
+
+              {/* Left-side branches: sprout leftward — animate x from 100 down to 10 while width expands */}
+              <clipPath id="branch-l-580">
+                <motion.rect
+                  initial={{ x: 100, width: 0 }}
+                  whileInView={{ x: 10, width: 95 }}
+                  viewport={{ once: true, margin: "100px" }}
+                  transition={{ duration: 0.7, delay: 1.3, ease: [0.34, 1.45, 0.64, 1] }}
+                  y="560" height="160"
+                />
+              </clipPath>
+              <clipPath id="branch-l-1060">
+                <motion.rect
+                  initial={{ x: 100, width: 0 }}
+                  whileInView={{ x: 10, width: 95 }}
+                  viewport={{ once: true, margin: "100px" }}
+                  transition={{ duration: 0.7, delay: 0.6, ease: [0.34, 1.45, 0.64, 1] }}
+                  y="1040" height="160"
+                />
+              </clipPath>
             </defs>
 
-            <g clipPath="url(#fast-grow-mask)">
-              <path d="M 100 0 Q 115 700 142 1400 L 58 1400 Q 85 700 100 0 Z" fill={trunkColor} />
-              <path d="M 185 120 Q 140 180 100 200 L 100 240 Q 140 190 185 120 Z" fill={trunkColor} />
-              <path d="M 185 420 Q 140 480 100 500 L 100 540 Q 140 490 185 420 Z" fill={trunkColor} />
-              <path d="M 15 580 Q 60 640 100 660 L 100 700 Q 60 650 15 580 Z" fill={trunkColor} />
-              <path d="M 185 740 Q 140 800 100 820 L 100 860 Q 140 810 185 740 Z" fill={trunkColor} />
-              <path d="M 15 1060 Q 60 1120 100 1140 L 100 1180 Q 60 1130 15 1060 Z" fill={trunkColor} />
-              <path d="M 185 1060 Q 140 1120 100 1140 L 100 1180 Q 140 1130 185 1060 Z" fill={trunkColor} />
-            </g>
+            {/* Trunk — rises first, clipped by its own vertical mask */}
+            <path d="M 100 0 Q 115 700 142 1400 L 58 1400 Q 85 700 100 0 Z" fill={trunkColor} clipPath="url(#trunk-grow)" />
+
+            {/* Branches — each sprouts from the trunk outward, independently animated */}
+            <path d="M 185 120 Q 140 180 100 200 L 100 240 Q 140 190 185 120 Z"   fill={trunkColor} clipPath="url(#branch-r-120)" />
+            <path d="M 185 420 Q 140 480 100 500 L 100 540 Q 140 490 185 420 Z"   fill={trunkColor} clipPath="url(#branch-r-420)" />
+            <path d="M 15 580 Q 60 640 100 660 L 100 700 Q 60 650 15 580 Z"        fill={trunkColor} clipPath="url(#branch-l-580)" />
+            <path d="M 185 740 Q 140 800 100 820 L 100 860 Q 140 810 185 740 Z"   fill={trunkColor} clipPath="url(#branch-r-740)" />
+            <path d="M 15 1060 Q 60 1120 100 1140 L 100 1180 Q 60 1130 15 1060 Z" fill={trunkColor} clipPath="url(#branch-l-1060)" />
+            <path d="M 185 1060 Q 140 1120 100 1140 L 100 1180 Q 140 1130 185 1060 Z" fill={trunkColor} clipPath="url(#branch-r-1060)" />
           </svg>
 
-          {/* Milestone dots — appear after trunk grows */}
-          {desktopMilestones.map((m, idx) => (
+          {/* Milestone dots — each pops as its branch tip arrives */}
+          {desktopMilestones.map((m, idx) => {
+            // Match dot timing to each branch's sprout end (slightly before, so dot blooms with the tip)
+            const dotDelays = [2.55, 2.15, 1.65, 1.90, 1.15, 1.20];
+            return (
             <motion.div
               key={idx}
               initial={{ scale: 0, opacity: 0 }}
               whileInView={{ scale: 1, opacity: 1 }}
               viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.4, delay: 0.5 + idx * 0.08, type: "spring", stiffness: 260, damping: 18 }}
+              transition={{ duration: 0.45, delay: dotDelays[idx], type: "spring", stiffness: 280, damping: 16 }}
               className="absolute z-20 rounded-full"
               style={{
                 left: "50%",
@@ -120,14 +188,16 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
                 boxShadow: `0 0 0 4px ${darkMode ? "rgba(255, 250, 116, 0.18)" : "rgba(181, 140, 0, 0.18)"}, 0 0 18px ${darkMode ? "rgba(255, 250, 116, 0.5)" : "rgba(181, 140, 0, 0.35)"}`,
               }}
             />
-          ))}
+            );
+          })}
 
-          <TimelineCard event={timelineEvents[0]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 40, right: 0, width: "38%" }} delay={1.42} fromX={60} />
-          <TimelineCard event={timelineEvents[1]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 340, right: 0, width: "38%" }} delay={1.11} fromX={60} />
-          <TimelineCard event={timelineEvents[2]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 660, right: 0, width: "38%" }} delay={0.78} fromX={60} />
-          <TimelineCard event={timelineEvents[3]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 500, left: 0, width: "38%" }} delay={0.95} fromX={-60} />
-          <TimelineCard event={timelineEvents[4]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 980, right: 0, width: "38%" }} delay={0.45} fromX={60} />
-          <TimelineCard event={timelineEvents[5]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 980, left: 0, width: "38%" }} delay={0.45} fromX={-60} />
+          {/* Card entrance delays synced to each branch's sprout completion */}
+          <TimelineCard event={timelineEvents[0]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 40, right: 0, width: "38%" }} delay={2.6} fromX={60} />
+          <TimelineCard event={timelineEvents[1]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 340, right: 0, width: "38%" }} delay={2.2} fromX={60} />
+          <TimelineCard event={timelineEvents[2]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 660, right: 0, width: "38%" }} delay={1.7} fromX={60} />
+          <TimelineCard event={timelineEvents[3]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 500, left: 0, width: "38%" }} delay={1.95} fromX={-60} />
+          <TimelineCard event={timelineEvents[4]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 980, right: 0, width: "38%" }} delay={1.2} fromX={60} />
+          <TimelineCard event={timelineEvents[5]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 980, left: 0, width: "38%" }} delay={1.25} fromX={-60} />
         </div>
 
         {/* ================= MOBILE LAYOUT ================= */}
@@ -215,19 +285,20 @@ function TimelineCard({ event, darkMode, activeYellow, style, delay, fromX }: an
 
         <div className="relative flex flex-wrap gap-2 mb-3 items-center">
           <span
-            className="inline-flex items-center gap-1.5 font-['Jaro',sans-serif] text-xs md:text-sm px-3 py-1 rounded-full tracking-wide"
+            className="inline-flex items-center gap-1.5 font-mono-tech text-[10px] md:text-[11px] px-2.5 py-1 tracking-[0.2em] uppercase"
             style={{
-              backgroundColor: darkMode ? "rgba(252, 248, 150, 0.2)" : "rgba(80, 50, 130, 0.1)",
+              backgroundColor: darkMode ? "rgba(252, 248, 150, 0.15)" : "rgba(80, 50, 130, 0.08)",
               color: darkMode ? "#fffa74" : "#503282",
+              border: `1px solid ${darkMode ? "rgba(252, 248, 150, 0.3)" : "rgba(80, 50, 130, 0.18)"}`,
             }}
           >
-            <TypeIcon size={13} strokeWidth={2.4} />
+            <TypeIcon size={11} strokeWidth={2.4} />
             {event.type}
           </span>
           <span
-            className="font-['Jaro',sans-serif] text-xs md:text-sm px-3 py-1 rounded-full tracking-wide"
+            className="font-mono-tech text-[10px] md:text-[11px] px-2.5 py-1 tracking-[0.15em]"
             style={{
-              border: `1px solid ${darkMode ? "rgba(252, 248, 150, 0.4)" : "rgba(80, 50, 130, 0.3)"}`,
+              border: `1px solid ${darkMode ? "rgba(252, 248, 150, 0.35)" : "rgba(80, 50, 130, 0.28)"}`,
               color: darkMode ? "#fffa74" : "#503282",
             }}
           >
@@ -235,7 +306,7 @@ function TimelineCard({ event, darkMode, activeYellow, style, delay, fromX }: an
           </span>
         </div>
 
-        <p className="relative font-['Jaro',sans-serif] text-3xl mb-1 leading-tight" style={{ color: darkMode ? "#fffa74" : "#503282" }}>
+        <p className="relative font-display text-3xl mb-1 leading-tight" style={{ color: darkMode ? "#fffa74" : "#503282" }}>
           {event.title}
         </p>
         <p className="relative text-[13px] md:text-sm font-semibold mb-3 tracking-wide opacity-90" style={{ color: activeYellow }}>
@@ -290,7 +361,7 @@ function TimelineCardMobile({ event, darkMode, activeYellow, delay }: any) {
     >
       <div className="flex flex-wrap gap-2 mb-3 items-center">
         <span
-          className="inline-flex items-center gap-1.5 font-['Jaro',sans-serif] text-[12px] px-3 py-1 rounded-full tracking-wide"
+          className="inline-flex items-center gap-1.5 font-display text-[12px] px-3 py-1 rounded-full tracking-wide"
           style={{
             backgroundColor: darkMode ? "rgba(252, 248, 150, 0.2)" : "rgba(80, 50, 130, 0.1)",
             color: darkMode ? "#fffa74" : "#503282",
@@ -300,7 +371,7 @@ function TimelineCardMobile({ event, darkMode, activeYellow, delay }: any) {
           {event.type}
         </span>
         <span
-          className="font-['Jaro',sans-serif] text-[12px] px-3 py-1 rounded-full tracking-wide"
+          className="font-display text-[12px] px-3 py-1 rounded-full tracking-wide"
           style={{
             border: `1px solid ${darkMode ? "rgba(252, 248, 150, 0.4)" : "rgba(80, 50, 130, 0.3)"}`,
             color: darkMode ? "#fffa74" : "#503282",
@@ -309,7 +380,7 @@ function TimelineCardMobile({ event, darkMode, activeYellow, delay }: any) {
           {event.year}
         </span>
       </div>
-      <p className="font-['Jaro',sans-serif] text-2xl mb-1 leading-tight" style={{ color: darkMode ? "#fffa74" : "#503282" }}>{event.title}</p>
+      <p className="font-display text-2xl mb-1 leading-tight" style={{ color: darkMode ? "#fffa74" : "#503282" }}>{event.title}</p>
       <p className="text-[13px] font-semibold mb-3 tracking-wide" style={{ color: activeYellow }}>{event.subtitle}</p>
       <p className="text-[14px] opacity-85 leading-relaxed font-medium mb-4" style={{ color: darkMode ? "rgba(255, 255, 255, 0.9)" : "#333" }}>{event.description}</p>
       <div className="flex flex-wrap gap-2 mt-auto">
