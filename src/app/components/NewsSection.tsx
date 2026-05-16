@@ -1,10 +1,18 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ExternalLink, Home, ClipboardList, Sparkles, GitBranch, DoorOpen, ChevronRight } from "lucide-react";
 import { Modal } from "./Modal";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useLanguage } from "../../LanguageContext"; // 🌟
 import { translations } from "../../translations";   // 🌟
+
+const flowIconMap: Record<string, any> = {
+  home: Home,
+  tasks: ClipboardList,
+  magic: Sparkles,
+  branch: GitBranch,
+  door: DoorOpen,
+};
 
 interface NewsSectionProps {
   darkMode: boolean;
@@ -65,6 +73,83 @@ function ProjectDetailViewMerged({ project, darkMode, onBack, uiTexts }: any) {
           )}
         </div>
       )}
+      {/* In-Depth Architecture */}
+      {project.architecture && (
+        <div className="mb-10">
+          <h3 className="font-medium tracking-wide text-2xl md:text-3xl mb-6 pb-2" style={{ color: headingColor, borderBottom: `1px solid ${dividerColor}` }}>
+            {uiTexts.architecture}
+          </h3>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {project.architecture.userFlow && (
+              <div>
+                <h4 className="font-medium text-xl mb-4" style={{ color: accentColor }}>{uiTexts.userFlow}</h4>
+                <div className="relative pl-12">
+                  <div className="absolute left-[15px] top-2 bottom-2 w-[2px]" style={{ backgroundColor: dividerColor }} />
+                  <div className="flex flex-col gap-5">
+                    {project.architecture.userFlow.map((s: any, i: number) => {
+                      const Icon = flowIconMap[s.iconKey] || ChevronRight;
+                      return (
+                        <div key={i} className="relative">
+                          <div
+                            className="absolute -left-[39px] top-0 w-8 h-8 rounded-full flex items-center justify-center"
+                            style={{
+                              backgroundColor: accentColor,
+                              color: darkMode ? "#503282" : "#fffa74",
+                              boxShadow: `0 0 0 4px ${darkMode ? "rgba(255,250,116,0.18)" : "rgba(80,50,130,0.15)"}`,
+                            }}
+                          >
+                            <Icon size={15} strokeWidth={2.2} />
+                          </div>
+                          <div className="rounded-xl px-5 py-3" style={glassStyle}>
+                            <p className="font-medium text-base mb-0.5" style={{ color: accentColor }}>{s.title}</p>
+                            <p className="text-sm leading-relaxed" style={{ color: textColor }}>{s.desc}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {project.architecture.hierarchy && (
+              <div>
+                <h4 className="font-medium text-xl mb-4" style={{ color: accentColor }}>{uiTexts.hierarchy}</h4>
+                <div className="rounded-2xl p-5" style={glassStyle}>
+                  {project.architecture.hierarchy.map((g: any, i: number) => (
+                    <div key={i} className={i === project.architecture.hierarchy.length - 1 ? "" : "mb-4"}>
+                      <p className="font-semibold text-sm mb-2 tracking-wide" style={{ color: accentColor }}>{g.level}</p>
+                      <ul className="flex flex-col gap-1.5 pl-4 border-l" style={{ borderColor: dividerColor }}>
+                        {g.items.map((item: string, j: number) => (
+                          <li key={j} className="flex items-center gap-2 text-sm" style={{ color: textColor }}>
+                            <ChevronRight size={13} style={{ color: accentColor, opacity: 0.7 }} />
+                            {item}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {project.ideationImage && (
+            <div className="mt-8">
+              <div className="rounded-2xl overflow-hidden shadow-xl">
+                <ImageWithFallback src={project.ideationImage} alt="Ideation sketch" className="w-full h-auto block object-cover" />
+              </div>
+              {project.ideationImageCaption && (
+                <p className="text-sm text-center mt-3 italic opacity-75" style={{ color: subtextColor }}>
+                  {project.ideationImageCaption}
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+      )}
+
       {project.accomplishments && (
         <div className="mb-10">
           <h3 className="font-medium tracking-wide text-2xl md:text-3xl mb-4 pb-2" style={{ color: headingColor, borderBottom: `1px solid ${dividerColor}` }}>{uiTexts.accomplishments}</h3>
@@ -73,12 +158,32 @@ function ProjectDetailViewMerged({ project, darkMode, onBack, uiTexts }: any) {
               <li key={i} className="flex items-start gap-3 text-base" style={{ color: textColor }}><span className="mt-1.5 w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: accentColor }}/>{item}</li>
             ))}
           </ul>
+
+          {project.finalImage && (
+            <div className="mt-8">
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <ImageWithFallback src={project.finalImage} alt="Final UI" className="w-full h-auto block object-cover" />
+              </div>
+              {project.finalImageCaption && (
+                <p className="text-sm text-center mt-3 italic opacity-75" style={{ color: subtextColor }}>
+                  {project.finalImageCaption}
+                </p>
+              )}
+            </div>
+          )}
         </div>
       )}
+
       {project.takeaway && (
         <div className="mb-10">
           <h3 className="font-medium tracking-wide text-2xl md:text-3xl mb-4 pb-2" style={{ color: headingColor, borderBottom: `1px solid ${dividerColor}` }}>{uiTexts.takeaway}</h3>
           <div className="rounded-2xl p-6" style={glassStyle}><p className="text-base md:text-lg italic" style={{ color: textColor }}>{project.takeaway}</p></div>
+        </div>
+      )}
+
+      {project.video && (
+        <div className="mb-10 rounded-2xl overflow-hidden shadow-2xl">
+          <video src={project.video} autoPlay muted loop playsInline controls className="w-full h-auto block" />
         </div>
       )}
       {project.tools && (

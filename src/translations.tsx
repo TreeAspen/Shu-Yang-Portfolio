@@ -17,6 +17,9 @@ import imgProject311_2 from './assets/project-311-2.png';
 import imgProject311_3 from './assets/project-311-3.png';
 import imgVRGreenery1 from './assets/vr-greenery-1.png';
 import imgVRGreenery2 from './assets/vr-greenery-2.png';
+import imgProject1_1 from './assets/project1-1.png';
+import imgProject1_2 from './assets/project1_2.png';
+import vidSomniDemo from './assets/25cbda1f290c0707be8cb42abd5c9c4d.mp4';
 
 export const translations = {
   en: {
@@ -316,19 +319,51 @@ export const translations = {
       {
         id: 2,
         title: "SomniBot AI",
-        description: "An AI-driven sleep assistant providing personalized, science-backed guidance using FHIR and RAG to improve sleep quality.",
+        description: "Top 1% hackathon project · An AI-driven sleep assistant blending FHIR + RAG with a calming, clinically-informed UX to help users build trust and better habits.",
         categories: ["AI / ML", "UI/UX"],
         image: imgImage4,
         detail: {
           title: "SomniBot: AI-Powered Personalized Sleep Assistant",
-          subtitle: "A Top 1% Hackathon Project combining AI, HealthTech, and UI/UX.",
+          subtitle: "A one-month hackathon project that achieved a Top 1% result. My role: UI/UX & prototype design.",
           heroImage: imgImage4,
-          category: "AI Product",
-          background: "Sleep is essential, yet 30-40% of adults struggle with insomnia. Existing solutions failed to build trust due to privacy issues and unreliable information.",
-          goal: "To design and prototype an AI-powered sleep assistant that delivers personalized, clinically informed recommendations using FHIR and RAG.",
-          takeaway: "Features a self-assessment quiz and intelligent analysis based on EHR data to improve sleep quality while ensuring privacy.",
-          tools: ["AI", "HealthTech", "Sleep Science", "FHIR", "RAG", "Figma"],
-          prototypeLink: "https://www.figma.com/proto/rqvhuZzsZ8DjRvbcVhdsw4/Untitled",
+          category: "AI · HealthTech UX",
+          background: "Sleep is essential, yet 30–40% of adults struggle with insomnia. Our user research surfaced a sharp gap: roughly 80% of respondents wanted a private, trustworthy sleep companion, yet generic search and AI chatbots failed them — fragile privacy, unreliable advice, no continuity. That framed our core design challenge: how do we create a clinically-informed, personalized experience that users feel safe confiding in?",
+          goal: "To design and prototype an AI-powered sleep assistant that delivers personalized, clinically informed recommendations using FHIR and RAG — answering the user's joint need for privacy, trust, and progressive personalization.",
+          process: {
+            description: "A one-size-fits-all flow was never going to work for insomnia. Our strategy centered on \"progressive personalization\" — meeting users where they are, then deepening insight only as they invite it. I mapped the journey from initial uncertainty to actionable insight, then designed three pillar features to carry it:",
+            features: [
+              { title: "Quick Self-Assessment", desc: "Five well-paced questions deliver immediate value and a personal baseline — without overwhelming a user who is already tired." },
+              { title: "Symptom Tracking Portal", desc: "Lightweight daily logging surfaces patterns over time, so insights feel earned rather than guessed at." },
+              { title: "Common Causes Selection", desc: "A structured, visual selector replaces free-text input, simplifying a complex medical conversation into an accessible UI." },
+            ],
+          },
+          architecture: {
+            userFlow: [
+              { step: 1, title: "Start & Home", desc: "User begins the session and chooses Quick Self-Assessment as their entry point.", iconKey: "home" },
+              { step: 2, title: "Questionnaire", desc: "User answers a curated set of five sleep-habit questions, paced for low cognitive load.", iconKey: "tasks" },
+              { step: 3, title: "Result Summary", desc: "The app surfaces an initial result summary alongside calming, actionable suggestions.", iconKey: "magic" },
+              { step: 4, title: "User Choice", desc: "User branches into Symptom Tracking or Common Causes — depth on demand.", iconKey: "branch" },
+              { step: 5, title: "End Session", desc: "User returns home or closes the session with concrete next steps in hand.", iconKey: "door" },
+            ],
+            hierarchy: [
+              { level: "Level 1 — Main Functions", items: ["Self-Assessment", "Symptom Tracking", "Common Causes"] },
+              { level: "Level 2 — Module Actions", items: ["Q&A flow", "Data input & history", "Explore causes"] },
+              { level: "Level 3 — Micro Interactions", items: ["Button states", "'Suggest' interactions", "Dynamic prompts"] },
+            ],
+          },
+          accomplishments: [
+            "Implemented Retrieval-Augmented Generation (RAG) so responses cite reputable sources — directly rebuilding user trust in a domain saturated with misinformation.",
+            "Wove complex FHIR clinical data into a calming chatbot interface that hides the schema and surfaces only what helps the user act.",
+            "Designed a self-assessment and EHR-driven analysis system that reframes a clinical process as an accessible, conversational experience.",
+          ],
+          ideationImage: imgProject1_1,
+          ideationImageCaption: "Early ideation sketch for the 'Common Causes' feature — anchored on a simple, visual selection process.",
+          finalImage: imgProject1_2,
+          finalImageCaption: "Final UI: a clean, intuitive, calming interface guiding users through their sleep analysis journey.",
+          video: vidSomniDemo,
+          takeaway: "This project reaffirmed the critical role of UX/UI in translating complex medical data into a simple, calming, and effective experience — one that earns trust before it asks for compliance. The most defensible design move was restraint: choosing not to expose every clinical signal, and instead trusting the user with what mattered next.",
+          tools: ["Figma", "UI/UX Design", "Prototyping", "FHIR", "RAG", "HealthTech", "Sleep Science"],
+          prototypeLink: "https://www.figma.com/proto/rqvhuZzsZ8DjRvbcVhdsw4/Untitled?node-id=102-2097&p=f&t=4VbOnIe0dRlbZ5lF-1&scaling=scale-down&content-scaling=fixed&page-id=102%3A2006&starting-point-node-id=102%3A2078.",
         }
       },
       {
@@ -720,18 +755,51 @@ export const translations = {
       {
         id: 2,
         title: "SomniBot AI 睡眠助手",
-        description: "一款由 AI 驱动的睡眠助手，利用 FHIR 和 RAG 技术提供个性化、基于科学的指导，改善睡眠质量。",
+        description: "Top 1% 极客松获奖项目 · 融合 FHIR + RAG 的 AI 睡眠助手，以舒缓、临床可信的体验帮助用户建立信任与睡眠习惯。",
         categories: ["AI / ML", "UI/UX"],
         image: imgImage4,
         detail: {
           title: "SomniBot：AI 个性化睡眠守护者",
-          subtitle: "结合 AI、健康科技和 UI/UX 的 Top 1% 极客松获胜项目。",
+          subtitle: "为期一个月的极客松项目，最终位列全球前 1%。我负责 UI/UX 与原型设计。",
           heroImage: imgImage4,
-          category: "AI 医疗产品",
-          background: "睡眠至关重要，但 30-40% 的成年人受到失眠困扰。现有的通用搜索或 AI 聊天机器人由于隐私问题和不可靠的信息，难以建立用户信任。",
-          goal: "设计并制作一个 AI 驱动的睡眠助手的原型，使用 FHIR 和 RAG 提供个性化且具有临床依据的建议，解决用户对隐私和信任的需求。",
-          takeaway: "该助手包含自测问卷，并能基于 EHR（电子健康记录）数据进行智能分析，在确保隐私的同时改善睡眠质量。",
-          tools: ["人工智能", "健康科技", "睡眠科学", "FHIR", "RAG", "Figma"],
+          category: "AI · 医疗科技 UX",
+          background: "睡眠至关重要，但 30–40% 的成年人受失眠困扰。我们的前期用户调研揭示了一个鲜明的市场空白：约 80% 的受访者渴望一位「私密、可信任的睡眠伙伴」，而通用搜索引擎与现有 AI 聊天机器人由于隐私漏洞与信息可靠性不足，无法承担这一角色。这定义了我们的核心设计挑战——如何打造一个「具有临床可信度、可承载个性化、用户愿意倾诉」的体验？",
+          goal: "设计并打造 AI 驱动的睡眠助手原型，基于 FHIR 与 RAG 提供具备临床依据的个性化建议，同时回应用户对「隐私、信任、渐进式个性化」的复合需求。",
+          process: {
+            description: "对于失眠这种复杂问题，「一套流程走到底」注定失败。我们的策略围绕「渐进式个性化」展开——先在用户感到舒适的层级介入，再随用户的主动深入逐步揭示洞察。我梳理了从「初始迷茫」到「可操作建议」的完整旅程，并设计了三个支柱功能来承接它：",
+            features: [
+              { title: "快速自测问卷", desc: "5 道节奏舒缓的问题，立即提供个性化基线——对一个本就疲惫的用户不再额外加压。" },
+              { title: "症状追踪门户", desc: "轻量化的每日记录帮助用户察觉长期规律，让洞察「是赚来的」，而非「猜出来的」。" },
+              { title: "常见诱因选择器", desc: "结构化的视觉选择器替代自由文本，将复杂的医学对话简化为可访问的 UI。" },
+            ],
+          },
+          architecture: {
+            userFlow: [
+              { step: 1, title: "起始与首页", desc: "用户进入应用，并选择「快速自测」作为入口路径。", iconKey: "home" },
+              { step: 2, title: "问卷调查", desc: "用户依次回答 5 道精心设计的睡眠习惯问题，节奏低认知负担。", iconKey: "tasks" },
+              { step: 3, title: "结果摘要", desc: "应用呈现初步分析结果与舒缓、可操作的建议。", iconKey: "magic" },
+              { step: 4, title: "路径分叉", desc: "用户可继续深入「症状追踪」或探索「常见诱因」——深度按需而来。", iconKey: "branch" },
+              { step: 5, title: "结束会话", desc: "用户回到主页或带着具体的下一步行动结束会话。", iconKey: "door" },
+            ],
+            hierarchy: [
+              { level: "层级 1 —— 主要功能", items: ["快速自测", "症状追踪", "常见诱因"] },
+              { level: "层级 2 —— 模块行为", items: ["问答流程", "数据录入与历史", "诱因探索"] },
+              { level: "层级 3 —— 微观交互", items: ["按钮状态", "「建议」式交互", "动态提示"] },
+            ],
+          },
+          accomplishments: [
+            "采用 RAG（检索增强生成）让模型回复可引用可信来源——在信息真伪难辨的领域，这是直接重建用户信任的关键一击。",
+            "将复杂的 FHIR 临床数据无缝织入一个舒缓的聊天界面，隐藏数据结构，只把用户能用上的内容浮出水面。",
+            "设计了一个自测 + EHR 智能分析系统，把一段临床过程重塑为「可访问、可对话」的体验。",
+          ],
+          ideationImage: imgProject1_1,
+          ideationImageCaption: "「常见诱因」功能的早期构思草图——围绕一个「简洁、视觉化」的选择流程展开。",
+          finalImage: imgProject1_2,
+          finalImageCaption: "最终 UI：以简洁、直觉、舒缓的视觉语言引导用户走完整段睡眠分析旅程。",
+          video: vidSomniDemo,
+          takeaway: "这个项目让我再次确认 UX/UI 在医疗科技里的关键角色——把复杂的临床数据翻译为简洁、舒缓、有效的体验，先赢得用户的信任，再谈「用户配合」。最具防御性的设计决策是「克制」：不暴露每一个临床信号，而把判断权交还给用户去走出下一步。",
+          tools: ["Figma", "UI/UX 设计", "原型开发", "FHIR", "RAG", "医疗科技", "睡眠科学"],
+          prototypeLink: "https://www.figma.com/proto/rqvhuZzsZ8DjRvbcVhdsw4/Untitled?node-id=102-2097&p=f&t=4VbOnIe0dRlbZ5lF-1&scaling=scale-down&content-scaling=fixed&page-id=102%3A2006&starting-point-node-id=102%3A2078.",
         }
       },
       {
