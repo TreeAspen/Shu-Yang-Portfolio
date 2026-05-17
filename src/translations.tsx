@@ -3,6 +3,7 @@ import React from 'react';
 import imgNewsCover from './assets/news-cover.png';
 import imgNews1_2 from './assets/News1-2.png'; 
 import imgPaper1 from './assets/paper1.png';
+import imgPaper4 from './assets/paper4.png';
 import imgImage4 from './assets/image4.png';
 import imgImage2 from './assets/image2.png';
 import imgProject2_1 from './assets/project2-1.png'; 
@@ -296,6 +297,36 @@ export const translations = {
           takeaway: "This project pushed me to design for civic stakeholders who think in language, not schemas. The drag-and-drop board became the heart of the UX — letting humans correct the AI is more trustworthy than asking them to trust it blindly. It also validated my workflow as a Design Engineer: figma-to-React in days, not weeks.",
           tools: ["Figma", "React", "TypeScript", "Tailwind CSS", "Leaflet", "Recharts", "react-dnd", "Vite"],
           prototypeLink: "https://treeaspen.github.io/code4city-hackthon/",
+        }
+      },
+      {
+        id: 10,
+        title: "nD-RoPE",
+        description: "ICML 2026 paper. A decomposition-free generalization of Rotary Position Embedding to arbitrary dimensions, with a multi-scale regular simplex wave-vector design for isotropic positional encoding.",
+        categories: ["AI / ML", "Data Science"],
+        image: imgPaper4,
+        detail: {
+          title: "nD-RoPE: A Generalized RoPE for n-Dimensional Position Embedding",
+          subtitle: "ICML 2026 (Poster) — A unified theoretical formulation extending Rotary Position Embedding to high-dimensional Transformer inputs.",
+          heroImage: imgPaper4,
+          category: "AI / ML · Foundations",
+          background: "Rotary Position Embedding (RoPE) is widely adopted in modern Transformers, yet its extension to high-dimensional domains — images, video, point clouds — has lacked a unified theoretical formulation. Most existing approaches either apply rotations independently along each axis or mix frequencies empirically. Both moves limit cross-dimensional interaction and yield direction-dependent representations.\n\nCo-authored with Boyang Li, Yulin Wu, Sizhe Xu, Nuoxian Huang, Zhonghang Yuan, Shangyi Guo, and Takahiro Yabe.",
+          goal: "Derive a decomposition-free generalization of rotary embeddings to arbitrary dimensions — grounded in a translation-invariant formulation over continuous Hilbert space — so that positions and frequencies can be treated as coupled n-dimensional vectors rather than axis-decomposed scalars.",
+          process: {
+            description: "From a translation-invariant formulation in continuous Hilbert space, we derive a spectral condition for isotropy. We instantiate this principle with a multi-scale regular simplex wave-vector design that provides uniform directional coverage with maximal symmetry.",
+            features: [
+              { title: "Spectral Isotropy Condition", desc: "A formal condition derived from a translation-invariant Hilbert-space formulation: positions and frequencies must be treated as coupled n-dimensional vectors to preserve isotropy across all directions." },
+              { title: "Regular Simplex Wave Vectors", desc: "A multi-scale wave-vector design based on the regular simplex — provides uniform directional coverage with maximal symmetry, eliminating axis bias inherent to decomposed schemes." },
+              { title: "Cross-Modal Validation", desc: "Evaluated on images, videos, and point clouds — consistent performance gains over axis-decomposed and frequency-mixed baselines, with improved generalization in high-dimensional settings." },
+            ],
+          },
+          accomplishments: [
+            "Accepted as a Poster at ICML 2026 — the leading international venue for machine-learning research.",
+            "Closed a long-standing theoretical gap in extending RoPE beyond 1D sequence modeling to arbitrary n-dimensional inputs.",
+            "Demonstrated consistent gains across three modalities (images, videos, point clouds), validating both the theoretical isotropy claim and its practical generalization.",
+          ],
+          takeaway: "This work tightened my conviction that the most defensible deep-learning contributions come from grounding empirical tricks in principled mathematical structure. Treating position encoding as a coupled n-dimensional spectral object — rather than an axis-decomposed convenience — turned out to also yield the cleanest empirical wins.",
+          tools: ["Position Embeddings", "Transformer Architecture", "Hilbert-Space Theory", "PyTorch", "Scientific Visualization"],
         }
       },
       {
@@ -732,6 +763,36 @@ export const translations = {
           takeaway: "这个项目让我学会了为「语言思维」而非「模式思维」的市政用户设计。拖拽式语义看板成了整个 UX 的核心——让人去纠正 AI 远比让人盲目相信 AI 更可信。同时它也验证了我作为设计工程师的工作流：从 Figma 到 React 只需几天。",
           tools: ["Figma", "React", "TypeScript", "Tailwind CSS", "Leaflet", "Recharts", "react-dnd", "Vite"],
           prototypeLink: "https://treeaspen.github.io/code4city-hackthon/",
+        }
+      },
+      {
+        id: 10,
+        title: "nD-RoPE",
+        description: "ICML 2026 论文。一种无需分解的旋转位置编码（RoPE）n 维推广方案，采用多尺度正则单纯形波矢设计，实现各方向同性的位置编码。",
+        categories: ["AI / ML", "Data Science"],
+        image: imgPaper4,
+        detail: {
+          title: "nD-RoPE：面向 n 维位置编码的广义 RoPE",
+          subtitle: "ICML 2026（Poster）—— 将旋转位置编码（RoPE）系统性地推广到高维 Transformer 输入的统一理论框架。",
+          heroImage: imgPaper4,
+          category: "AI / ML · 理论基础",
+          background: "旋转位置编码（RoPE）已在现代 Transformer 中被广泛采用，但其在高维场景——图像、视频、点云——的推广长期缺乏统一的理论形式。现有方法要么沿各轴独立旋转，要么经验性地混合频率，二者都限制了跨维度交互，并导致方向相关的表征。\n\n合作者：Boyang Li、Yulin Wu、Sizhe Xu、Nuoxian Huang、Zhonghang Yuan、Shangyi Guo、Takahiro Yabe。",
+          goal: "从连续 Hilbert 空间中的平移不变形式出发，推导出一种无需轴向分解、面向任意维度的广义旋转位置编码——将位置与频率视为耦合的 n 维向量，而非分别处理的标量。",
+          process: {
+            description: "我们从连续 Hilbert 空间中的平移不变形式出发，推导出实现各向同性所需的频谱条件，并以多尺度正则单纯形波矢设计将其落地——以最大对称性实现方向上的均匀覆盖。",
+            features: [
+              { title: "频谱各向同性条件", desc: "源自平移不变 Hilbert 空间表述的严格条件：位置与频率必须被视为耦合的 n 维向量，才能在所有方向上保持各向同性。" },
+              { title: "正则单纯形波矢", desc: "基于正则单纯形的多尺度波矢设计，以最大对称性提供均匀的方向覆盖，消除了「分轴分解」方案固有的轴向偏置。" },
+              { title: "跨模态实验验证", desc: "在图像、视频、点云三类模态上进行评估——相比「分轴分解」与「频率混合」基线均取得稳定提升，并在高维场景下展现出更好的泛化能力。" },
+            ],
+          },
+          accomplishments: [
+            "被 ICML 2026 接收为 Poster——机器学习领域顶级国际会议。",
+            "弥合了 RoPE 从 1D 序列建模推广到任意 n 维输入的长期理论空白。",
+            "在三种模态（图像、视频、点云）上均取得一致性能提升，同时验证了理论上的各向同性主张与实际泛化能力。",
+          ],
+          takeaway: "这项工作让我更确信：深度学习中最具防御性的贡献，往往来自把经验技巧建立在严谨的数学结构之上。把位置编码视为耦合的 n 维频谱对象，而非分轴分解的便利工具——既理论自洽，也带来了最干净的实证收益。",
+          tools: ["位置编码", "Transformer 架构", "Hilbert 空间理论", "PyTorch", "科学可视化"],
         }
       },
       {
