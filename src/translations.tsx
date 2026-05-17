@@ -3,7 +3,8 @@ import React from 'react';
 import imgNewsCover from './assets/news-cover.png';
 import imgNews1_2 from './assets/News1-2.png'; 
 import imgPaper1 from './assets/paper1.png';
-import imgPaper4 from './assets/paper4.png';
+import imgNDRoPE from './assets/ae0b03b5208297094d2f66c7f922b970.jpg';
+import imgNDRoPE2 from './assets/1041a52c058feef53b03b76611e8a40a.jpg';
 import imgImage4 from './assets/image4.png';
 import imgImage2 from './assets/image2.png';
 import imgProject2_1 from './assets/project2-1.png'; 
@@ -304,11 +305,11 @@ export const translations = {
         title: "nD-RoPE",
         description: "ICML 2026 paper. A decomposition-free generalization of Rotary Position Embedding to arbitrary dimensions, with a multi-scale regular simplex wave-vector design for isotropic positional encoding.",
         categories: ["AI / ML", "Data Science"],
-        image: imgPaper4,
+        image: imgNDRoPE,
         detail: {
           title: "nD-RoPE: A Generalized RoPE for n-Dimensional Position Embedding",
           subtitle: "ICML 2026 (Poster) — A unified theoretical formulation extending Rotary Position Embedding to high-dimensional Transformer inputs.",
-          heroImage: imgPaper4,
+          heroImage: imgNDRoPE,
           category: "AI / ML · Foundations",
           background: "Rotary Position Embedding (RoPE) is widely adopted in modern Transformers, yet its extension to high-dimensional domains — images, video, point clouds — has lacked a unified theoretical formulation. Most existing approaches either apply rotations independently along each axis or mix frequencies empirically. Both moves limit cross-dimensional interaction and yield direction-dependent representations.\n\nCo-authored with Boyang Li, Yulin Wu, Sizhe Xu, Nuoxian Huang, Zhonghang Yuan, Shangyi Guo, and Takahiro Yabe.",
           goal: "Derive a decomposition-free generalization of rotary embeddings to arbitrary dimensions — grounded in a translation-invariant formulation over continuous Hilbert space — so that positions and frequencies can be treated as coupled n-dimensional vectors rather than axis-decomposed scalars.",
@@ -325,6 +326,8 @@ export const translations = {
             "Closed a long-standing theoretical gap in extending RoPE beyond 1D sequence modeling to arbitrary n-dimensional inputs.",
             "Demonstrated consistent gains across three modalities (images, videos, point clouds), validating both the theoretical isotropy claim and its practical generalization.",
           ],
+          finalImage: imgNDRoPE2,
+          finalImageCaption: "Supplementary figure illustrating multi-scale, privacy-aware trajectory diffusion / reconstruction — an adjacent application thread.",
           takeaway: "This work tightened my conviction that the most defensible deep-learning contributions come from grounding empirical tricks in principled mathematical structure. Treating position encoding as a coupled n-dimensional spectral object — rather than an axis-decomposed convenience — turned out to also yield the cleanest empirical wins.",
           tools: ["Position Embeddings", "Transformer Architecture", "Hilbert-Space Theory", "PyTorch", "Scientific Visualization"],
         }
@@ -770,11 +773,11 @@ export const translations = {
         title: "nD-RoPE",
         description: "ICML 2026 论文。一种无需分解的旋转位置编码（RoPE）n 维推广方案，采用多尺度正则单纯形波矢设计，实现各方向同性的位置编码。",
         categories: ["AI / ML", "Data Science"],
-        image: imgPaper4,
+        image: imgNDRoPE,
         detail: {
           title: "nD-RoPE：面向 n 维位置编码的广义 RoPE",
           subtitle: "ICML 2026（Poster）—— 将旋转位置编码（RoPE）系统性地推广到高维 Transformer 输入的统一理论框架。",
-          heroImage: imgPaper4,
+          heroImage: imgNDRoPE,
           category: "AI / ML · 理论基础",
           background: "旋转位置编码（RoPE）已在现代 Transformer 中被广泛采用，但其在高维场景——图像、视频、点云——的推广长期缺乏统一的理论形式。现有方法要么沿各轴独立旋转，要么经验性地混合频率，二者都限制了跨维度交互，并导致方向相关的表征。\n\n合作者：Boyang Li、Yulin Wu、Sizhe Xu、Nuoxian Huang、Zhonghang Yuan、Shangyi Guo、Takahiro Yabe。",
           goal: "从连续 Hilbert 空间中的平移不变形式出发，推导出一种无需轴向分解、面向任意维度的广义旋转位置编码——将位置与频率视为耦合的 n 维向量，而非分别处理的标量。",
@@ -791,6 +794,8 @@ export const translations = {
             "弥合了 RoPE 从 1D 序列建模推广到任意 n 维输入的长期理论空白。",
             "在三种模态（图像、视频、点云）上均取得一致性能提升，同时验证了理论上的各向同性主张与实际泛化能力。",
           ],
+          finalImage: imgNDRoPE2,
+          finalImageCaption: "补充示意图——多尺度、隐私感知的轨迹扩散与重建，作为相邻应用方向的延伸示例。",
           takeaway: "这项工作让我更确信：深度学习中最具防御性的贡献，往往来自把经验技巧建立在严谨的数学结构之上。把位置编码视为耦合的 n 维频谱对象，而非分轴分解的便利工具——既理论自洽，也带来了最干净的实证收益。",
           tools: ["位置编码", "Transformer 架构", "Hilbert 空间理论", "PyTorch", "科学可视化"],
         }
