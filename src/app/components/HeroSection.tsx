@@ -241,6 +241,52 @@ export function HeroSection({ darkMode }: HeroSectionProps) {
           </p>
         </div>
 
+        {/* Currently — what's live for me right now */}
+        <div
+          className="self-start mb-7 mt-1 pointer-events-auto rounded-2xl px-5 py-4 max-w-[640px] font-mono-tech"
+          style={{
+            ...getCrystalGlassStyle(darkMode),
+            backdropFilter: "blur(10px) saturate(120%)",
+            WebkitBackdropFilter: "blur(10px) saturate(120%)",
+          }}
+        >
+          <div className="flex items-center gap-2 mb-2.5">
+            <span
+              className="inline-block w-1.5 h-1.5 rounded-full"
+              style={{
+                backgroundColor: darkMode ? "#7df9ff" : "#3aa1c6",
+                boxShadow: `0 0 8px ${darkMode ? "rgba(125, 249, 255, 0.9)" : "rgba(58, 161, 198, 0.7)"}`,
+                animation: "pulse-dot 1.6s ease-in-out infinite",
+              }}
+            />
+            <span
+              className="text-[10px] tracking-[0.32em] uppercase opacity-75"
+              style={{ color: textColor }}
+            >
+              {t.currentlyLabel} · LIVE
+            </span>
+          </div>
+          <ul className="flex flex-col gap-1.5">
+            {t.currentlyItems.map((line: string, i: number) => (
+              <li
+                key={i}
+                className="flex items-start gap-2.5 text-[12px] md:text-[13px] leading-relaxed"
+                style={{ color: textColor, opacity: 0.92 }}
+              >
+                <span className="opacity-50 mt-[1px]">{String(i + 1).padStart(2, "0")}</span>
+                <span>{line}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <style>{`
+          @keyframes pulse-dot {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.4); opacity: 0.55; }
+          }
+        `}</style>
+
         {/* 按钮群 (Links) */}
         <div className="flex flex-wrap gap-4 pointer-events-auto self-start z-20 relative mt-2">
           {linksData.map((item) => (

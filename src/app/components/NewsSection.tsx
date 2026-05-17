@@ -45,6 +45,21 @@ function ProjectDetailViewMerged({ project, darkMode, onBack, uiTexts }: any) {
         <ImageWithFallback src={project.heroImage} alt={project.title} className="w-full h-auto block object-cover" />
       </motion.div>
 
+      {project.aspenNote && (
+        <div className="mb-10 relative pl-5">
+          <div className="absolute left-0 top-1 bottom-1 w-px" style={{ backgroundColor: accentColor, opacity: 0.55 }} />
+          <div className="flex items-center gap-3 mb-2">
+            <span className="font-mono-tech text-[10px] tracking-[0.3em] uppercase opacity-70" style={{ color: accentColor }}>
+              {uiTexts.aspenNote}
+            </span>
+            <span className="flex-1 h-px" style={{ background: `linear-gradient(to right, ${dividerColor}, transparent)` }} />
+          </div>
+          <p className="text-base md:text-lg italic leading-relaxed" style={{ color: textColor }}>
+            {project.aspenNote}
+          </p>
+        </div>
+      )}
+
       {project.background && (
         <div className="mb-10">
           <h3 className="font-medium tracking-wide text-2xl md:text-3xl mb-4 pb-2" style={{ color: headingColor, borderBottom: `1px solid ${dividerColor}` }}>{uiTexts.background}</h3>

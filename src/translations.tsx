@@ -40,7 +40,13 @@ export const translations = {
       linkedin: "LinkedIn",
       resume: "Resume",
       portfolio: "Portfolio",
-      gallery: "Gallery"
+      gallery: "Gallery",
+      currentlyLabel: "Currently",
+      currentlyItems: [
+        "Shipping U.TOP Lab v2 — co-leading a 7-person ICML paper team",
+        "Designing AAG-bound visuals for the VR Greenery × CUSP capstone",
+        "Open to 2026 design × engineering roles",
+      ],
     },
     // 🌟 新增：News 组件特有的精简文案
     newsUI: {
@@ -167,7 +173,8 @@ export const translations = {
       accomplishments: "Accomplishments",
       takeaway: "Takeaway",
       tools: "Technologies & Tools",
-      liveLink: "View Live Prototype"
+      liveLink: "View Live Prototype",
+      aspenNote: "Aspen's note"
     },
     projectsData: [
       {
@@ -209,6 +216,7 @@ export const translations = {
           takeaway: "This project validated my capability to operate as a full-stack Creative Technologist. Moving beyond Figma mockups, I learned how to translate unconventional design concepts directly into production-ready React code.",
           tools: ["Figma", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
           prototypeLink: "https://utoplab.net/",
+          aspenNote: "This project taught me that 'Design Engineer' isn't a label, it's a workflow — Figma to deployed React in 26 days, alone. The hardest call wasn't technical: it was choosing not to add a CMS so the maintenance cost stays at zero.",
         }
       },
       {
@@ -256,6 +264,7 @@ export const translations = {
           takeaway: "Greenery benefits are not uniform — they depend on the surrounding urban setting. Park and waterfront environments showed the strongest restorative potential, while residential and roadway contexts blunted greenery's effect. This work pushed me to design experiments where AI is a measurement tool, not just an output — using SegFormer + Veo to control a confound that traditional field studies cannot.",
           tools: ["VR (Meta Quest 3)", "EEG (Emotiv Insight)", "EDA (Empatica E4)", "SegFormer-b2", "Google Veo 2.0", "PANAS-X", "Python", "RM-ANOVA"],
           prototypeLink: "https://utoplab.net/#/news/vr-urban-stress-study",
+          aspenNote: "What surprised me wasn't the EEG numbers — it was that participants couldn't reliably tell our AI-modified scenes from raw 360° footage (p=0.753). Once that confound dissolved, the rest of the study could be honest about what 'greenery' actually means inside a city.",
         }
       },
       {
@@ -298,6 +307,7 @@ export const translations = {
           takeaway: "This project pushed me to design for civic stakeholders who think in language, not schemas. The drag-and-drop board became the heart of the UX — letting humans correct the AI is more trustworthy than asking them to trust it blindly. It also validated my workflow as a Design Engineer: figma-to-React in days, not weeks.",
           tools: ["Figma", "React", "TypeScript", "Tailwind CSS", "Leaflet", "Recharts", "react-dnd", "Vite"],
           prototypeLink: "https://treeaspen.github.io/code4city-hackthon/",
+          aspenNote: "48 hours of hackathon, then two weeks of polish. If I built this again I'd start with the drag-and-drop board, not the prompt bar — letting humans correct the AI is the trustworthy half. The prompt is just the on-ramp.",
         }
       },
       {
@@ -508,7 +518,13 @@ export const translations = {
       linkedin: "领英",
       resume: "个人简历",
       portfolio: "作品集",
-      gallery: "视觉画廊"
+      gallery: "视觉画廊",
+      currentlyLabel: "当下",
+      currentlyItems: [
+        "正在迭代 U.TOP Lab v2，与 7 人团队联合署名 ICML 论文",
+        "为 VR Greenery × CUSP 毕业设计制作 AAG 大会可视化",
+        "正在寻找 2026 设计 × 工程方向岗位",
+      ],
     },
     // 🌟 新增：News 模块特有的精简文案
     newsUI: {
@@ -635,7 +651,8 @@ export const translations = {
       accomplishments: "核心成果",
       takeaway: "项目总结",
       tools: "技术栈与工具",
-      liveLink: "查看在线演示"
+      liveLink: "查看在线演示",
+      aspenNote: "杨树私语"
     },
     projectsData: [
       {
@@ -677,6 +694,7 @@ export const translations = {
           takeaway: "该项目验证了我作为全栈创意技术专家的能力。超越了单纯的 Figma 模型，我学会了如何将颠覆常规的设计理念直接转化为生产级的 React 代码。",
           tools: ["Figma", "React", "TypeScript", "Tailwind CSS", "Framer Motion", "Vite"],
           prototypeLink: "https://utoplab.net/",
+          aspenNote: "这个项目让我确信「设计工程师」不是一个标签，而是一种工作流——从 Figma 到部署上线的 React，独立完成，前后 26 天。最难的决策不是技术上的，而是「不要加 CMS」——让运维成本归零。",
         }
       },
       {
@@ -724,6 +742,7 @@ export const translations = {
           takeaway: "绿地的恢复效应并非「一刀切」——它高度依赖于所在的城市情境。公园与滨水场景展现出最强的恢复潜力，而居民区与道路情境则削弱了绿地的减压效应。这个项目让我学会把 AI 当作「测量工具」而非「输出工具」——用 SegFormer + Veo 控制了传统田野研究无法控制的混淆变量。",
           tools: ["VR (Meta Quest 3)", "EEG (Emotiv Insight)", "EDA (Empatica E4)", "SegFormer-b2", "Google Veo 2.0", "PANAS-X", "Python", "RM-ANOVA"],
           prototypeLink: "https://utoplab.net/#/news/vr-urban-stress-study",
+          aspenNote: "真正让我意外的不是 EEG 数据——而是被试根本分不清 AI 修改过的场景和原始 360° 视频（p=0.753）。一旦这个混淆变量被消除，整项研究才能真正诚实地谈「绿地」在城市里到底意味着什么。",
         }
       },
       {
@@ -766,6 +785,7 @@ export const translations = {
           takeaway: "这个项目让我学会了为「语言思维」而非「模式思维」的市政用户设计。拖拽式语义看板成了整个 UX 的核心——让人去纠正 AI 远比让人盲目相信 AI 更可信。同时它也验证了我作为设计工程师的工作流：从 Figma 到 React 只需几天。",
           tools: ["Figma", "React", "TypeScript", "Tailwind CSS", "Leaflet", "Recharts", "react-dnd", "Vite"],
           prototypeLink: "https://treeaspen.github.io/code4city-hackthon/",
+          aspenNote: "48 小时极客松，加之后两周打磨。如果重做，我会从拖拽板开始而不是 Prompt 栏——「让人去纠正 AI」才是可信的那一半，Prompt 只是入口。",
         }
       },
       {
