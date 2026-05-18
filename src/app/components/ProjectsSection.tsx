@@ -348,6 +348,10 @@ function ProjectDetailView({ project, darkMode, onBack, uiTexts }: any) {
 // ==========================================
 const internalCategories = ["All", "AI / ML", "UI/UX", "GIS", "Data Science"];
 
+// Display order balanced across all target tracks (Design Eng / GIS / Data Viz / Data Analysis / AI):
+// U.TOP → VR Greenery → NYC 311 → nD-RoPE → SomniBot → Facial Pixel Mosaic → AMRC → Florida Flooding → Houston → CLT → IELTS.
+const projectDisplayOrder = [0, 9, 8, 10, 2, 7, 1, 6, 5, 3, 4];
+
 export function ProjectsSection({ darkMode }: ProjectsSectionProps) {
   // 🌟 从上下文读取当前语言，并提取对应文案和数据
   const { lang } = useLanguage();
@@ -358,10 +362,16 @@ export function ProjectsSection({ darkMode }: ProjectsSectionProps) {
   const [activeCategory, setActiveCategory] = useState("All");
   const [selectedProject, setSelectedProject] = useState<any | null>(null);
 
+  const orderedProjects = [...projectList].sort((a: any, b: any) => {
+    const ai = projectDisplayOrder.indexOf(a.id);
+    const bi = projectDisplayOrder.indexOf(b.id);
+    return (ai === -1 ? 999 : ai) - (bi === -1 ? 999 : bi);
+  });
+
   const filteredProjects =
     activeCategory === "All"
-      ? projectList
-      : projectList.filter((p: any) => p.categories.includes(activeCategory));
+      ? orderedProjects
+      : orderedProjects.filter((p: any) => p.categories.includes(activeCategory));
 
   return (
     <section

@@ -34,7 +34,7 @@ export const translations = {
     },
     hero: {
       name: "Shu Yang",
-      subtitle: "Designing with data, engineering with intent — NYU CUSP '26",
+      subtitle: "Design Engineer × Urban Data Scientist — building interfaces, spatial analytics, and AI-driven visual systems · NYU CUSP '26",
       academicBio: "Academic Bio",
       github: "GitHub",
       linkedin: "LinkedIn",
@@ -43,7 +43,7 @@ export const translations = {
       gallery: "Gallery",
       currentlyLabel: "Currently",
       currentlyItems: [
-        "Shipping U.TOP Lab v2 — co-leading a 7-person ICML paper team",
+        "Shipping U.TOP Lab v2",
         "Designing AAG-bound visuals for the VR Greenery × CUSP capstone",
         "Open to 2026 design × engineering roles",
       ],
@@ -56,6 +56,12 @@ export const translations = {
     },
     newsOverview: [
       {
+        projectId: 10, // 自动关联 nD-RoPE ICML 2026
+        title: "ICML 2026 · nD-RoPE",
+        liveLink: "",
+        description: "A decomposition-free generalization of Rotary Position Embedding to arbitrary dimensions, with a multi-scale regular simplex wave-vector design for isotropic positional encoding. Accepted as Poster at ICML 2026."
+      },
+      {
         projectId: 0, // 自动关联 U.TOP
         title: "U.TOP Lab Official Website",
         liveLink: "https://utoplab.net/",
@@ -65,7 +71,7 @@ export const translations = {
         projectId: 2, // 自动关联 SomniBot
         title: "SomniBot: Personalized Sleep AI",
         liveLink: "https://www.figma.com/proto/rqvhuZzsZ8DjRvbcVhdsw4/Untitled",
-        description: "A Top 1% hackathon project delivering personalized, clinically informed sleep recommendations using FHIR and RAG."
+        description: "A Top 10% hackathon project delivering personalized, clinically informed sleep recommendations using FHIR and RAG."
       },
       {
         projectId: 1, // 自动关联 NeurIPS
@@ -75,19 +81,19 @@ export const translations = {
       }
     ],
     skills: {
-      title: "Craft",
+      title: "Skills",
       list: [
         {
-          title: "Design Craft",
-          description: "From research-led UX to expressive visual systems — fluent in Figma and the Adobe suite, shaping interfaces with motion-led prototyping.",
+          title: "Design Engineering",
+          description: "Figma → deployed React in days, not weeks. TypeScript, Tailwind, Framer Motion, Vite. I own the visual system and the production code — solo deploys on U.TOP Lab, the NYC 311 dashboard, and the MAS WordPress → React migration.",
         },
         {
-          title: "Engineering Fluency",
-          description: "Production-grade React + TypeScript on the front, Python and modern data stacks on the back. I design and ship the whole stack.",
+          title: "AI & Data Visualization",
+          description: "Cursor & Claude Code in the daily loop; D3, Leaflet, and Recharts in the browser; PyTorch, RAG + FHIR for AI products like SomniBot. Lead visual author on ICML 2026 & NeurIPS 2025 Spotlight papers — turning models and data into interpretable visual systems.",
         },
         {
-          title: "Research & Strategy",
-          description: "Mixed-methods user research, statistical modeling, and causal inference — turning behavior into evidence, evidence into product decisions.",
+          title: "Spatial & Urban Analytics",
+          description: "Python · PostgreSQL/PostGIS · GIS network analysis · causal inference (PSM) · mixed-methods experimental design with VR + EEG/EDA biosensing — 2026 NYU CUSP Best Capstone Award. Evidence-driven insight, from raw spatial data to decision-ready stories.",
         },
       ]
     },
@@ -363,12 +369,12 @@ export const translations = {
       {
         id: 2,
         title: "SomniBot AI",
-        description: "Top 1% hackathon project · An AI-driven sleep assistant blending FHIR + RAG with a calming, clinically-informed UX to help users build trust and better habits.",
+        description: "Top 10% hackathon project · An AI-driven sleep assistant blending FHIR + RAG with a calming, clinically-informed UX to help users build trust and better habits.",
         categories: ["AI / ML", "UI/UX"],
         image: imgImage4,
         detail: {
           title: "SomniBot: AI-Powered Personalized Sleep Assistant",
-          subtitle: "A one-month hackathon project that achieved a Top 1% result. My role: UI/UX & prototype design.",
+          subtitle: "A one-month hackathon project that achieved a Top 10% result. My role: UI/UX & prototype design.",
           heroImage: imgImage4,
           category: "AI · HealthTech UX",
           background: "Sleep is essential, yet 30–40% of adults struggle with insomnia. Our user research surfaced a sharp gap: roughly 80% of respondents wanted a private, trustworthy sleep companion, yet generic search and AI chatbots failed them — fragile privacy, unreliable advice, no continuity. That framed our core design challenge: how do we create a clinically-informed, personalized experience that users feel safe confiding in?",
@@ -512,7 +518,7 @@ export const translations = {
     },
     hero: {
       name: "杨树",
-      subtitle: "以数据为笔，以工程为意 — 纽约大学 CUSP '26",
+      subtitle: "设计工程师 × 城市数据科学家 — 构建人机界面、空间分析与 AI 驱动的视觉系统 · 纽约大学 CUSP '26",
       academicBio: "学术主页",
       github: "GitHub",
       linkedin: "领英",
@@ -521,7 +527,7 @@ export const translations = {
       gallery: "视觉画廊",
       currentlyLabel: "当下",
       currentlyItems: [
-        "正在迭代 U.TOP Lab v2，与 7 人团队联合署名 ICML 论文",
+        "正在迭代 U.TOP Lab v2",
         "为 VR Greenery × CUSP 毕业设计制作 AAG 大会可视化",
         "正在寻找 2026 设计 × 工程方向岗位",
       ],
@@ -534,6 +540,12 @@ export const translations = {
     },
     newsOverview: [
       {
+        projectId: 10,
+        title: "ICML 2026 · nD-RoPE",
+        liveLink: "",
+        description: "一种无需分解的旋转位置编码（RoPE）n 维推广方案，采用多尺度正则单纯形波矢设计，实现各方向同性的位置编码。被 ICML 2026 接收为 Poster。"
+      },
+      {
         projectId: 0,
         title: "U.TOP 实验室官方网站",
         liveLink: "https://utoplab.net/",
@@ -543,7 +555,7 @@ export const translations = {
         projectId: 2,
         title: "SomniBot: AI 个性化睡眠助手",
         liveLink: "https://www.figma.com/proto/rqvhuZzsZ8DjRvbcVhdsw4/Untitled",
-        description: "荣获极客松 Top 1% 的项目，利用 FHIR 与 RAG 技术提供具有临床依据的个性化睡眠建议。"
+        description: "荣获极客松 Top 10% 的项目，利用 FHIR 与 RAG 技术提供具有临床依据的个性化睡眠建议。"
       },
       {
         projectId: 1,
@@ -556,16 +568,16 @@ export const translations = {
       title: "专业能力",
       list: [
         {
-          title: "设计造诣",
-          description: "从用户研究驱动的 UX 到富有表现力的视觉系统——熟练驾驭 Figma 与 Adobe 全家桶，以动效原型将设计意图精准落地。",
+          title: "设计工程",
+          description: "从 Figma 到上线 React，用「天」而不是「周」交付。熟练 TypeScript、Tailwind、Framer Motion、Vite——独立负责 U.TOP Lab、NYC 311 仪表盘、MAS（WordPress → React 迁移）的视觉系统与生产代码。",
         },
         {
-          title: "工程实力",
-          description: "前端 React + TypeScript 直至生产级交付，后端 Python 与现代数据栈一并掌握。从架构到部署，独立完成全栈实现。",
+          title: "AI 与数据可视化",
+          description: "Cursor 与 Claude Code 嵌入日常开发；浏览器端熟练 D3、Leaflet、Recharts；PyTorch、RAG + FHIR 驱动 SomniBot 等 AI 产品；ICML 2026 与 NeurIPS 2025 Spotlight 论文视觉主创——把模型与数据翻译成可解释的视觉系统。",
         },
         {
-          title: "研究与策略",
-          description: "混合方法用户研究、统计建模与因果推断——把行为转化为证据，把证据转化为产品决策。",
+          title: "空间与城市分析",
+          description: "Python · PostgreSQL/PostGIS · GIS 网络分析 · 因果推断 (PSM) · 融合 VR + EEG/EDA 生物传感的混合方法实验设计——2026 纽约大学 CUSP 最佳毕业设计奖。从原始空间数据到面向决策的洞察叙事。",
         },
       ]
     },
@@ -841,12 +853,12 @@ export const translations = {
       {
         id: 2,
         title: "SomniBot AI 睡眠助手",
-        description: "Top 1% 极客松获奖项目 · 融合 FHIR + RAG 的 AI 睡眠助手，以舒缓、临床可信的体验帮助用户建立信任与睡眠习惯。",
+        description: "Top 10% 极客松获奖项目 · 融合 FHIR + RAG 的 AI 睡眠助手，以舒缓、临床可信的体验帮助用户建立信任与睡眠习惯。",
         categories: ["AI / ML", "UI/UX"],
         image: imgImage4,
         detail: {
           title: "SomniBot：AI 个性化睡眠守护者",
-          subtitle: "为期一个月的极客松项目，最终位列全球前 1%。我负责 UI/UX 与原型设计。",
+          subtitle: "为期一个月的极客松项目，最终位列全球前 10%。我负责 UI/UX 与原型设计。",
           heroImage: imgImage4,
           category: "AI · 医疗科技 UX",
           background: "睡眠至关重要，但 30–40% 的成年人受失眠困扰。我们的前期用户调研揭示了一个鲜明的市场空白：约 80% 的受访者渴望一位「私密、可信任的睡眠伙伴」，而通用搜索引擎与现有 AI 聊天机器人由于隐私漏洞与信息可靠性不足，无法承担这一角色。这定义了我们的核心设计挑战——如何打造一个「具有临床可信度、可承载个性化、用户愿意倾诉」的体验？",
