@@ -11,6 +11,8 @@ import img0178 from "../../assets/gallery/IMG_0178.JPG";
 import img0180 from "../../assets/gallery/IMG_0180.JPG";
 import img0181 from "../../assets/gallery/IMG_0181.JPG";
 import img0182 from "../../assets/gallery/IMG_0182.JPG";
+import imgNew01 from "../../assets/gallery/68d12b3da8de42382063842d61bba452.jpg";
+import imgNew02 from "../../assets/gallery/bf461d6f24fcd969f62743f23632b5f7.jpg";
 
 interface GalleryProps {
   darkMode: boolean;
@@ -19,6 +21,8 @@ interface GalleryProps {
 export function Gallery({ darkMode }: GalleryProps) {
   // 将导入的图片放进数组中便于循环渲染
   const images = [
+    { id: "new01", src: imgNew01, alt: "Gallery Image — recent" },
+    { id: "new02", src: imgNew02, alt: "Gallery Image — recent" },
     { id: "0172", src: img0172, alt: "Gallery Image 1" },
     { id: "0173", src: img0173, alt: "Gallery Image 2" },
     { id: "0174", src: img0174, alt: "Gallery Image 3" },
