@@ -21,6 +21,11 @@ const typeIconMap: Record<string, any> = {
 };
 
 const cardEase = [0.22, 1, 0.36, 1] as any;
+const branchEase = [0.22, 1, 0.36, 1] as any; // smooth cubic-out, no bounce
+const trunkEase = [0.4, 0, 0.6, 1] as any;    // gentle ease-in-out
+
+// Shared viewport config — eager trigger as the section approaches.
+const eagerViewport = { once: true, amount: 0, margin: "200px" } as any;
 
 export function TimelineSection({ darkMode }: TimelineSectionProps) {
   const { lang } = useLanguage();
@@ -29,16 +34,6 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
 
   const trunkColor = darkMode ? "#fcf896" : "#503282";
   const activeYellow = darkMode ? "#fffa74" : "#b58c00";
-
-  // milestone dot positions matching each card's vertical center
-  const desktopMilestones = [
-    { top: 110 },
-    { top: 410 },
-    { top: 730 },
-    { top: 570 },
-    { top: 1050 },
-    { top: 1050 },
-  ];
 
   return (
     <section
@@ -81,27 +76,25 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
             fill="none"
           >
             <defs>
-              {/* Trunk: rises from base, organic ease (slow start → fast → slow finish, like sap) */}
+              {/* Trunk: rises from base in one continuous sweep (1.4s). Branches sprout as it passes. */}
               <clipPath id="trunk-grow">
                 <motion.rect
                   initial={{ y: 1400, height: 0 }}
                   whileInView={{ y: -50, height: 1450 }}
-                  viewport={{ once: true, margin: "100px" }}
-                  transition={{ duration: 2.2, ease: [0.45, 0, 0.55, 1] }}
+                  viewport={eagerViewport}
+                  transition={{ duration: 1.4, ease: trunkEase }}
                   x="-50"
                   width="300"
                 />
               </clipPath>
 
-              {/* Right-side branches: each sprouts outward from x=100 as trunk passes its height.
-                  The delay corresponds to when the trunk mask reaches that branch's y, using a
-                  slight overlap so the sprout feels alive rather than queued. */}
+              {/* Right-side branches — delays computed against trunk passing each branch y. */}
               <clipPath id="branch-r-1060">
                 <motion.rect
                   initial={{ width: 0 }}
                   whileInView={{ width: 90 }}
-                  viewport={{ once: true, margin: "100px" }}
-                  transition={{ duration: 0.7, delay: 0.55, ease: [0.34, 1.45, 0.64, 1] }}
+                  viewport={eagerViewport}
+                  transition={{ duration: 0.5, delay: 0.30, ease: branchEase }}
                   x="100" y="1040" height="160"
                 />
               </clipPath>
@@ -109,8 +102,8 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
                 <motion.rect
                   initial={{ width: 0 }}
                   whileInView={{ width: 90 }}
-                  viewport={{ once: true, margin: "100px" }}
-                  transition={{ duration: 0.7, delay: 1.05, ease: [0.34, 1.45, 0.64, 1] }}
+                  viewport={eagerViewport}
+                  transition={{ duration: 0.5, delay: 0.62, ease: branchEase }}
                   x="100" y="720" height="160"
                 />
               </clipPath>
@@ -118,8 +111,8 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
                 <motion.rect
                   initial={{ width: 0 }}
                   whileInView={{ width: 90 }}
-                  viewport={{ once: true, margin: "100px" }}
-                  transition={{ duration: 0.7, delay: 1.55, ease: [0.34, 1.45, 0.64, 1] }}
+                  viewport={eagerViewport}
+                  transition={{ duration: 0.5, delay: 0.92, ease: branchEase }}
                   x="100" y="400" height="160"
                 />
               </clipPath>
@@ -127,8 +120,8 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
                 <motion.rect
                   initial={{ width: 0 }}
                   whileInView={{ width: 90 }}
-                  viewport={{ once: true, margin: "100px" }}
-                  transition={{ duration: 0.7, delay: 1.95, ease: [0.34, 1.45, 0.64, 1] }}
+                  viewport={eagerViewport}
+                  transition={{ duration: 0.5, delay: 1.20, ease: branchEase }}
                   x="100" y="100" height="160"
                 />
               </clipPath>
@@ -138,8 +131,8 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
                 <motion.rect
                   initial={{ x: 100, width: 0 }}
                   whileInView={{ x: 10, width: 95 }}
-                  viewport={{ once: true, margin: "100px" }}
-                  transition={{ duration: 0.7, delay: 1.3, ease: [0.34, 1.45, 0.64, 1] }}
+                  viewport={eagerViewport}
+                  transition={{ duration: 0.5, delay: 0.78, ease: branchEase }}
                   y="560" height="160"
                 />
               </clipPath>
@@ -147,8 +140,8 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
                 <motion.rect
                   initial={{ x: 100, width: 0 }}
                   whileInView={{ x: 10, width: 95 }}
-                  viewport={{ once: true, margin: "100px" }}
-                  transition={{ duration: 0.7, delay: 0.6, ease: [0.34, 1.45, 0.64, 1] }}
+                  viewport={eagerViewport}
+                  transition={{ duration: 0.5, delay: 0.30, ease: branchEase }}
                   y="1040" height="160"
                 />
               </clipPath>
@@ -166,38 +159,13 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
             <path d="M 185 1060 Q 140 1120 100 1140 L 100 1180 Q 140 1130 185 1060 Z" fill={trunkColor} clipPath="url(#branch-r-1060)" />
           </svg>
 
-          {/* Milestone dots — each pops as its branch tip arrives */}
-          {desktopMilestones.map((m, idx) => {
-            // Match dot timing to each branch's sprout end (slightly before, so dot blooms with the tip)
-            const dotDelays = [2.55, 2.15, 1.65, 1.90, 1.15, 1.20];
-            return (
-            <motion.div
-              key={idx}
-              initial={{ scale: 0, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.45, delay: dotDelays[idx], type: "spring", stiffness: 280, damping: 16 }}
-              className="absolute z-20 rounded-full"
-              style={{
-                left: "50%",
-                top: m.top,
-                transform: "translate(-50%, -50%)",
-                width: 14,
-                height: 14,
-                backgroundColor: activeYellow,
-                boxShadow: `0 0 0 4px ${darkMode ? "rgba(255, 250, 116, 0.18)" : "rgba(181, 140, 0, 0.18)"}, 0 0 18px ${darkMode ? "rgba(255, 250, 116, 0.5)" : "rgba(181, 140, 0, 0.35)"}`,
-              }}
-            />
-            );
-          })}
-
-          {/* Card entrance delays synced to each branch's sprout completion */}
-          <TimelineCard event={timelineEvents[0]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 40, right: 0, width: "38%" }} delay={2.6} fromX={60} />
-          <TimelineCard event={timelineEvents[1]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 340, right: 0, width: "38%" }} delay={2.2} fromX={60} />
-          <TimelineCard event={timelineEvents[2]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 660, right: 0, width: "38%" }} delay={1.7} fromX={60} />
-          <TimelineCard event={timelineEvents[3]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 500, left: 0, width: "38%" }} delay={1.95} fromX={-60} />
-          <TimelineCard event={timelineEvents[4]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 980, right: 0, width: "38%" }} delay={1.2} fromX={60} />
-          <TimelineCard event={timelineEvents[5]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 980, left: 0, width: "38%" }} delay={1.25} fromX={-60} />
+          {/* Card entrance delays = branch sprout delay + ~0.3s so the card glides in just after its branch tip arrives */}
+          <TimelineCard event={timelineEvents[0]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 40, right: 0, width: "38%" }} delay={1.50} fromX={60} />
+          <TimelineCard event={timelineEvents[1]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 340, right: 0, width: "38%" }} delay={1.22} fromX={60} />
+          <TimelineCard event={timelineEvents[2]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 660, right: 0, width: "38%" }} delay={0.92} fromX={60} />
+          <TimelineCard event={timelineEvents[3]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 500, left: 0, width: "38%" }} delay={1.08} fromX={-60} />
+          <TimelineCard event={timelineEvents[4]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 980, right: 0, width: "38%" }} delay={0.60} fromX={60} />
+          <TimelineCard event={timelineEvents[5]} darkMode={darkMode} activeYellow={activeYellow} style={{ position: "absolute", top: 980, left: 0, width: "38%" }} delay={0.60} fromX={-60} />
         </div>
 
         {/* ================= MOBILE LAYOUT ================= */}
@@ -205,42 +173,27 @@ export function TimelineSection({ darkMode }: TimelineSectionProps) {
           <motion.div
             initial={{ scaleY: 0 }}
             whileInView={{ scaleY: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: "linear" }}
+            viewport={eagerViewport}
+            transition={{ duration: 0.9, ease: trunkEase }}
             className="absolute left-6 bottom-[-6rem] origin-bottom z-0"
             style={{ top: 0, width: "2rem", backgroundColor: trunkColor, clipPath: "polygon(30% 0%, 70% 0%, 100% 100%, 0% 100%)" }}
           />
 
           <div className="flex flex-col gap-12">
             {timelineEvents.map((event, index) => {
-              const mobileDelay = 0.2 + (5 - index) * 0.15;
+              // Bottom-most event sprouts first, in sync with the trunk rising upward.
+              const mobileDelay = 0.15 + (5 - index) * 0.1;
               return (
                 <div key={index} className="relative z-10">
                   <motion.div
                     initial={{ scaleX: 0 }}
                     whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.2, delay: mobileDelay, ease: "linear" }}
+                    viewport={eagerViewport}
+                    transition={{ duration: 0.35, delay: mobileDelay, ease: branchEase }}
                     className="absolute top-8 -left-[2.5rem] h-6 w-10 origin-left pointer-events-none"
                     style={{ backgroundColor: trunkColor, clipPath: "polygon(0 0, 100% 50%, 0 100%)" }}
                   />
-                  {/* Mobile milestone dot */}
-                  <motion.div
-                    initial={{ scale: 0, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.35, delay: mobileDelay + 0.05, type: "spring", stiffness: 260, damping: 18 }}
-                    className="absolute z-20 rounded-full"
-                    style={{
-                      left: "-3.05rem",
-                      top: "1.6rem",
-                      width: 14,
-                      height: 14,
-                      backgroundColor: activeYellow,
-                      boxShadow: `0 0 0 4px ${darkMode ? "rgba(255, 250, 116, 0.18)" : "rgba(181, 140, 0, 0.18)"}, 0 0 14px ${darkMode ? "rgba(255, 250, 116, 0.5)" : "rgba(181, 140, 0, 0.35)"}`,
-                    }}
-                  />
-                  <TimelineCardMobile event={event} darkMode={darkMode} activeYellow={activeYellow} delay={mobileDelay + 0.1} />
+                  <TimelineCardMobile event={event} darkMode={darkMode} activeYellow={activeYellow} delay={mobileDelay + 0.18} />
                 </div>
               );
             })}
@@ -262,8 +215,8 @@ function TimelineCard({ event, darkMode, activeYellow, style, delay, fromX }: an
       <motion.div
         initial={{ opacity: 0, x: fromX, y: 16 }}
         whileInView={{ opacity: 1, x: 0, y: 0 }}
-        viewport={{ once: true, margin: "-50px" }}
-        transition={{ duration: 0.7, delay, ease: cardEase }}
+        viewport={{ once: true, amount: 0, margin: "200px" }}
+        transition={{ duration: 0.55, delay, ease: cardEase }}
         whileHover={{ y: -6, transition: { duration: 0.25, ease: "easeOut" } }}
         className="group rounded-2xl p-6 lg:p-7 relative cursor-default flex flex-col h-full"
         style={{
@@ -347,8 +300,8 @@ function TimelineCardMobile({ event, darkMode, activeYellow, delay }: any) {
     <motion.div
       initial={{ opacity: 0, x: -20, y: 8 }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.55, delay, ease: cardEase }}
+      viewport={{ once: true, amount: 0, margin: "200px" }}
+      transition={{ duration: 0.5, delay, ease: cardEase }}
       whileHover={{ y: -4 }}
       className="rounded-2xl p-5 relative ml-2 flex flex-col"
       style={{
