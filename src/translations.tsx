@@ -110,7 +110,7 @@ export const translations = {
           side: "right" as const,
         },
         {
-          year: "2025.10 - Present",
+          year: "2025.12 - Present",
           type: "Internship",
           title: "Municipal Art Society",
           subtitle: "Web Developer · New York, NY",
@@ -594,7 +594,7 @@ export const translations = {
           side: "right" as const,
         },
         {
-          year: "2025.10 - 至今",
+          year: "2025.12 - 至今",
           type: "实习经历",
           title: "市政艺术协会 (MAS)",
           subtitle: "Web 开发者 · 纽约",
