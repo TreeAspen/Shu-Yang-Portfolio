@@ -34,7 +34,7 @@ export const translations = {
     },
     hero: {
       name: "Shu Yang",
-      subtitle: "Design Engineer × Urban Data Scientist — building interfaces, spatial analytics, and AI-driven visual systems · NYU CUSP '26",
+      subtitle: "AI-Driven Product Designer & Creative Technologist — I design expressive, intelligent interfaces, then ship them in production code. Data science is how I see users; engineering is how I make it real. · NYU '26",
       academicBio: "Academic Bio",
       github: "GitHub",
       linkedin: "LinkedIn",
@@ -45,7 +45,7 @@ export const translations = {
       currentlyItems: [
         "Shipping U.TOP Lab v2",
         "Designing AAG-bound visuals for the VR Greenery × CUSP capstone",
-        "Open to 2026 design × engineering roles",
+        "Open to 2026 Product Design roles (AI / Design Innovation)",
       ],
     },
     // 🌟 新增：News 组件特有的精简文案
@@ -84,16 +84,16 @@ export const translations = {
       title: "Skills",
       list: [
         {
-          title: "Design Engineering",
-          description: "Figma → deployed React in days, not weeks. TypeScript, Tailwind, Framer Motion, Vite. I own the visual system and the production code — solo deploys on U.TOP Lab, the NYC 311 dashboard, and the MAS WordPress → React migration.",
+          title: "Design, Then Shipped",
+          description: "I don't hand off mockups — I own the visual system and the production React. Figma to a live, animated interface in days, not weeks. Tailwind, Framer Motion and TypeScript are just how I make the craft survive contact with the browser. Solo-shipped: U.TOP Lab, the NYC 311 dashboard, the MAS migration.",
         },
         {
-          title: "AI & Data Visualization",
-          description: "Cursor & Claude Code in the daily loop; D3, Leaflet, and Recharts in the browser; PyTorch, RAG + FHIR for AI products like SomniBot. Lead visual author on ICML 2026 & NeurIPS 2025 Spotlight papers — turning models and data into interpretable visual systems.",
+          title: "AI as a Design Material",
+          description: "I treat AI as a material to design with, not a feature to bolt on. Claude & Cursor live in my daily loop — generating test data, diverging on visual directions, and freeing my hours for the part that matters: restraint and craft in the final UI. Shipped real AI products (SomniBot, NYC 311) and was lead visual author on two top-venue ML papers.",
         },
         {
-          title: "Spatial & Urban Analytics",
-          description: "Python · PostgreSQL/PostGIS · GIS network analysis · causal inference (PSM) · mixed-methods experimental design with VR + EEG/EDA biosensing — 2026 NYU CUSP Best Capstone Award. Evidence-driven insight, from raw spatial data to decision-ready stories.",
+          title: "Evidence Over Opinion",
+          description: "My superpower is settling design debates with data instead of assertion. Causal inference, spatial analytics, and VR + biosensing experiments are how I prove what users actually do — not what we hope they do. NYU Best Capstone Award; 1st-place Public Data Challenge. Insight that earns a design decision the right to exist.",
         },
       ]
     },
@@ -326,7 +326,7 @@ export const translations = {
           title: "nD-RoPE: A Generalized RoPE for n-Dimensional Position Embedding",
           subtitle: "ICML 2026 (Poster) — A unified theoretical formulation extending Rotary Position Embedding to high-dimensional Transformer inputs.",
           heroImage: imgNDRoPE,
-          category: "AI / ML · Foundations",
+          category: "Scientific Visualization · ML Foundations",
           background: "Rotary Position Embedding (RoPE) is widely adopted in modern Transformers, yet its extension to high-dimensional domains — images, video, point clouds — has lacked a unified theoretical formulation. Most existing approaches either apply rotations independently along each axis or mix frequencies empirically. Both moves limit cross-dimensional interaction and yield direction-dependent representations.\n\nCo-authored with Boyang Li, Yulin Wu, Sizhe Xu, Nuoxian Huang, Zhonghang Yuan, Shangyi Guo, and Takahiro Yabe.",
           goal: "Derive a decomposition-free generalization of rotary embeddings to arbitrary dimensions — grounded in a translation-invariant formulation over continuous Hilbert space — so that positions and frequencies can be treated as coupled n-dimensional vectors rather than axis-decomposed scalars.",
           process: {
@@ -358,7 +358,7 @@ export const translations = {
           title: "Abstain Mask Retain Core: Time Series Prediction",
           subtitle: "NeurIPS 2025 Spotlight | Top 5% Accepted Papers in San Diego, CA",
           heroImage: imgPaper1,
-          category: "AI / ML & Vis",
+          category: "Interpretability & Scientific Visualization",
           background: "Time series forecasting plays a pivotal role in critical domains. Although deep learning-based approaches have achieved remarkable progress, the prevailing 'long-sequence information gain hypothesis' exhibits inherent limitations.",
           goal: "To propose an innovative solution termed Adaptive Masking Loss with Representation Consistency (AMRC), which features Dynamic Masking Loss and Representation Consistency Constraint.",
           takeaway: "Designed an interpretability framework to visualize manifold geometry and Stochastic Approximation. Conducted rigorous ablation studies across diverse datasets to validate robustness.",
@@ -380,11 +380,11 @@ export const translations = {
           background: "Sleep is essential, yet 30–40% of adults struggle with insomnia. Our user research surfaced a sharp gap: roughly 80% of respondents wanted a private, trustworthy sleep companion, yet generic search and AI chatbots failed them — fragile privacy, unreliable advice, no continuity. That framed our core design challenge: how do we create a clinically-informed, personalized experience that users feel safe confiding in?",
           goal: "To design and prototype an AI-powered sleep assistant that delivers personalized, clinically informed recommendations using FHIR and RAG — answering the user's joint need for privacy, trust, and progressive personalization.",
           process: {
-            description: "A one-size-fits-all flow was never going to work for insomnia. Our strategy centered on \"progressive personalization\" — meeting users where they are, then deepening insight only as they invite it. I mapped the journey from initial uncertainty to actionable insight, then designed three pillar features to carry it:",
+            description: "A one-size-fits-all flow was never going to work for insomnia. Our strategy centered on \"progressive personalization\" — meeting users where they are, then deepening insight only as they invite it.\n\nOur first prototype got this wrong, and the failure shaped everything after it. We dropped anxious, exhausted users straight into a free-text chat box and asked them to describe their symptoms. In testing, the blank input field did the exact opposite of what we intended — it spiked cognitive load and made already-tired people feel they had to \"perform\" their illness correctly before the product would help them. So we made a hard call: we scrapped the pure-chat interface we'd fallen in love with, and rebuilt the entry point as a structured \"Common Causes\" visual selector — turning an open-ended medical conversation into a few calm, tappable choices. That single pivot became the backbone of the final flow.\n\nAI also reshaped how I worked, not just what I shipped. To stress-test the conversation at high fidelity, I used large language models (Claude / ChatGPT) to generate dozens of clinically-plausible mock sleep dialogues in minutes — realistic enough to prototype and usability-test against, without waiting on real patient data or touching anyone's privacy. I used the same tools to rapidly diverge on early competitor visual directions, which let me spend my real hours where they counted: the restraint of the final interface and a coherent, reusable design system.",
             features: [
               { title: "Quick Self-Assessment", desc: "Five well-paced questions deliver immediate value and a personal baseline — without overwhelming a user who is already tired." },
+              { title: "Common Causes Selector — the pivot", desc: "Replaced the free-text chat box that raised anxiety in early testing. A structured, visual selector lowers the cognitive threshold: a complex medical conversation becomes a few calm, tappable choices." },
               { title: "Symptom Tracking Portal", desc: "Lightweight daily logging surfaces patterns over time, so insights feel earned rather than guessed at." },
-              { title: "Common Causes Selection", desc: "A structured, visual selector replaces free-text input, simplifying a complex medical conversation into an accessible UI." },
             ],
           },
           architecture: {
@@ -405,15 +405,17 @@ export const translations = {
             "Implemented Retrieval-Augmented Generation (RAG) so responses cite reputable sources — directly rebuilding user trust in a domain saturated with misinformation.",
             "Wove complex FHIR clinical data into a calming chatbot interface that hides the schema and surfaces only what helps the user act.",
             "Designed a self-assessment and EHR-driven analysis system that reframes a clinical process as an accessible, conversational experience.",
+            "Used LLM-generated mock clinical dialogues to prototype and usability-test the conversation flow at high fidelity in days — accelerating the design loop without exposing any real user data.",
           ],
           ideationImage: imgProject1_1,
           ideationImageCaption: "Early ideation sketch for the 'Common Causes' feature — anchored on a simple, visual selection process.",
           finalImage: imgProject1_2,
-          finalImageCaption: "Final UI: a clean, intuitive, calming interface guiding users through their sleep analysis journey.",
+          finalImageCaption: "Final UI — whitespace, a minimal palette, and soft micro-interactions chosen to calm an anxious, sleep-deprived user rather than demand input.",
           video: vidSomniDemo,
-          takeaway: "This project reaffirmed the critical role of UX/UI in translating complex medical data into a simple, calming, and effective experience — one that earns trust before it asks for compliance. The most defensible design move was restraint: choosing not to expose every clinical signal, and instead trusting the user with what mattered next.",
+          takeaway: "This project reaffirmed that UX is what translates complex medical data into something calming and trustworthy — and that restraint is a visual craft, not an absence of one. In the final UI, generous whitespace, a deliberately minimal palette, and soft, slow micro-interactions do real therapeutic work: they slow an anxious user down instead of demanding input. The most defensible move was choosing not to expose every clinical signal — earning trust before asking for compliance.",
           tools: ["Figma", "UI/UX Design", "Prototyping", "FHIR", "RAG", "HealthTech", "Sleep Science"],
           prototypeLink: "https://www.figma.com/proto/rqvhuZzsZ8DjRvbcVhdsw4/Untitled?node-id=102-2097&p=f&t=4VbOnIe0dRlbZ5lF-1&scaling=scale-down&content-scaling=fixed&page-id=102%3A2006&starting-point-node-id=102%3A2078.",
+          aspenNote: "Our first build dropped tired, anxious people into an empty chat box — and watched their cognitive load spike. Killing the chat UI we'd fallen in love with, and replacing it with a few calm, tappable choices, was the most important decision I made here. Restraint beat cleverness.",
         }
       },
       {
@@ -518,7 +520,7 @@ export const translations = {
     },
     hero: {
       name: "杨树",
-      subtitle: "设计工程师 × 城市数据科学家 — 构建人机界面、空间分析与 AI 驱动的视觉系统 · 纽约大学 CUSP '26",
+      subtitle: "AI 驱动的产品设计师 / 创意技术专家 — 我设计富有表现力的智能界面，并亲手把它写成上线代码。数据科学是我读懂用户的方式，工程是我让设计成真的方式。· 纽约大学 '26",
       academicBio: "学术主页",
       github: "GitHub",
       linkedin: "领英",
@@ -529,7 +531,7 @@ export const translations = {
       currentlyItems: [
         "正在迭代 U.TOP Lab v2",
         "为 VR Greenery × CUSP 毕业设计制作 AAG 大会可视化",
-        "正在寻找 2026 设计 × 工程方向岗位",
+        "正在寻找 2026 产品设计岗位（AI / 设计创新方向）",
       ],
     },
     // 🌟 新增：News 模块特有的精简文案
@@ -568,16 +570,16 @@ export const translations = {
       title: "专业能力",
       list: [
         {
-          title: "设计工程",
-          description: "从 Figma 到上线 React，用「天」而不是「周」交付。熟练 TypeScript、Tailwind、Framer Motion、Vite——独立负责 U.TOP Lab、NYC 311 仪表盘、MAS（WordPress → React 迁移）的视觉系统与生产代码。",
+          title: "设计，并亲手上线",
+          description: "我不交付完就走——视觉系统和上线的 React 代码都由我亲手掌控。从 Figma 到一个真实、带动效的界面，用「天」而非「周」交付。Tailwind、Framer Motion、TypeScript 只是让我的工艺在浏览器里活下来的方式。独立交付：U.TOP Lab、NYC 311 看板、MAS 迁移。",
         },
         {
-          title: "AI 与数据可视化",
-          description: "Cursor 与 Claude Code 嵌入日常开发；浏览器端熟练 D3、Leaflet、Recharts；PyTorch、RAG + FHIR 驱动 SomniBot 等 AI 产品；ICML 2026 与 NeurIPS 2025 Spotlight 论文视觉主创——把模型与数据翻译成可解释的视觉系统。",
+          title: "把 AI 当设计材料",
+          description: "我把 AI 当作「用来设计的材料」，而非「外挂的功能」。Claude 与 Cursor 嵌入我的日常——生成测试数据、发散视觉方向，把我的精力释放到真正重要的地方：最终 UI 的克制与工艺。交付过真实的 AI 产品（SomniBot、NYC 311），并担任两篇顶会 ML 论文的视觉主创。",
         },
         {
-          title: "空间与城市分析",
-          description: "Python · PostgreSQL/PostGIS · GIS 网络分析 · 因果推断 (PSM) · 融合 VR + EEG/EDA 生物传感的混合方法实验设计——2026 纽约大学 CUSP 最佳毕业设计奖。从原始空间数据到面向决策的洞察叙事。",
+          title: "用证据，不用观点",
+          description: "我的超能力是用数据而非断言去终结设计争论。因果推断、空间分析、VR + 生物传感实验，是我证明「用户真实在做什么」的方式——而非我们「希望他们做什么」。NYU 最佳毕业设计奖；公共数据挑战赛一等奖。让每一个设计决策都配得上存在的理由。",
         },
       ]
     },
@@ -810,7 +812,7 @@ export const translations = {
           title: "nD-RoPE：面向 n 维位置编码的广义 RoPE",
           subtitle: "ICML 2026（Poster）—— 将旋转位置编码（RoPE）系统性地推广到高维 Transformer 输入的统一理论框架。",
           heroImage: imgNDRoPE,
-          category: "AI / ML · 理论基础",
+          category: "科学可视化 · ML 理论基础",
           background: "旋转位置编码（RoPE）已在现代 Transformer 中被广泛采用，但其在高维场景——图像、视频、点云——的推广长期缺乏统一的理论形式。现有方法要么沿各轴独立旋转，要么经验性地混合频率，二者都限制了跨维度交互，并导致方向相关的表征。\n\n合作者：Boyang Li、Yulin Wu、Sizhe Xu、Nuoxian Huang、Zhonghang Yuan、Shangyi Guo、Takahiro Yabe。",
           goal: "从连续 Hilbert 空间中的平移不变形式出发，推导出一种无需轴向分解、面向任意维度的广义旋转位置编码——将位置与频率视为耦合的 n 维向量，而非分别处理的标量。",
           process: {
@@ -842,7 +844,7 @@ export const translations = {
           title: "AMRC：时间序列预测的新范式",
           subtitle: "NeurIPS 2025 Spotlight | 圣地亚哥，加州（全球排名前 5% 录用论文）",
           heroImage: imgPaper1,
-          category: "AI 算法与可视化",
+          category: "可解释性与科学可视化",
           background: "时间序列预测在能源管理和金融市场等关键领域起着关键作用。尽管深度学习取得了显著进展，但普遍的“长序列信息增益假设”表现出了固有的局限性。",
           goal: "提出一种名为带有表征一致性的自适应掩码损失 (AMRC) 的创新解决方案，其特点是动态掩码损失和表征一致性约束。",
           takeaway: "设计了一个可解释性框架来可视化流形几何。在多个不同数据集上进行了严格的消融实验，以验证自适应掩码损失的鲁棒性。",
@@ -864,11 +866,11 @@ export const translations = {
           background: "睡眠至关重要，但 30–40% 的成年人受失眠困扰。我们的前期用户调研揭示了一个鲜明的市场空白：约 80% 的受访者渴望一位「私密、可信任的睡眠伙伴」，而通用搜索引擎与现有 AI 聊天机器人由于隐私漏洞与信息可靠性不足，无法承担这一角色。这定义了我们的核心设计挑战——如何打造一个「具有临床可信度、可承载个性化、用户愿意倾诉」的体验？",
           goal: "设计并打造 AI 驱动的睡眠助手原型，基于 FHIR 与 RAG 提供具备临床依据的个性化建议，同时回应用户对「隐私、信任、渐进式个性化」的复合需求。",
           process: {
-            description: "对于失眠这种复杂问题，「一套流程走到底」注定失败。我们的策略围绕「渐进式个性化」展开——先在用户感到舒适的层级介入，再随用户的主动深入逐步揭示洞察。我梳理了从「初始迷茫」到「可操作建议」的完整旅程，并设计了三个支柱功能来承接它：",
+            description: "对于失眠这种复杂问题，「一套流程走到底」注定失败。我们的策略围绕「渐进式个性化」展开——先在用户感到舒适的层级介入，再随用户的主动深入逐步揭示洞察。\n\n但我们的第一版原型恰恰栽在这里，而这次失败定义了后面的一切。我们让焦虑、疲惫的用户直接面对一个自由文本输入框，要求他们描述自己的症状。在测试中，这个空白输入框起到了完全相反的作用——它反而加重了认知负荷，让本已疲惫的用户觉得自己必须「正确地表演」自己的病症，产品才会帮他。于是我们做了一个艰难的决定：果断推翻了我们一度深爱的「纯 Chat 界面」，把入口重做成结构化的「常见诱因」视觉选择器——把一场开放式的医学对话，变成几个平静、可点选的选项。正是这一次取舍，成了最终流程的骨架。\n\nAI 改变的不仅是我交付了什么，还有我如何工作。为了在高保真层面压力测试对话流程，我用大语言模型（Claude / ChatGPT）在几分钟内生成了数十段符合临床规范的 Mock 睡眠对话——足够真实，可以直接拿来做原型与可用性测试，而无需等待真实病患数据、也不触碰任何隐私。我用同样的工具快速发散早期竞品的视觉方向，从而把真正的时间留给最该花力气的地方：最终界面的克制感，以及一套连贯、可复用的 Design System。",
             features: [
               { title: "快速自测问卷", desc: "5 道节奏舒缓的问题，立即提供个性化基线——对一个本就疲惫的用户不再额外加压。" },
+              { title: "常见诱因选择器 —— 关键取舍", desc: "替换了早期测试中加重焦虑的自由文本输入框。结构化的视觉选择器降低了认知门槛：复杂的医学对话变成几个平静、可点选的选项。" },
               { title: "症状追踪门户", desc: "轻量化的每日记录帮助用户察觉长期规律，让洞察「是赚来的」，而非「猜出来的」。" },
-              { title: "常见诱因选择器", desc: "结构化的视觉选择器替代自由文本，将复杂的医学对话简化为可访问的 UI。" },
             ],
           },
           architecture: {
@@ -889,15 +891,17 @@ export const translations = {
             "采用 RAG（检索增强生成）让模型回复可引用可信来源——在信息真伪难辨的领域，这是直接重建用户信任的关键一击。",
             "将复杂的 FHIR 临床数据无缝织入一个舒缓的聊天界面，隐藏数据结构，只把用户能用上的内容浮出水面。",
             "设计了一个自测 + EHR 智能分析系统，把一段临床过程重塑为「可访问、可对话」的体验。",
+            "用大语言模型生成的 Mock 临床对话，在几天内完成对话流程的高保真原型与可用性测试——在不暴露任何真实用户数据的前提下，大幅加速了设计迭代。",
           ],
           ideationImage: imgProject1_1,
           ideationImageCaption: "「常见诱因」功能的早期构思草图——围绕一个「简洁、视觉化」的选择流程展开。",
           finalImage: imgProject1_2,
-          finalImageCaption: "最终 UI：以简洁、直觉、舒缓的视觉语言引导用户走完整段睡眠分析旅程。",
+          finalImageCaption: "最终 UI——留白、克制的色彩、柔和缓慢的微交互，都是为了「平复」一个焦虑、缺觉的用户，而非「催促」他输入。",
           video: vidSomniDemo,
-          takeaway: "这个项目让我再次确认 UX/UI 在医疗科技里的关键角色——把复杂的临床数据翻译为简洁、舒缓、有效的体验，先赢得用户的信任，再谈「用户配合」。最具防御性的设计决策是「克制」：不暴露每一个临床信号，而把判断权交还给用户去走出下一步。",
+          takeaway: "这个项目让我再次确认：UX 是把复杂临床数据翻译成「舒缓且可信」体验的关键——而「克制」本身就是一种视觉工艺，而非工艺的缺席。在最终 UI 里，慷慨的留白、刻意极简的色彩、柔和缓慢的微交互，都在做真正的「治疗性」工作：它们让焦虑的用户慢下来，而不是逼他输入。最具防御性的决策，是选择「不暴露每一个临床信号」——先赢得信任，再谈配合。",
           tools: ["Figma", "UI/UX 设计", "原型开发", "FHIR", "RAG", "医疗科技", "睡眠科学"],
           prototypeLink: "https://www.figma.com/proto/rqvhuZzsZ8DjRvbcVhdsw4/Untitled?node-id=102-2097&p=f&t=4VbOnIe0dRlbZ5lF-1&scaling=scale-down&content-scaling=fixed&page-id=102%3A2006&starting-point-node-id=102%3A2078.",
+          aspenNote: "第一版原型，我们把疲惫又焦虑的人直接丢进一个空白的聊天框——然后眼睁睁看着他们的认知负荷飙升。亲手「杀掉」那个我们一度深爱的 Chat 界面，换成几个平静、可点选的选项，是我在这个项目里做过最重要的决定。克制，胜过聪明。",
         }
       },
       {

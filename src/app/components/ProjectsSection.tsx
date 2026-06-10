@@ -107,19 +107,19 @@ function ProjectDetailView({ project, darkMode, onBack, uiTexts }: any) {
       {project.background && (
         <motion.div custom={3} variants={sectionVariants} className="mb-10">
           <h3 className="font-medium tracking-wide text-2xl md:text-3xl mb-4 pb-2" style={{ color: headingColor, borderBottom: `1px solid ${dividerColor}` }}>{uiTexts.background}</h3>
-          <p className="text-base md:text-lg leading-relaxed" style={{ color: textColor }}>{project.background}</p>
+          <p className="text-base md:text-lg leading-relaxed max-w-[68ch] whitespace-pre-line" style={{ color: textColor }}>{project.background}</p>
         </motion.div>
       )}
       {project.goal && (
         <motion.div custom={4} variants={sectionVariants} className="mb-10">
           <h3 className="font-medium tracking-wide text-2xl md:text-3xl mb-4 pb-2" style={{ color: headingColor, borderBottom: `1px solid ${dividerColor}` }}>{uiTexts.goal}</h3>
-          <p className="text-base md:text-lg leading-relaxed" style={{ color: textColor }}>{project.goal}</p>
+          <p className="text-base md:text-lg leading-relaxed max-w-[68ch]" style={{ color: textColor }}>{project.goal}</p>
         </motion.div>
       )}
       {project.process && (
         <motion.div custom={5} variants={sectionVariants} className="mb-10">
           <h3 className="font-medium tracking-wide text-2xl md:text-3xl mb-4 pb-2" style={{ color: headingColor, borderBottom: `1px solid ${dividerColor}` }}>{uiTexts.process}</h3>
-          <p className="text-base md:text-lg leading-relaxed mb-6" style={{ color: textColor }}>{project.process.description}</p>
+          <p className="text-base md:text-lg leading-relaxed mb-6 max-w-[68ch] whitespace-pre-line" style={{ color: textColor }}>{project.process.description}</p>
           {project.process.features && (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               {project.process.features.map((f: any, i: number) => (
@@ -348,9 +348,9 @@ function ProjectDetailView({ project, darkMode, onBack, uiTexts }: any) {
 // ==========================================
 const internalCategories = ["All", "AI / ML", "UI/UX", "GIS", "Data Science"];
 
-// Display order balanced across all target tracks (Design Eng / GIS / Data Viz / Data Analysis / AI):
-// U.TOP → VR Greenery → NYC 311 → nD-RoPE → SomniBot → Facial Pixel Mosaic → AMRC → Florida Flooding → Houston → CLT → IELTS.
-const projectDisplayOrder = [0, 9, 8, 10, 2, 7, 1, 6, 5, 3, 4];
+// Display order tuned for a Product Design / Design-Innovation audience (To-C × AI-UX first):
+// SomniBot → NYC 311 → U.TOP → VR Greenery → Facial Pixel Mosaic → IELTS → CLT → nD-RoPE → AMRC → Houston → Florida Flooding.
+const projectDisplayOrder = [2, 8, 0, 9, 7, 4, 3, 10, 1, 5, 6];
 
 export function ProjectsSection({ darkMode }: ProjectsSectionProps) {
   // 🌟 从上下文读取当前语言，并提取对应文案和数据
@@ -431,12 +431,11 @@ export function ProjectsSection({ darkMode }: ProjectsSectionProps) {
           </div>
         </div>
 
-        {/* Project grid */}
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <AnimatePresence mode="popLayout">
+        {/* Project grid — Pinterest-style masonry (CSS multi-column, variable card heights) */}
+        <motion.div className="columns-1 md:columns-2 lg:columns-3 gap-8">
+          <AnimatePresence>
             {filteredProjects.map((project: any, idx: number) => (
               <motion.div
-                layout
                 initial={{ opacity: 0, y: 24, scale: 0.96 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.92, transition: { duration: 0.2 } }}
@@ -444,11 +443,10 @@ export function ProjectsSection({ darkMode }: ProjectsSectionProps) {
                   duration: 0.45,
                   delay: idx * 0.06,
                   ease: [0.22, 1, 0.36, 1] as any,
-                  layout: { duration: 0.4 },
                 }}
                 whileHover={{ y: -8, transition: { duration: 0.25, ease: "easeOut" } }}
                 key={project.id}
-                className="group corner-brackets relative rounded-2xl overflow-hidden flex flex-col cursor-pointer transition-shadow duration-500 hover:shadow-[0_24px_60px_-12px_rgba(0,0,0,0.45)]"
+                className="group corner-brackets relative mb-8 break-inside-avoid rounded-2xl overflow-hidden flex flex-col cursor-pointer transition-shadow duration-500 hover:shadow-[0_24px_60px_-12px_rgba(0,0,0,0.45)]"
                 style={{
                   backgroundColor: darkMode ? "rgba(252, 248, 150, 0.96)" : "rgba(255, 255, 255, 0.95)",
                   border: `1px solid ${darkMode ? "rgba(252, 248, 150, 0.4)" : "rgba(80, 50, 130, 0.18)"}`,
@@ -463,7 +461,7 @@ export function ProjectsSection({ darkMode }: ProjectsSectionProps) {
                   <ImageWithFallback
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+                    className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-[1.06]"
                     style={{ width: "100%" }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent opacity-60 group-hover:opacity-30 transition-opacity duration-500" />

@@ -16,8 +16,19 @@ function SmoothLagCursor({ darkMode }: { darkMode: boolean }) {
   
   const mouse = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
   const circle = useRef({ x: window.innerWidth / 2, y: window.innerHeight / 2 });
-  
+  // When hovering an interactive element, the ring eases toward its centre (magnetic pull)
+  const magnetTarget = useRef<{ x: number; y: number } | null>(null);
+
+  // Only render the custom cursor on devices with a precise pointer (mouse / trackpad).
+  // Touch devices keep their native behaviour and never see stray dots.
+  const [enabled, setEnabled] = React.useState(false);
   useEffect(() => {
+    setEnabled(window.matchMedia("(pointer: fine)").matches);
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       mouse.current.x = e.clientX;
       mouse.current.y = e.clientY;
@@ -28,10 +39,14 @@ function SmoothLagCursor({ darkMode }: { darkMode: boolean }) {
 
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
-      if (target.closest("button, a, input")) {
+      const interactive = target.closest("button, a, input");
+      if (interactive) {
         circleRef.current?.classList.add("cursor-hovered");
+        const rect = (interactive as HTMLElement).getBoundingClientRect();
+        magnetTarget.current = { x: rect.left + rect.width / 2, y: rect.top + rect.height / 2 };
       } else {
         circleRef.current?.classList.remove("cursor-hovered");
+        magnetTarget.current = null;
       }
     };
 
@@ -40,9 +55,12 @@ function SmoothLagCursor({ darkMode }: { darkMode: boolean }) {
 
     let animationFrameId: number;
     const animateCursor = () => {
-      circle.current.x += (mouse.current.x - circle.current.x) * 0.35;
-      circle.current.y += (mouse.current.y - circle.current.y) * 0.35;
-      
+      // Ring chases the magnet centre when hovering, otherwise the raw cursor
+      const tx = magnetTarget.current ? magnetTarget.current.x : mouse.current.x;
+      const ty = magnetTarget.current ? magnetTarget.current.y : mouse.current.y;
+      circle.current.x += (tx - circle.current.x) * 0.35;
+      circle.current.y += (ty - circle.current.y) * 0.35;
+
       if (circleRef.current) {
         circleRef.current.style.transform = `translate3d(calc(${circle.current.x}px - 50%), calc(${circle.current.y}px - 50%), 0)`;
       }
@@ -55,7 +73,9 @@ function SmoothLagCursor({ darkMode }: { darkMode: boolean }) {
       window.removeEventListener("mouseover", handleMouseOver);
       cancelAnimationFrame(animationFrameId);
     };
-  }, []);
+  }, [enabled]);
+
+  if (!enabled) return null;
 
   const cursorColor = darkMode ? "bg-white" : "bg-[#7b2cbf]";
   const circleNormalBorder = darkMode ? "border-white/50" : "border-[#7b2cbf]/50";
@@ -63,7 +83,7 @@ function SmoothLagCursor({ darkMode }: { darkMode: boolean }) {
   return (
     <>
       <style>{`
-        * { cursor: none !important; }
+        @media (pointer: fine) { * { cursor: none !important; } }
         body { font-family: 'Outfit', sans-serif; }
         .cursor-circle {
           width: 40px;

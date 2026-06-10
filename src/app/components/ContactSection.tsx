@@ -65,14 +65,14 @@ export function ContactSection({ darkMode }: ContactSectionProps) {
           </motion.a>
 
           <motion.a
-            href="tel:+19291234125"
+            href="tel:+19296164129"
             whileHover={{ y: -4 }}
             className="group flex flex-col items-center gap-3 px-4 py-2"
           >
             <Phone size={28} strokeWidth={1.6} color={accentColor} className="transition-transform duration-300 group-hover:scale-110" />
             <span className="block h-px w-8 mt-1" style={{ backgroundColor: dividerColor }} />
             <h3 className="font-display text-xl tracking-tight mt-1" style={{ color: labelColor }}>{t.phone}</h3>
-            <span className="font-mono-tech text-[13px] tracking-wide transition-colors group-hover:opacity-100" style={{ color: valueColor }}>(929) 619-4125</span>
+            <span className="font-mono-tech text-[13px] tracking-wide transition-colors group-hover:opacity-100" style={{ color: valueColor }}>(929) 616-4129</span>
           </motion.a>
 
           <motion.a
