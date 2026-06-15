@@ -1,4 +1,4 @@
-import { Sparkles, Code2, Microscope } from "lucide-react";
+import { Palette, Code2, BarChart3 } from "lucide-react";
 import { motion } from "motion/react";
 import { useLanguage } from "../../LanguageContext";
 import { translations } from "../../translations";
@@ -28,7 +28,7 @@ export function SkillsSection({ darkMode }: SkillsSectionProps) {
   const t = translations[lang].skills;
 
   // 🌟 将固定的图标与字典里的文字数据动态合并
-  const icons = [Sparkles, Code2, Microscope];
+  const icons = [Palette, Code2, BarChart3];
   const skillsData = t.list.map((item, idx) => ({
     ...item,
     icon: icons[idx],
@@ -106,12 +106,21 @@ export function SkillsSection({ darkMode }: SkillsSectionProps) {
               >
                 {skill.title}
               </h3>
-              <p
-                className="relative text-[15px] opacity-85 leading-relaxed font-medium"
-                style={{ color: darkMode ? "#4b2e7d" : "#333" }}
-              >
-                {skill.description}
-              </p>
+              <div className="relative flex flex-wrap justify-center gap-2">
+                {skill.tools.map((tool) => (
+                  <span
+                    key={tool}
+                    className="px-3 py-1.5 rounded-full text-[13px] font-medium"
+                    style={{
+                      color: darkMode ? "#4b2e7d" : "#503282",
+                      backgroundColor: "rgba(80, 50, 130, 0.1)",
+                      border: "1px solid rgba(80, 50, 130, 0.2)",
+                    }}
+                  >
+                    {tool}
+                  </span>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>

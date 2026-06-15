@@ -84,16 +84,16 @@ export const translations = {
       title: "Skills",
       list: [
         {
-          title: "Design, Then Shipped",
-          description: "I don't hand off mockups — I own the visual system and the production React. Figma to a live, animated interface in days, not weeks. Tailwind, Framer Motion and TypeScript are just how I make the craft survive contact with the browser. Solo-shipped: U.TOP Lab, the NYC 311 dashboard, the MAS migration.",
+          title: "Design",
+          tools: ["Figma", "UI/UX", "Prototyping", "Design Systems", "Motion Design", "Visual Communication"],
         },
         {
-          title: "AI as a Design Material",
-          description: "I treat AI as a material to design with, not a feature to bolt on. Claude & Cursor live in my daily loop — generating test data, diverging on visual directions, and freeing my hours for the part that matters: restraint and craft in the final UI. Shipped real AI products (SomniBot, NYC 311) and was lead visual author on two top-venue ML papers.",
+          title: "Frontend",
+          tools: ["React", "TypeScript", "JavaScript", "Tailwind CSS", "Framer Motion", "Vite", "AI-assisted dev (Cursor / Claude)"],
         },
         {
-          title: "Evidence Over Opinion",
-          description: "My superpower is settling design debates with data instead of assertion. Causal inference, spatial analytics, and VR + biosensing experiments are how I prove what users actually do — not what we hope they do. NYU Best Capstone Award; 1st-place Public Data Challenge. Insight that earns a design decision the right to exist.",
+          title: "Data & Visualization",
+          tools: ["Python (pandas · GeoPandas · scikit-learn)", "SQL", "R", "Recharts", "Leaflet", "D3.js", "Tableau", "ArcGIS / QGIS"],
         },
       ]
     },
@@ -132,7 +132,7 @@ export const translations = {
           type: "Education",
           title: "New York University",
           subtitle: "M.S. in Urban Data Science · New York, NY",
-          description: "Awarded 1st Prize in Public Data Challenge ($7,000). Specialized in causal inference and longitudinal spatial database construction.",
+          description: "Awarded 1st Prize in the Public Data Challenge. Specialized in causal inference and longitudinal spatial database construction.",
           skills: ["Machine Learning", "Causal Inference", "Spatial Analysis"],
           side: "left" as const,
         },
@@ -447,14 +447,33 @@ export const translations = {
         image: imgProject3_1,
         detail: {
           title: "GPT-Powered IELTS Writing Assistant",
-          subtitle: "A UI/UX design project for an AI-assisted learning platform.",
+          subtitle: "A UI/UX design project for an AI-assisted learning platform. UI Cooperator: Shuai Cui.",
           heroImage: imgProject3_1,
           category: "EdTech UX",
-          goal: "To design a clear, accessible, and motivating interface that leverages GPT to help students practice IELTS writing.",
+          background: "The IELTS exam is a critical gateway for students, yet many struggle with the writing section. Our user analysis of self-studying students in Beijing revealed significant challenges: a staggering 77% lack motivation, and 43% have no structured study plan. They often feel anxious, are unfamiliar with grading criteria, and struggle to generate ideas — pointing to a clear need for a tool that pairs writing practice with structured guidance, personalized feedback, and motivational support.",
+          goal: "To design a clear, accessible, and motivating interface that leverages GPT to help students practice IELTS writing — assisting with idea generation, providing structured feedback based on official criteria, and building confidence through a guided learning journey.",
+          process: {
+            description: "Our strategy focused on transforming the solitary, often frustrating process of self-study into an interactive, supportive experience. I designed a user flow that mirrors a student's natural workflow while integrating AI assistance at each critical step. The key functionalities I designed include:",
+            features: [
+              { title: "Idea & Outline Generation", desc: "Tackles the user's primary pain point — generating ideas — with AI-powered suggestions and structured outlines." },
+              { title: "AI-Assisted Writing", desc: "Real-time help such as translation and sentence continuation to overcome writer's block and improve composition flow." },
+              { title: "Multi-Dimensional Scoring", desc: "Instant feedback across the four official IELTS dimensions, helping users understand their weaknesses." },
+              { title: "Essay Polishing & Samples", desc: "Suggests improvements and generates sample essays so users learn from concrete examples." },
+              { title: "Mock Test Simulation", desc: "Simulates both computer- and paper-based environments to reduce exam-day anxiety and build familiarity." },
+              { title: "Personalized Feedback", desc: "Tailored suggestions that help introverted learners improve without the pressure of institutional learning." },
+            ],
+          },
           processImage: imgProject3_2,
+          processImageCaption: "User Journey Map — integrating AI assistance at each step of a student's natural writing workflow.",
+          accomplishments: [
+            "Shipped a cohesive, intuitive platform live at ielts.dauyan.com.",
+            "Translated complex GPT functionality into a simple, user-friendly interface, in collaboration with Shuai Cui.",
+            "Delivered a modular system — responsive writing area, contextual AI tools, and a clear feedback dashboard — that simplifies IELTS writing prep.",
+          ],
           resultImage: imgProject3_3,
-          takeaway: "Successfully translated complex AI functionalities into a simple, user-friendly interface.",
-          tools: ["UI/UX Design", "Figma", "User Research"],
+          resultImageCaption: "Outcome — UI detail of the writing area and feedback dashboard.",
+          takeaway: "Grounding the design in quantified user research (77% lacked motivation, 43% had no study plan) let me translate complex AI functionality into a calm, structured experience — proof that good EdTech UX is about guidance and confidence, not just features.",
+          tools: ["UI/UX Design", "Figma", "User Research", "GPT", "Prototyping"],
           prototypeLink: "https://ielts.dauyan.com/",
         }
       },
@@ -472,7 +491,7 @@ export const translations = {
           goal: "To use GIS network analysis to examine healthcare accessibility.",
           takeaway: "Reveals disparities in resource distribution and its impact on residents.",
           tools: ["GIS", "Urban Science", "Healthcare", "Data Analysis"],
-          prototypeLink: "https://arcg.is/1PnjPu0",
+          prototypeLink: "https://storymaps.arcgis.com/stories/4aef307c76114256b34cb4124ac9c5de",
         }
       },
       {
@@ -489,6 +508,7 @@ export const translations = {
           goal: "To model vulnerability and economic impact by integrating physical, demographic, and socioeconomic data.",
           takeaway: "Uses GIS and machine learning to predict flood risk and economic losses.",
           tools: ["GIS", "Machine Learning", "Climate Risk", "Economic Modeling"],
+          prototypeLink: "https://storymaps.arcgis.com/stories/e6a847a848b14d70b4698fe9b1decdd7",
         }
       },
       {
@@ -570,16 +590,16 @@ export const translations = {
       title: "专业能力",
       list: [
         {
-          title: "设计，并亲手上线",
-          description: "我不交付完就走——视觉系统和上线的 React 代码都由我亲手掌控。从 Figma 到一个真实、带动效的界面，用「天」而非「周」交付。Tailwind、Framer Motion、TypeScript 只是让我的工艺在浏览器里活下来的方式。独立交付：U.TOP Lab、NYC 311 看板、MAS 迁移。",
+          title: "设计",
+          tools: ["Figma", "UI/UX", "原型设计", "设计系统", "动效设计", "视觉传达"],
         },
         {
-          title: "把 AI 当设计材料",
-          description: "我把 AI 当作「用来设计的材料」，而非「外挂的功能」。Claude 与 Cursor 嵌入我的日常——生成测试数据、发散视觉方向，把我的精力释放到真正重要的地方：最终 UI 的克制与工艺。交付过真实的 AI 产品（SomniBot、NYC 311），并担任两篇顶会 ML 论文的视觉主创。",
+          title: "前端",
+          tools: ["React", "TypeScript", "JavaScript", "Tailwind CSS", "Framer Motion", "Vite", "AI 辅助开发 (Cursor / Claude)"],
         },
         {
-          title: "用证据，不用观点",
-          description: "我的超能力是用数据而非断言去终结设计争论。因果推断、空间分析、VR + 生物传感实验，是我证明「用户真实在做什么」的方式——而非我们「希望他们做什么」。NYU 最佳毕业设计奖；公共数据挑战赛一等奖。让每一个设计决策都配得上存在的理由。",
+          title: "数据与可视化",
+          tools: ["Python (pandas · GeoPandas · scikit-learn)", "SQL", "R", "Recharts", "Leaflet", "D3.js", "Tableau", "ArcGIS / QGIS"],
         },
       ]
     },
@@ -618,7 +638,7 @@ export const translations = {
           type: "教育背景",
           title: "纽约大学 (NYU)",
           subtitle: "城市数据科学 硕士 · 纽约",
-          description: "荣获公共数据挑战赛一等奖（$7,000 奖金）。专攻因果推断与纵向空间数据库的构建。",
+          description: "荣获公共数据挑战赛一等奖。专攻因果推断与纵向空间数据库的构建。",
           skills: ["机器学习", "因果推断", "空间分析"],
           side: "left" as const,
         },
@@ -936,11 +956,30 @@ export const translations = {
           subtitle: "AI 辅助学习平台的 UI/UX 设计项目。UI 协作者：Shuai Cui。",
           heroImage: imgProject3_1,
           category: "教育科技 UX",
-          goal: "设计一个清晰、易用且能激发动力的界面，利用 GPT 帮助学生练习雅思写作。平台旨在协助构思、提供基于官方标准的结构化反馈，并逐步建立用户信心。",
+          background: "雅思考试是许多学生的关键门槛，而写作部分尤其令人头疼。我们对北京自学备考人群的用户调研揭示了显著痛点：高达 77% 的人缺乏学习动力，43% 没有结构化的学习计划。他们普遍感到焦虑、不熟悉评分标准、难以生成写作思路——这清晰地指向一个需求：一款既能练习写作、又能提供结构化指导、个性化反馈与动力支持的工具。",
+          goal: "设计一个清晰、易用且能激发动力的界面，利用 GPT 帮助学生练习雅思写作——协助构思、提供基于官方标准的结构化反馈，并通过引导式学习旅程逐步建立用户信心。",
+          process: {
+            description: "我们的策略核心，是把孤独且常令人沮丧的自学过程，转化为一段互动、有支持感的体验。我设计了一条贴合学生自然写作流程的用户路径，并在每个关键环节嵌入 AI 辅助。我负责设计的核心功能包括：",
+            features: [
+              { title: "思路与提纲生成", desc: "直击用户最核心的痛点——生成思路：提供 AI 驱动的建议与结构化提纲。" },
+              { title: "AI 辅助写作", desc: "实时提供翻译、句子续写等帮助，突破写作卡壳，改善行文流畅度。" },
+              { title: "官方四维度智能评分", desc: "基于雅思四项官方评分维度即时反馈，帮助用户认清自身薄弱环节。" },
+              { title: "范文润色与示例", desc: "给出改进建议并生成范文，让用户从具体示例中学习。" },
+              { title: "模拟考场", desc: "模拟机考与纸笔两种考试环境，缓解考试焦虑、建立熟悉感。" },
+              { title: "个性化反馈", desc: "提供量身定制的建议，让内向型学习者在没有机构学习压力下也能提升。" },
+            ],
+          },
           processImage: imgProject3_2,
+          processImageCaption: "用户旅程图——在学生自然写作流程的每一步嵌入 AI 辅助。",
+          accomplishments: [
+            "交付了一个连贯、直观的平台，已上线 ielts.dauyan.com。",
+            "与 Shuai Cui 协作，将复杂的 GPT 后台功能转化为简洁、用户友好的前端界面。",
+            "交付模块化系统——响应式写作区、上下文 AI 工具与清晰的反馈看板——大幅简化雅思写作备考流程。",
+          ],
           resultImage: imgProject3_3,
-          takeaway: "成功将复杂的 AI 后台功能转化为简单、用户友好的前端界面。模块化系统极大简化了备考雅思写作的复杂流程。",
-          tools: ["UI/UX 设计", "Figma", "用户调研"],
+          resultImageCaption: "最终成果——写作区与反馈看板的 UI 细节。",
+          takeaway: "把设计建立在量化用户调研之上（77% 缺乏动力、43% 无学习计划），让我得以将复杂的 AI 功能翻译成平静、结构化的体验——好的教育科技 UX 关乎引导与信心，而非堆砌功能。",
+          tools: ["UI/UX 设计", "Figma", "用户调研", "GPT", "原型开发"],
           prototypeLink: "https://ielts.dauyan.com/",
         }
       },
@@ -958,7 +997,7 @@ export const translations = {
           goal: "利用 GIS 网络分析研究医疗资源的可达性，揭示资源分布上的空间差异。",
           takeaway: "通过分析路网和行驶时间，清晰地呈现了资源配置的不均衡及其对脆弱人群的影响。",
           tools: ["GIS", "城市科学", "医疗健康", "数据分析"],
-          prototypeLink: "https://arcg.is/1PnjPu0",
+          prototypeLink: "https://storymaps.arcgis.com/stories/4aef307c76114256b34cb4124ac9c5de",
         }
       },
       {
@@ -975,6 +1014,7 @@ export const translations = {
           goal: "将自然、人口和社会经济数据整合到一个预测框架中，构建脆弱性和经济影响模型。",
           takeaway: "本项目通过 GIS 和机器学习模型，实现了对自然灾害带来的潜在财务损失的精准预测分析。",
           tools: ["GIS", "机器学习", "气候风险", "经济建模"],
+          prototypeLink: "https://storymaps.arcgis.com/stories/e6a847a848b14d70b4698fe9b1decdd7",
         }
       },
       {
